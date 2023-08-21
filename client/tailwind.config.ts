@@ -20,6 +20,7 @@ const config: Config = {
         'dark-blue': 'var(--color-dark-blue)',
         'light-blue': 'var(--color-light-blue)',
         'light-grey': 'var(--color-light-grey)',
+        'dark-grey': 'var(--color-dark-grey)',
         'black': 'var(--color-black)',
         'white': 'var(--color-white)',  
       },

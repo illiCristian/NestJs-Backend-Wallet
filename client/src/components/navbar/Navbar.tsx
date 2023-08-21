@@ -18,7 +18,7 @@ const Navbar = (): JSX.Element => {
             href='/'
             // className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            <button className='gh bg-light-grey text-primary-blue rounded-md w-40 h-10 text-sm'>
+            <button className='nav_button gh bg-light-grey text-primary-blue hover:bg-dark-grey'>
               Iniciar sesión
             </button>
           </Link>
@@ -28,7 +28,7 @@ const Navbar = (): JSX.Element => {
             href='/'
             // className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            <button className='gh bg-primary-blue text-white rounded-md w-40 h-10 text-sm'>
+            <button className='nav_button gh bg-primary-blue text-white hover:bg-blue-hover'>
               Crear cuenta gratis
             </button>
           </Link>

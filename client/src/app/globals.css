@@ -7,9 +7,10 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --color-primary-blue: #0996fa;
-  --color-blue-hover: #2f5997;
+  --color-blue-hover: #407f98;
   --color-dark-blue: #0f3460;
   --color-light-grey: #e3e6e5;
+  --color-dark-grey: #c3c3c3;
   --color-black: #000000;
   --color-white: #ffffff;
 }
