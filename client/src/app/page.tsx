@@ -1,7 +1,7 @@
-import Navbar from '@/navbar/Navbar'
+import { Navbar } from '@/components'
 import Image from 'next/image'
 
-const Home: React.FC = () => {
+const Page = (): JSX.Element => {
   return (
     <div>
       <Navbar />
@@ -10,4 +10,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default Page
