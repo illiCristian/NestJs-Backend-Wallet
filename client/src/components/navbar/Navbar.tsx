@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { IoMdArrowDropdown } from 'react-icons/io'
 import './styles.css'
 
 const Navbar = (): JSX.Element => {
@@ -11,8 +12,12 @@ const Navbar = (): JSX.Element => {
         </li>
       </ul>
       <ul className='flex items-center gap-6'>
-        <li className='text-black/60 text-lg'>Para ti</li>
-        <li className='text-black/60 text-lg'>Para tu negocio</li>
+        <li className='text-black text-lg'>
+          Para ti <span className='arrow-icon'>&#x25BE;</span>
+        </li>
+        <li className='text-black text-lg'>
+          Para tu negocio <span className='arrow-icon'>&#x25BE;</span>
+        </li>
         <li>
           <Link
             href='/'
