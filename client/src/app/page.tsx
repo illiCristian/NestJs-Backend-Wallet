@@ -1,12 +1,13 @@
-import Image from 'next/image';
+import Footer from './pages/footer/page';
+import SecondCard from './pages/secondCard/page';
 
 export default function Home() {
   return (
-    <>
-      <section>
-        {' '}
-        <h1>Home</h1>
-      </section>
-    </>
-  );
+    <div>
+      <Footer />
+      <SecondCard />
+    </div>
+  
+  )
+
 }
