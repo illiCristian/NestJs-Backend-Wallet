@@ -56,9 +56,9 @@ export default function Banner () {
           </div>
         </div>
       </section>
-      <div className='flex'>
-        <section className='flex-1 relative'>
-          <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
+      <div className='vector-container flex'>
+        <section className='vector-container1 flex relative'>
+          <div className='flex flex-1 container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
             <div className='flex space-x-4'>
               <div className='card flex items-center'>
                 <Image
@@ -87,8 +87,8 @@ export default function Banner () {
               </div>
             </div>
           </div>
-        </section>
-        <section className='flex-1 relative'>
+          {/* </section> */}
+          {/* <section className='flex-1 relative'>*/}
           <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
             <div className='card flex items-center'>
               <Image

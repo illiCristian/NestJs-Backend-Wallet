@@ -63,3 +63,6 @@
   .banner-dot{
     opacity: 0.2; 
  }
+ .vector-container{
+    justify-content: center;
+ }
