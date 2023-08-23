@@ -20,7 +20,7 @@ export default function Banner () {
               height={100}
             />
           </div>
-          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+          <div className='banner-img2 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
             <Image
               className='banner-image2 object-cover object-center rounded'
               alt='hero'
