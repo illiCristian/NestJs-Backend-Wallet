@@ -1,7 +1,7 @@
 import './styles.css'
 import Image from 'next/image'
 import BannerImg from '../../../public/images/banner6.jpeg'
-import BannerImg2 from '../../../public/images/imagen-banner.png'
+import BannerImg2 from '../../../public/images/imagen-banner1.png'
 import Vector from '../../../public/vectors/vector.png'
 import Vector1 from '../../../public/vectors/vector1.png'
 import Dot from '../../../public/vectors/dot.png'
