@@ -54,7 +54,9 @@ export default function Banner () {
                     </p>
                   </div>
                   <div>
-                    <button className='w-full'>Conoce tus cuentas</button>
+                    <button className='w-full  bg-tertiary text-white hover:bg-tertiaryDark'>
+                      Conoce tus cuentas
+                    </button>
                   </div>
                 </div>
               </div>
@@ -75,15 +77,17 @@ export default function Banner () {
                 <div className='text-and-button'>
                   <div>
                     <h2 className='w-full'>
-                      Maneja tus finanzas, y transfiere gratis
+                      Vende y ten tu dinero al instante
                     </h2>
                     <p className='w-full'>
-                      Puedes hacer crecer tus ahorros con GBM, comprar en meses
-                      y pagar servicios desde el celular.
+                      Cobra con los medios de pago más usados y accede a un
+                      crédito sin complicaciones.
                     </p>
                   </div>
                   <div>
-                    <button className='w-full'>Conoce tus cuentas</button>
+                    <button className='w-full bg-tertiary text-white hover:bg-tertiaryDark'>
+                      Conoce tus cuentas
+                    </button>
                   </div>
                 </div>
               </div>
