@@ -1,11 +1,17 @@
-import Footer from "./pages/footer/page";
-import SecondCard from "./pages/secondCard/page";
+import { Navbar } from '@/components'
+import Image from 'next/image'
+import Footer from './pages/footer/page'
+//import SecondCard from './pages/secondCard/page'
 
-export default function Home() {
+const Page = (): JSX.Element => {
   return (
     <div>
+      <Navbar />
+      <main></main>
       <Footer />
-      <SecondCard />
+      {/* <SecondCard /> */}
     </div>
-  );
+  )
 }
+
+export default Page
