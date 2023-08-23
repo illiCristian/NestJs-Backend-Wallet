@@ -4,6 +4,8 @@ import BannerImg from '../../../public/images/banner6.jpeg'
 import BannerImg2 from '../../../public/images/imagen-banner.png'
 import Vector from '../../../public/vectors/vector.png'
 import Vector1 from '../../../public/vectors/vector1.png'
+import Dot from '../../../public/vectors/dot.png'
+import Bar from '../../../public/vectors/barra.png'
 
 export default function Banner () {
   return (
@@ -19,6 +21,23 @@ export default function Banner () {
               width={720}
               height={100}
             />
+            <div className='flex absolute top-0 left-0 w-full h-full flex ml-0 mt-20 font-black '>
+              <div>
+                <Image alt='vector ' src={Dot} width={250} height={100} />
+              </div>
+              <div className='bar-banner'>
+                <Image alt='vector ' src={Bar} width={100} height={100} />
+              </div>
+              <div>
+                <h2 className='text-white text-left text-4xl mb-2 tracking-wider '>
+                  HAZ MÁS
+                  <br />
+                  CON TU DINERO
+                  <br />
+                  ¡ES AHORA!
+                </h2>
+              </div>
+            </div>
           </div>
           <div className='banner-img2 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
             <Image

@@ -16,6 +16,21 @@ const Navbar = (): JSX.Element => {
   const toggleNegocioModal = () => {
     setShowModal2(!showModal2)
   }
+  const handleMouseEnterParaTi = () => {
+    setShowModal1(true)
+  }
+
+  const handleMouseLeaveParaTi = () => {
+    setShowModal1(false)
+  }
+
+  const handleMouseEnterNegocio = () => {
+    setShowModal2(true)
+  }
+
+  const handleMouseLeaveNegocio = () => {
+    setShowModal2(false)
+  }
 
   return (
     <>
@@ -28,7 +43,11 @@ const Navbar = (): JSX.Element => {
         <ul className='flex items-center gap-6'>
           <section>
             <li className='text-black text-lg bg-white'>
-              <div className='modal-wrapper'>
+              <div
+                className='modal-wrapper'
+                onMouseEnter={handleMouseEnterParaTi}
+                onMouseLeave={handleMouseLeaveParaTi}
+              >
                 <button onClick={toggleParaTiModal} className='modal-trigger'>
                   Para ti <span className='arrow-icon'>&#x25BE;</span>
                 </button>
@@ -68,7 +87,11 @@ const Navbar = (): JSX.Element => {
           </section>
           <section>
             <li className='text-black text-lg bg-white'>
-              <div className='modal-wrapper' onClick={toggleNegocioModal}>
+              <div
+                className='modal-wrapper'
+                onMouseEnter={handleMouseEnterNegocio}
+                onMouseLeave={handleMouseLeaveNegocio}
+              >
                 <button onClick={toggleNegocioModal} className='modal-trigger'>
                   Para tu negocio <span className='arrow-icon'>&#x25BE;</span>
                 </button>
