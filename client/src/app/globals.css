@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   html {
     font-family: Proxima Nova, system-ui, sans-serif;
-  }
+
+   } 
 }
