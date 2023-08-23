@@ -23,7 +23,13 @@ export default function Banner () {
             />
             <div className='flex absolute top-0 left-0 w-full h-full flex ml-0 mt-20 font-black '>
               <div>
-                <Image alt='vector ' src={Dot} width={250} height={100} />
+                <Image
+                  className='banner-dot'
+                  alt='vector '
+                  src={Dot}
+                  width={250}
+                  height={100}
+                />
               </div>
               <div className='bar-banner'>
                 <Image alt='vector ' src={Bar} width={100} height={100} />
