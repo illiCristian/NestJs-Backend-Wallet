@@ -56,3 +56,13 @@
 .flex-1 {
     width: 50%;
   }
+  .bar-banner{
+    width: 30px;
+    
+  }
+  .banner-dot{
+    opacity: 0.2; 
+ }
+ .vector-container{
+    justify-content: center;
+ }
