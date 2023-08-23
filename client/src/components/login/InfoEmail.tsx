@@ -20,7 +20,7 @@ const InfoEmail: React.FC = () => {
               alt="phone-icon"
             />
             <span>Robo o pérdida de teléfono.</span>
-            <Link href="/">
+            <Link href="#">
               <Image
                 src="/assets/login/icons/arrow.svg"
                 width={24}
@@ -39,7 +39,7 @@ const InfoEmail: React.FC = () => {
               alt="user-icon"
             />
             <span>Robo de cuenta</span>
-            <Link href="/">
+            <Link href="#">
               <Image
                 src="/assets/login/icons/arrow.svg"
                 width={24}
@@ -50,7 +50,7 @@ const InfoEmail: React.FC = () => {
           </div>
         </div>
       </article>
-      <Link className="py-6" href="/">
+      <Link className="py-6" href="#">
         <h5 className="text-[#00B1EA] font-normal text-xs">
           Necesito ayuda con otros temas
         </h5>

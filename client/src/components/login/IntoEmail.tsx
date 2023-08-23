@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type FormData = yup.InferType<typeof schema>;
 
@@ -13,17 +14,19 @@ const schema = yup.object().shape({
     .required("Email or phone number is required"),
 });
 
-const onSubmit = (data: FormData) => {
-  console.log(data);
-};
-
 const IntoEmail: React.FC = () => {
+  const router = useRouter();
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
 
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+    router.push("/login/validation-method");
+  };
+
   return (
-    <section className="md:flex md:flex-col md:items-start md:justify-start px-4 py-20 max-w-2xl h-screen">
+    <section className="md:flex md:flex-col md:items-start md:justify-start px-12 py-20 max-w-2xl h-screen">
       <h1 className="text-black font-normal text-lg">Email o teléfono</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -32,9 +35,11 @@ const IntoEmail: React.FC = () => {
         <input
           {...register("emailOrPhone")}
           type="text"
-          placeholder="ejemplo@gmail.com"
-          autoFocus
-          className="md:w-full py-6 px-2 mb-4 border outline-none border-[#00B1EA] rounded-md"
+          className={`md:w-full py-6 px-4 mb-4 border outline-none ${
+            formState.errors.emailOrPhone
+              ? "border-red-500"
+              : "border-[#00B1EA]"
+          }  rounded-md`}
         />
         {formState.errors.emailOrPhone && (
           <p className="mb-4 text-sm text-red-500">
