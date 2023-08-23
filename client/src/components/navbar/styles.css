@@ -5,3 +5,31 @@
     border-radius: .375rem;
     font-weight: 500;
 }
+.nav-container{
+    position: relative;
+}
+.modal-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* The Modal styles */
+  .foryou-modal, .busissnes-modal {
+    position: absolute;
+    width: max-content;
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: white;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 160px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: block; 
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+
+.bussisnes-modal {
+  position: absolute;
+  right: 0;
+} 

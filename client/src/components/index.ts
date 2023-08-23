@@ -1,5 +1,5 @@
 import Navbar from './navbar/Navbar'
-import MyModal from './navbar-modal/MyModal'
+import MyModal from './modal/MyModal'
 
 export {
   Navbar,
