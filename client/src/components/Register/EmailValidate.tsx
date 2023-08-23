@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import warningImg from "../../../public/assets/register/warning.svg";
 import { useStepperState } from "@/store/registerStore";
+import Link from 'next/link';
 
 export default function EmailValidate() {
   const { setStepper } = useStepperState();
@@ -43,12 +44,15 @@ export default function EmailValidate() {
         </section>
         {/* Botón de envío */}
 
-        <button
-          type="button"
-          className="mt-4 text-center text-neutral-500 text-base font-bold leading-normal w-[343.22px] h-[50.08px] py-3 bg-secondary rounded-md justify-center items-center gap-2 inline-flex"
-        >
-          Enviar e-mail de confirmación
-        </button>
+        <Link href={'/register/welcome'}>
+          <button
+            type='button'
+            className='mt-4 text-center text-neutral-500 text-base font-bold leading-normal w-[343.22px] h-[50.08px] py-3 bg-secondary rounded-md justify-center items-center gap-2 inline-flex'
+          >
+            Enviar e-mail de confirmación
+          </button>
+        </Link>
+        
       </form>
     </>
   );
