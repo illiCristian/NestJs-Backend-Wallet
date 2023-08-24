@@ -26,10 +26,10 @@ const SecondCard = () => {
             100% digital, la abrís en minutos y podés manejar tus finanzas como quieras.
           </p>
 
-
           <button className=' bg-blue-400 text-white text-sm py-3 mx-16 border rounded-lg mt-2 mb-3'>
             Conocé la cuenta
           </button>
+
         </div>
       </div>
     </div>
