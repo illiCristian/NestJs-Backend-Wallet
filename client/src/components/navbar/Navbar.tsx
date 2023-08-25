@@ -8,6 +8,7 @@ import Banner from '../navbar-banner/Banner'
 const Navbar = (): JSX.Element => {
   const [showModal1, setShowModal1] = useState(false)
   const [showModal2, setShowModal2] = useState(false)
+  //const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleParaTiModal = () => {
     setShowModal1(!showModal1)
@@ -16,6 +17,11 @@ const Navbar = (): JSX.Element => {
   const toggleNegocioModal = () => {
     setShowModal2(!showModal2)
   }
+
+  // const toggleMenu = () => {
+  //   setIsMenuOpen(!isMenuOpen)
+  // }
+
   const handleMouseEnterParaTi = () => {
     setShowModal1(true)
   }
@@ -40,7 +46,7 @@ const Navbar = (): JSX.Element => {
             <Link href='/'>Team MP</Link>
           </li>
         </ul>
-        <ul className='flex items-center gap-6'>
+        <ul className={`flex items-center gap-6`}>
           <section>
             <li className='text-black text-lg bg-white'>
               <div
@@ -143,6 +149,7 @@ const Navbar = (): JSX.Element => {
               </button>
             </Link>
           </li>
+
           <li>
             <Link
               href='/'
@@ -153,6 +160,7 @@ const Navbar = (): JSX.Element => {
               </button>
             </Link>
           </li>
+
           <li className='text-lg'>
             <Link
               href='/'
