@@ -5,7 +5,7 @@ import bell from '../../../public/assets/dashboard/bell.svg';
 export default function NavbarDashboard() {
   return (
     <>
-      <header className='w-[1920px] h-16 bg-tertiary'>
+      <header className='w-[1600px] h-16 bg-tertiary'>
         {/* Sección del logo */}
         <section className='h-16 pr-2.5 left-[64px]  flex-col justify-start items-start gap-2.5 inline-flex'>
           {/* Imagen del logo */}
