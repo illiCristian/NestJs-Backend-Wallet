@@ -19,6 +19,8 @@ const config: Config = {
         tertiary: '#',
         success: '#32B105',
         error: '#FF2C2C',
+        buttonHeader: '#e9ecef',
+        buttonHeaderHover: '#dee2e6',
       },
       backgroundColor: {
         primary: '#FFFFFF',
@@ -27,7 +29,7 @@ const config: Config = {
         tertiaryDark: '#007399',
         quaternary: '#',
         quinary: '#',
-        sixnary: '#',
+        sixnary: '#'
       },
     },
   },

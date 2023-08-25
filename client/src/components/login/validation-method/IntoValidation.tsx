@@ -1,32 +1,23 @@
-"use client";
-
-import { useStepperState } from "@/store/registerStore";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import atom from "../../../public/assets/register/atom.svg";
-import contact from "../../../public/assets/register/contact.svg";
-import mail from "../../../public/assets/register/mail.svg";
-import phone from "../../../public/assets/register/phone.svg";
-import terms from "../../../public/assets/register/terms.svg";
 
-export default function FormRegisterValidate() {
-  const { setStepper } = useStepperState();
-
-  useEffect(() => {
-    setStepper({ stepOne: true, stepTwo: true, stepThree: false });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+const IntoValidation = () => {
   return (
-    <>
-      <div className=" w-[625px] h-[491px] bg-primary rounded-lg  shadow-[0px_1px_4px_2px_#00000025] px-5 py-7">
-        {/* Sección principal */}
-        <section className="flex justify-start origin-top-left rotate-[0.55deg] text-center text-black text-2xl font-semibold mb-5">
-          Completa los datos para crear tu cuenta
-        </section>
+    <section className="px-12 max-w-2xl h-screen">
+      <div className=" w-[550px] h-[451px] bg-primary rounded-lg border px-5 py-7">
         {/* Primer artículo */}
-        <article className=" w-[577px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0] mb-2">
+        <article className=" w-[500px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0] mb-2">
+          <Link
+            className="relative flex items-end justify-end pt-6 pr-2"
+            href="#"
+          >
+            <Image
+              src="/assets/login/icons/arrow.svg"
+              width={24}
+              height={24}
+              alt="arrow-icon"
+            />
+          </Link>
           <header className=" p-1 left-[43px] top-[8px] absolute justify-center items-center gap-1 inline-flex">
             <div className=" origin-top-left rotate-[0.55deg] text-center text-black text-base font-normal leading-normal">
               Valida tu e-mail
@@ -39,22 +30,27 @@ export default function FormRegisterValidate() {
           </section>
           <figure className=" w-6 h-6 left-[8px] top-[21px] absolute justify-center items-center inline-flex">
             <Image
-              src={mail}
+              src="/assets/register/mail.svg"
+              width={24}
+              height={24}
               alt="mail"
-              className="relative flex flex-col items-start justify-start w-6 h-6 "
+              className=" w-6 h-6 relative flex-col justify-start items-start flex"
             />
           </figure>
-          <Link
-            href={"/register/email"}
-            className=" w-[90px] h-[33px] px-16 py-3 left-[435px] top-[17px] absolute bg-tertiary rounded-md justify-center items-center gap-2 inline-flex hover:bg-tertiaryDark transition-all duration-700"
-          >
-            <div className=" origin-top-left rotate-[0.55deg] text-center text-white text-base font-bold leading-normal">
-              Validar
-            </div>
-          </Link>
         </article>
         {/* Segundo artículo */}
-        <article className=" w-[577px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0]  mb-2">
+        <article className=" w-[500px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0]  mb-2">
+          <Link
+            className="relative flex items-end justify-end pt-6 pr-2"
+            href="#"
+          >
+            <Image
+              src="/assets/login/icons/arrow.svg"
+              width={24}
+              height={24}
+              alt="arrow-icon"
+            />
+          </Link>
           <div className=" p-1 left-[43px] top-[8px] absolute justify-center items-center gap-1 inline-flex">
             <section className=" origin-top-left rotate-[0.55deg] text-center text-black text-base font-normal leading-normal">
               Valida tu Identidad
@@ -67,22 +63,27 @@ export default function FormRegisterValidate() {
           </header>
           <figure className=" w-6 h-6 left-[8px] top-[21px] absolute justify-center items-center inline-flex">
             <Image
-              src={contact}
+              src="/assets/register/contact.svg"
+              width={24}
+              height={24}
               alt="mail"
-              className="relative flex flex-col items-start justify-start w-6 h-6 "
+              className=" w-6 h-6 relative flex-col justify-start items-start flex"
             />
           </figure>
-          <Link
-            href={"/"}
-            className="hidden w-[90px] h-[33px] px-16 py-3 left-[435px] top-[17px] absolute bg-tertiary rounded-md justify-center items-center gap-2"
-          >
-            <div className=" origin-top-left rotate-[0.55deg] text-center text-white text-base font-bold leading-normal">
-              Validar
-            </div>
-          </Link>
         </article>
         {/* Tercer artículo */}
-        <article className=" w-[577px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0]  mb-2">
+        <article className=" w-[500px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0]  mb-2">
+          <Link
+            className="relative flex items-end justify-end pt-6 pr-2"
+            href="#"
+          >
+            <Image
+              src="/assets/login/icons/arrow.svg"
+              width={24}
+              height={24}
+              alt="arrow-icon"
+            />
+          </Link>
           <div className=" p-1 left-[43px] top-[8px] absolute justify-center items-center gap-1 inline-flex">
             <section className=" origin-top-left rotate-[0.55deg] text-center text-black text-base font-normal leading-normal">
               Valida tu teléfono
@@ -95,22 +96,27 @@ export default function FormRegisterValidate() {
           </header>
           <figure className=" w-6 h-6 left-[8px] top-[21px] absolute justify-center items-center inline-flex">
             <Image
-              src={phone}
+              src="/assets/register/phone.svg"
+              width={24}
+              height={24}
               alt="phone"
-              className="relative flex flex-col items-start justify-start w-6 h-6 "
+              className=" w-6 h-6 relative flex-col justify-start items-start flex"
             />
           </figure>
-          <Link
-            href={"/"}
-            className="hidden w-[90px] h-[33px] px-16 py-3 left-[435px] top-[17px] absolute bg-tertiary rounded-md justify-center items-center gap-2 "
-          >
-            <div className=" origin-top-left rotate-[0.55deg] text-center text-white text-base font-bold leading-normal">
-              Validar
-            </div>
-          </Link>
         </article>
         {/* Cuarto artículo */}
-        <article className="w-[577px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0] mb-2">
+        <article className="w-[500px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0] mb-2">
+          <Link
+            className="relative flex items-end justify-end pt-6 pr-2"
+            href="#"
+          >
+            <Image
+              src="/assets/login/icons/arrow.svg"
+              width={24}
+              height={24}
+              alt="arrow-icon"
+            />
+          </Link>
           <header className="p-1 left-[43px] top-[8px] absolute justify-center items-center gap-1 inline-flex">
             <div className="origin-top-left rotate-[0.55deg] text-center text-black text-base font-normal leading-normal">
               Regulaciones vigentes
@@ -123,22 +129,27 @@ export default function FormRegisterValidate() {
           </section>
           <figure className="w-6 h-6 left-[8px] top-[21px] absolute justify-center items-center inline-flex">
             <Image
-              src={atom}
+              src="/assets/register/atom.svg"
+              width={24}
+              height={24}
               alt="atom"
-              className="relative flex flex-col items-start justify-start w-6 h-6"
+              className="w-6 h-6 relative flex-col justify-start items-start flex"
             />
           </figure>
-          <Link
-            href={"/"}
-            className="hidden w-[90px] h-[33px] px-16 py-3 left-[435px] top-[17px] absolute bg-tertiary rounded-md justify-center items-center gap-2"
-          >
-            <div className="origin-top-left rotate-[0.55deg] text-center text-white text-base font-bold leading-normal">
-              Validar
-            </div>
-          </Link>
         </article>
         {/* Quinto artículo */}
-        <article className="w-[577px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0] mb-2">
+        <article className="w-[500px] h-[68px] relative bg-primary rounded-lg shadow-[2px_3px_4px_0px_#e2e8f0] mb-2">
+          <Link
+            className="relative flex items-end justify-end pt-6 pr-2"
+            href="#"
+          >
+            <Image
+              src="/assets/login/icons/arrow.svg"
+              width={24}
+              height={24}
+              alt="arrow-icon"
+            />
+          </Link>
           <header className="p-1 left-[43px] top-[8px] absolute justify-center items-center gap-1 inline-flex">
             <div className="origin-top-left rotate-[0.55deg] text-center text-black text-base font-normal leading-normal">
               Términos y Condiciones
@@ -151,21 +162,16 @@ export default function FormRegisterValidate() {
           </section>
           <figure className="w-6 h-6 left-[8px] top-[21px] absolute justify-center items-center inline-flex">
             <Image
-              src={terms}
+              src="/assets/register/terms.svg"
+              width={24}
+              height={24}
               alt="terms"
-              className="relative flex flex-col items-start justify-start w-6 h-6"
+              className="w-6 h-6 relative flex-col justify-start items-start flex"
             />
           </figure>
-          <Link
-            href={"/"}
-            className="hidden w-[90px] h-[33px] px-16 py-3 left-[435px] top-[17px] absolute bg-tertiary rounded-md justify-center items-center gap-2"
-          >
-            <div className="origin-top-left rotate-[0.55deg] text-center text-white text-base font-bold leading-normal">
-              Validar
-            </div>
-          </Link>
         </article>
       </div>
-    </>
+    </section>
   );
-}
+};
+export default IntoValidation;
