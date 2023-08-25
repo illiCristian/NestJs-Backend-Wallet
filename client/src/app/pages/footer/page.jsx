@@ -75,7 +75,7 @@ const Footer = () => {
           />
         </div>
         <div className='text-black text-xs mt-10'>
-          <Link href={`/`}>
+          <Link href={`/pages/modals`}>
             <p className=' hover:text-blue-500'>Cuenta Mercado Pago</p>
           </Link>
           <br />
