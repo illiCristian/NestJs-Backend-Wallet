@@ -1,36 +1,36 @@
-'use client'
-import React, { useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import './styles.css'
-import Banner from '../navbar-banner/Banner'
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import './styles.css';
+import Banner from '../navbar-banner/Banner';
 
 const Navbar = (): JSX.Element => {
-  const [showModal1, setShowModal1] = useState(false)
-  const [showModal2, setShowModal2] = useState(false)
+  const [showModal1, setShowModal1] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
 
   const toggleParaTiModal = () => {
-    setShowModal1(!showModal1)
-  }
+    setShowModal1(!showModal1);
+  };
 
   const toggleNegocioModal = () => {
-    setShowModal2(!showModal2)
-  }
+    setShowModal2(!showModal2);
+  };
   const handleMouseEnterParaTi = () => {
-    setShowModal1(true)
-  }
+    setShowModal1(true);
+  };
 
   const handleMouseLeaveParaTi = () => {
-    setShowModal1(false)
-  }
+    setShowModal1(false);
+  };
 
   const handleMouseEnterNegocio = () => {
-    setShowModal2(true)
-  }
+    setShowModal2(true);
+  };
 
   const handleMouseLeaveNegocio = () => {
-    setShowModal2(false)
-  }
+    setShowModal2(false);
+  };
 
   return (
     <>
@@ -135,7 +135,7 @@ const Navbar = (): JSX.Element => {
           </section>
           <li>
             <Link
-              href='/'
+              href='/login'
               // className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               <button className='nav_button font-bold gh bg-buttonHeader text-primary hover:bg-buttonHeaderHover'>
@@ -145,7 +145,7 @@ const Navbar = (): JSX.Element => {
           </li>
           <li>
             <Link
-              href='/'
+              href='/register'
               // className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               <button className='nav_button gh bg-tertiary text-white hover:bg-tertiaryDark'>
@@ -165,7 +165,7 @@ const Navbar = (): JSX.Element => {
       </nav>
       <Banner />
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
