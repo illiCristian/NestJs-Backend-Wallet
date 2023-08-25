@@ -1,36 +1,42 @@
-'use client';
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import './styles.css';
-import Banner from '../navbar-banner/Banner';
+'use client'
+import React, { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import './styles.css'
+import Banner from '../navbar-banner/Banner'
 
 const Navbar = (): JSX.Element => {
-  const [showModal1, setShowModal1] = useState(false);
-  const [showModal2, setShowModal2] = useState(false);
+  const [showModal1, setShowModal1] = useState(false)
+  const [showModal2, setShowModal2] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const toggleParaTiModal = () => {
-    setShowModal1(!showModal1);
-  };
+    setShowModal1(!showModal1)
+  }
 
   const toggleNegocioModal = () => {
-    setShowModal2(!showModal2);
-  };
+    setShowModal2(!showModal2)
+  }
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
   const handleMouseEnterParaTi = () => {
-    setShowModal1(true);
-  };
+    setShowModal1(true)
+  }
 
   const handleMouseLeaveParaTi = () => {
-    setShowModal1(false);
-  };
+    setShowModal1(false)
+  }
 
   const handleMouseEnterNegocio = () => {
-    setShowModal2(true);
-  };
+    setShowModal2(true)
+  }
 
   const handleMouseLeaveNegocio = () => {
-    setShowModal2(false);
-  };
+    setShowModal2(false)
+  }
 
   return (
     <>
@@ -41,98 +47,114 @@ const Navbar = (): JSX.Element => {
           </li>
         </ul>
         <ul className={`flex items-center gap-6`}>
-          <section>
-            <li className='text-black text-lg bg-white'>
-              <div
-                className='modal-wrapper'
-                onMouseEnter={handleMouseEnterParaTi}
-                onMouseLeave={handleMouseLeaveParaTi}
-              >
-                <button onClick={toggleParaTiModal} className='modal-trigger'>
-                  Para ti <span className='arrow-icon'>&#x25BE;</span>
-                </button>
-                {showModal1 && (
-                  <div className='foryou-modal'>
-                    <h2 className='font-medium mt-6 mb-6 ml-5'>Para ti</h2>
-                    <div className='text-sm'>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Cuenta digital
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Tarjeta de crédito Mercado Pago
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Línea de crédito
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Inversiones con GBM
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Tarjeta Debit Mastercard
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Envíos y recibos de dinero
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Pago de servicios y recargas
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Seguros y garantías
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </li>
-          </section>
-          <section>
-            <li className='text-black text-lg bg-white'>
-              <div
-                className='modal-wrapper'
-                onMouseEnter={handleMouseEnterNegocio}
-                onMouseLeave={handleMouseLeaveNegocio}
-              >
-                <button onClick={toggleNegocioModal} className='modal-trigger'>
-                  Para tu negocio <span className='arrow-icon'>&#x25BE;</span>
-                </button>
-                {showModal2 && (
+          <nav className='mobile-menu'>
+            <div className='hamburger-icon' onClick={toggleMobileMenu}>
+              &#9776;
+            </div>
+            <ul className={`menu-items ${mobileMenuOpen ? 'open' : ''}`}>
+              <section>
+                <li className='text-black text-lg bg-white'>
                   <div
-                    className={`busissnes-modal ${
-                      showModal2 ? 'show-modal' : ''
-                    }`}
+                    className='modal-wrapper'
+                    onMouseEnter={handleMouseEnterParaTi}
+                    onMouseLeave={handleMouseLeaveParaTi}
                   >
-                    <h2 className='font-medium mt-6 mb-6 ml-5'>
-                      Para tu negocio
-                    </h2>
-                    <div className='text-sm'>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Cobrar con Point
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Cobrar con link de pago
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Cobrar en un sitio web
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Planes de suscripción
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Crear tu tienda online
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Créditos para vendedores
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>
-                        Ser revendedor Point
-                      </p>
-                      <p className='flex items-center mb-6 ml-5'>Developers</p>
-                    </div>
+                    <button
+                      onClick={toggleParaTiModal}
+                      className='modal-trigger'
+                    >
+                      Para ti <span className='arrow-icon'>&#x25BE;</span>
+                    </button>
+                    {showModal1 && (
+                      <div className='foryou-modal'>
+                        <h2 className='font-medium mt-6 mb-6 ml-5'>Para ti</h2>
+                        <div className='text-sm'>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Cuenta digital
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Tarjeta de crédito Mercado Pago
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Línea de crédito
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Inversiones con GBM
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Tarjeta Debit Mastercard
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Envíos y recibos de dinero
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Pago de servicios y recargas
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Seguros y garantías
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </li>
-          </section>
+                </li>
+              </section>
+              <section>
+                <li className='text-black text-lg bg-white'>
+                  <div
+                    className='modal-wrapper'
+                    onMouseEnter={handleMouseEnterNegocio}
+                    onMouseLeave={handleMouseLeaveNegocio}
+                  >
+                    <button
+                      onClick={toggleNegocioModal}
+                      className='modal-trigger'
+                    >
+                      Para tu negocio{' '}
+                      <span className='arrow-icon'>&#x25BE;</span>
+                    </button>
+                    {showModal2 && (
+                      <div
+                        className={`busissnes-modal ${
+                          showModal2 ? 'show-modal' : ''
+                        }`}
+                      >
+                        <h2 className='font-medium mt-6 mb-6 ml-5'>
+                          Para tu negocio
+                        </h2>
+                        <div className='text-sm'>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Cobrar con Point
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Cobrar con link de pago
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Cobrar en un sitio web
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Planes de suscripción
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Crear tu tienda online
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Créditos para vendedores
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Ser revendedor Point
+                          </p>
+                          <p className='flex items-center mb-6 ml-5'>
+                            Developers
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              </section>
+            </ul>
+          </nav>
           <li>
             <Link
               href='/login'
@@ -167,7 +189,7 @@ const Navbar = (): JSX.Element => {
       </nav>
       <Banner />
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

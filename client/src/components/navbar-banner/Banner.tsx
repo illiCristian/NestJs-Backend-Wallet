@@ -21,7 +21,7 @@ export default function Banner () {
               width={720}
               height={100}
             />
-            <div className='flex absolute top-0 left-0 w-full h-full flex ml-0 mt-20 font-black '>
+            <div className='flex absolute top-0 left-0 w-full h-full ml-0 mt-20 font-black '>
               <div>
                 <Image
                   className='banner-dot'
@@ -58,7 +58,7 @@ export default function Banner () {
       </section>
       <div className='vector-container flex'>
         <section className='vector-container1 flex relative'>
-          <div className='flex flex-1 container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
+          <div className='flex flex-1 container mx-auto px-5 py-24 items-center justify-center flex-col'>
             <div className='flex space-x-4'>
               <div className='card flex items-center'>
                 <Image
