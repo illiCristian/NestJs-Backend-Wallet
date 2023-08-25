@@ -43,7 +43,9 @@ const Navbar = (): JSX.Element => {
       <nav className='nav-container flex justify-between items-center p-4 md:px-8'>
         <ul className='flex items-center gap-6'>
           <li className='font-semibold text-xl'>
-            <Link href='/'>Team MP</Link>
+            <Link href='/' className='logo-nav text-primary'>
+              Team MP
+            </Link>
           </li>
         </ul>
         <ul className={`flex items-center gap-6`}>
@@ -177,7 +179,7 @@ const Navbar = (): JSX.Element => {
             </Link>
           </li>
 
-          <li className='text-lg'>
+          <li className='help-nav text-lg'>
             <Link
               href='/'
               // className={({ isActive }) => (isActive ? activeStyle : undefined)}
