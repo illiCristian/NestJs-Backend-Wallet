@@ -7,12 +7,16 @@ import Vector1 from '../../../../public/assets/landing/vectors/vector1.png';
 import Dot from '../../../../public/assets/landing/vectors/Dot.png';
 import Bar from '../../../../public/assets/landing/vectors/barra.png';
 
-export default function Banner() {
+interface BannerProps {
+  bannerClasses: string;
+}
+
+const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
   return (
-    <div>
-      <section className='banner relative'>
-        <div className='container max-w-full px-0 py-0 items-center justify-center flex-col '>
-          <div className='w-full opacity-80 '>
+    <div className='banner-container'>
+      <section className={`banner-sections relative ${bannerClasses}`}>
+        <div className='section-uno max-w-full px-0 py-0 items-center justify-center flex-col'>
+          <div className='section-uno max-w-full px-0 py-0 items-center justify-center flex-col relative'>
             <Image
               className='banner-image w-full object-cover object-center opacity-80 relative'
               alt='hero'
@@ -21,7 +25,7 @@ export default function Banner() {
               width={720}
               height={100}
             />
-            <div className='flex absolute top-0 left-0 w-full h-full ml-0 mt-20 font-black '>
+            <div className='flex absolute top-0 left-0 w-full h-full ml-0 mt-10 font-black text-center z-10'>
               <div>
                 <Image
                   className='banner-dot'
@@ -35,10 +39,8 @@ export default function Banner() {
                 <Image alt='vector ' src={Bar} width={100} height={100} />
               </div>
               <div>
-                <h2 className='text-white text-left text-4xl mb-2 tracking-wider '>
-                  HAZ MÁS
-                  <br />
-                  CON TU DINERO
+                <h2 className='text-banner text-white text-left text-4xl mb-2 tracking-wider '>
+                  HAZ MÁS CON TU DINERO
                   <br />
                   ¡ES AHORA!
                 </h2>
@@ -47,7 +49,7 @@ export default function Banner() {
           </div>
           <div className='banner-img2 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
             <Image
-              className='banner-image2 object-cover object-center rounded'
+              className={`banner-image2 object-cover object-center rounded ${bannerClasses}`}
               alt='hero'
               src={BannerImg2}
               width={720}
@@ -58,11 +60,11 @@ export default function Banner() {
       </section>
       <div className='vector-container flex'>
         <section className='vector-container1 flex relative'>
-          <div className='flex flex-1 container mx-auto  px-5 py-24 items-center justify-center flex-col'>
+          <div className='flex flex-1 container mx-auto px-5 py-24 items-center justify-center flex-col'>
             <div className='flex space-x-4'>
-              <div className='card flex items-center'>
+              <div className={`card flex items-center `}>
                 <Image
-                  className='card-vector lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded'
+                  className={`card-vector1 lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded`}
                   alt='hero'
                   src={Vector1}
                   width={200}
@@ -92,7 +94,7 @@ export default function Banner() {
           <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
             <div className='card flex items-center'>
               <Image
-                className='card-vector lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded'
+                className='card-vector2 lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded'
                 alt='hero'
                 src={Vector}
                 width={200}
@@ -118,4 +120,6 @@ export default function Banner() {
       </div>
     </div>
   );
-}
+};
+
+export default Banner;
