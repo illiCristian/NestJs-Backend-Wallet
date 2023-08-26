@@ -7,7 +7,11 @@ import Vector1 from '../../../public/vectors/vector1.png'
 import Dot from '../../../public/vectors/dot.png'
 import Bar from '../../../public/vectors/barra.png'
 
-export default function Banner ({ bannerClasses }) {
+interface BannerProps {
+  bannerClasses: string
+}
+
+const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
   return (
     <div className='banner-container'>
       <section className={`banner-sections relative ${bannerClasses}`}>
@@ -117,3 +121,5 @@ export default function Banner ({ bannerClasses }) {
     </div>
   )
 }
+
+export default Banner
