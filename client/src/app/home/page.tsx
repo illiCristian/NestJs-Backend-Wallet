@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import ActivityBox from '@/components/Dashboard/ActivityBox';
-import MoneyCharge from '@/components/Dashboard/MoneyCharge';
-import BalanceWallet from '@/components/Dashboard/BalanceWallet';
+import ActivityBox from '@/components/Home/ActivityBox';
+import MoneyCharge from '@/components/Home/MoneyCharge';
+import BalanceWallet from '@/components/Home/BalanceWallet';
 import arrow from '../../../public/assets/dashboard/arrow2.svg';
 import image from '../../../public/assets/dashboard/image.png';
 

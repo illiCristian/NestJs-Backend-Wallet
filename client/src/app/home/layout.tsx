@@ -1,6 +1,6 @@
-import Drawer from '@/components/Dashboard/Drawer';
-import Footer from '@/components/Dashboard/Footer';
-import NavbarDashboard from '@/components/Dashboard/NavbarDashboard';
+import Drawer from '@/components/Home/Drawer';
+import Footer from '@/components/Home/Footer';
+import NavbarHome from '@/components/Home/NavbarHome';
 
 export default function DashboardLayout({
   children,
@@ -12,7 +12,7 @@ export default function DashboardLayout({
       <section className='flex '>
         <Drawer />
         <div className='flex flex-col '>
-          <NavbarDashboard />
+          <NavbarHome />
           {children}
           <Footer />
         </div>

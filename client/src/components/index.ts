@@ -1,7 +1,4 @@
-import Navbar from './navbar/Navbar'
-import MyModal from './modal/MyModal'
+import Navbar from './LandingPage/Navbar/Navbar';
+import MyModal from './LandingPage/Modal/MyModal';
 
-export {
-  Navbar,
-  MyModal
-}
+export { Navbar, MyModal };

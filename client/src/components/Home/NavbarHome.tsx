@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import bell from '../../../public/assets/dashboard/bell.svg';
 
-export default function NavbarDashboard() {
+export default function NavbarHome() {
   return (
     <>
       <header className='w-[1600px] h-16 bg-tertiary'>
