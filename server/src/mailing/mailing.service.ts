@@ -1,36 +1,86 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import { EmailDto } from './dto/email.dto';
+import { JwtService } from '@nestjs/jwt';
+import { InjectModel } from '@nestjs/mongoose';
+import { EmailCodeDto } from './dto/emailCode.dto';
+import { error } from 'console';
+/* generateCode(email): string {
 
-function generateCode(): string {
-  const min = 100000; // El número mínimo de 6 dígitos
-  const max = 999999; // El número máximo de 6 dígitos
-  const code = Math.floor(Math.random() * (max - min + 1)) + min;
-  return code.toString(); // Convierte el número en una cadena de texto
-}
+} */
 @Injectable()
 export class MailingService {
-  constructor(private readonly mailerService: MailerService) {}
+  constructor(
+    private readonly mailerService: MailerService,
+    private jwtService: JwtService,
+    @InjectModel('Email') private readonly emailModel,
+  ) {}
+  public async generateCodeToken(email: string): Promise<string> {
+    const min = 1000;
+    const max = 9999;
+    const code = Math.floor(Math.random() * (max - min + 1)) + min;
+    return code.toString();
+    /*  const token = await this.jwtService.signAsync({
+      code: code.toString(),
+      email: email,
+    });
+    console.log('token');
+    console.log(token);
+    console.log('token');
+    return token; */ // Convierte el número en una cadena de texto
+  }
+  /* ({ code: code.toString(), email: email }); */
+  public async sendEmail(emailDto: EmailDto): Promise<string> {
+    const code = await this.generateCodeToken(emailDto.email);
+    const emailExists = await this.emailModel.findOne({
+      email: emailDto.email,
+    });
+    if (emailExists) {
+      await this.emailModel.findOneAndUpdate(
+        { email: emailDto.email },
+        { code: code },
+      );
+      console.log('Email actualizado');
+    } else {
+      const newEmail = await this.emailModel.create({
+        code: code,
+        email: emailDto.email,
+      });
+    }
 
-  public sendEmail(emailDto: EmailDto): void {
-    this.mailerService
+    const res = await this.mailerService
       .sendMail({
         to: emailDto.email,
         from: 'noreply@nestjs.com',
         subject: 'Testing Nest Mailermodule with template ✔',
-        template: 'action', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
+        template: 'action',
         context: {
-          // Data to be sent to template engine.
-          code: generateCode,
+          code: code,
           username: 'john doe',
         },
       })
       .then((success) => {
         console.log(success);
+        return 'Email enviado correctamente';
       })
       .catch((err) => {
         console.log(err);
+        return 'Error al enviar el email';
       });
+    return 'Email enviado correctamente';
+  }
+
+  public async validateCode(emaiCodelDto: EmailCodeDto): Promise<string> {
+    const { code, email } = emaiCodelDto;
+    const user = await this.emailModel.findOne({
+      email: email,
+    });
+    if (!user) new UnauthorizedException('Email no encontrado');
+    if (user.code === code) {
+      return 'Email validado correctamente';
+    } else {
+      return 'Codigo incorrecto';
+    }
   }
 }
 

@@ -18,6 +18,7 @@ export class AuthService {
     private userModel: Model<User>,
 
     private jwtService: JwtService,
+
     @InjectModel(Wallet.name)
     private readonly walletModel: Model<Wallet>,
   ) {}
