@@ -82,6 +82,7 @@
     transform: scaleY(0);
     opacity: 0;
     transition: transform 0.2s ease, opacity 0.2s ease; 
+   
   }
   .menu-items.open {
     width: 100%;
@@ -89,7 +90,7 @@
     opacity: 1;
   }
   .menu-items li {
-    margin-bottom: 10px; /* Ajusta el margen entre elementos en el menú */
+    margin-bottom: 20px; /* Ajusta el margen entre elementos en el menú */
   }
 }
 @media screen and (max-width: 600px) {
@@ -100,8 +101,10 @@
     display: none;
   }
   .nav_button-create2{
-    width: 33rem;
+  
+    width: 20rem;
     font-size: 1rem;
+    z-index: 20;
 }
 }
 @media screen and (min-width: 601px) {

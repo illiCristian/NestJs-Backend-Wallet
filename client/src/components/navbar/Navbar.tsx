@@ -38,6 +38,10 @@ const Navbar = (): JSX.Element => {
     setShowModal2(false)
   }
 
+  const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
+    mobileMenuOpen ? 'mobile-menu-open' : ''
+  }`
+
   return (
     <>
       <nav className='nav-container flex justify-between items-center p-4 md:px-8'>
@@ -200,7 +204,7 @@ const Navbar = (): JSX.Element => {
           </li>
         </ul>
       </nav>
-      <Banner />
+      <Banner bannerClasses={bannerClasses} />
     </>
   )
 }
