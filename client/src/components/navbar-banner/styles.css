@@ -69,7 +69,20 @@
  }
 
  /* RESPONSIVE*/
- @media screen and (max-width: 600px) {
+ @media screen and (max-width: 1038px) {
+  .card {
+    width: 400px;
+    height: 400px;
+  }
+ }
+ @media screen and (max-width: 839px) {
+  .card {
+    width: 350px;
+    height: 400px;
+  }
+ 
+ }
+ @media screen and (max-width: 739px) {
   .banner-dot, .bar-banner{
     display: none;
   }
