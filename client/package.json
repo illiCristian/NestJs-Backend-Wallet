@@ -1,4 +1,5 @@
 {
+
 	"name": "client",
 	"version": "0.1.0",
 	"private": true,
@@ -33,3 +34,4 @@
 		"typescript": "5.1.6"
 	}
 }
+
