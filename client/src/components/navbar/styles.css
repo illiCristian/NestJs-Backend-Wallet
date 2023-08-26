@@ -1,4 +1,4 @@
-.nav_button{
+.nav_button-init, .nav_button-create, .nav_button-create2{
     width: 12rem;
     height: 2.5rem;
     font-size: 1rem;
@@ -29,7 +29,6 @@
     margin-top: 15px;
     z-index: 20;
   }
-
 .bussisnes-modal {
   position: absolute;
   right: 0;
@@ -38,7 +37,6 @@
 
 /* RESPONSIVE HAMBURGUER MENU*/
 @media screen and (min-width: 895px) {
-  
   .hamburger-icon {
     display: none;
   }
@@ -48,30 +46,27 @@
   .modal-trigger{
    margin-left: 20px;
   }
-
 }
 @media screen and (max-width: 894px) {
- 
   .help-nav{
     display: none;
   }
   .menu {
     display: none; 
   }
-
   .mobile-menu {
+    background-color: #fff;
     display: flex;
-   
+   order: 3;
+   z-index: 1;
   }
   .hamburger-icon {
     cursor: pointer;
     font-size: 35px;
-   
   }
-
   .menu-items {
     list-style: none;
-    padding: 0;
+    padding: 20px;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -86,11 +81,31 @@
     transform-origin: top;
     transform: scaleY(0);
     opacity: 0;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease; 
   }
-
   .menu-items.open {
+    width: 100%;
     transform: scaleY(1);
     opacity: 1;
+  }
+  .menu-items li {
+    margin-bottom: 10px; /* Ajusta el margen entre elementos en el menú */
+  }
+}
+@media screen and (max-width: 600px) {
+  .logo-team{
+    display: none;
+  }
+  .nav_button-create{
+    display: none;
+  }
+  .nav_button-create2{
+    width: 33rem;
+    font-size: 1rem;
+}
+}
+@media screen and (min-width: 601px) {
+  .nav_button-create2{
+    display: none;
   }
 }

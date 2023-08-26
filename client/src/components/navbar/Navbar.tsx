@@ -44,7 +44,8 @@ const Navbar = (): JSX.Element => {
         <ul className='flex items-center gap-6'>
           <li className='font-semibold text-xl'>
             <Link href='/' className='logo-nav text-primary'>
-              Team MP
+              <span className='logo-team'>Team</span>
+              <span>MP</span>
             </Link>
           </li>
         </ul>
@@ -155,6 +156,16 @@ const Navbar = (): JSX.Element => {
                   </div>
                 </li>
               </section>
+              <li>
+                <Link
+                  href='/register'
+                  // className={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                  <button className='nav_button-create2 gh bg-tertiary text-white hover:bg-tertiaryDark'>
+                    Crear cuenta gratis
+                  </button>
+                </Link>
+              </li>
             </ul>
           </nav>
           <li>
@@ -162,7 +173,7 @@ const Navbar = (): JSX.Element => {
               href='/login'
               // className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <button className='nav_button font-bold gh bg-buttonHeader text-primary hover:bg-buttonHeaderHover'>
+              <button className='nav_button-init font-bold gh bg-buttonHeader text-primary hover:bg-buttonHeaderHover'>
                 Iniciar sesión
               </button>
             </Link>
@@ -173,7 +184,7 @@ const Navbar = (): JSX.Element => {
               href='/register'
               // className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <button className='nav_button gh bg-tertiary text-white hover:bg-tertiaryDark'>
+              <button className='nav_button-create gh bg-tertiary text-white hover:bg-tertiaryDark'>
                 Crear cuenta gratis
               </button>
             </Link>
