@@ -1,4 +1,5 @@
-import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import userImg from '../../../public/assets/dashboard/user-img.png';
 import arrow from '../../../public/assets/dashboard/arrow.svg';
 import home from '../../../public/assets/dashboard/home.svg';
@@ -15,14 +16,11 @@ import help from '../../../public/assets/dashboard/help.svg';
 import phone from '../../../public/assets/dashboard/phone.svg';
 import logout from '../../../public/assets/dashboard/logout.svg';
 
-import Image from 'next/image';
-import Link from 'next/link';
-
 export default function Drawer() {
   return (
     <section>
       <section className='flex flex-col'>
-        <figure className='w-[320px] h-[64px]  bg-sky-600 flex gap-3 px-4 pt-1'>
+        <figure className='w-[320px] h-[64px] bg-sky-600 flex gap-3 px-4 pt-1'>
           <Image
             src={userImg}
             className='w-[41px] h-[41px] rounded-full'
@@ -40,7 +38,7 @@ export default function Drawer() {
             </Link>
           </section>
         </figure>
-        <div className='w-[319px] bg-white shadow py-6'>
+        <div className='w-[319px] h-[1080px] bg-white border-r py-6'>
           <section className=' space-y-6'>
             <Link
               href={'/dashboard'}
@@ -62,7 +60,7 @@ export default function Drawer() {
               </h6>
             </Link>
           </section>
-          <div className='Rectangle429 w-80 h-px bg-zinc-300 mt-2'> </div>
+          <div className=' w-80 h-px bg-zinc-300 mt-2'> </div>
 
           <section className='space-y-6 py-4'>
             <Link

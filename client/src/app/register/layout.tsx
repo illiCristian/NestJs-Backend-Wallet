@@ -7,12 +7,10 @@ export default function RegisterLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className='flex flex-col justify-center items-center '>
-        <NavbarRegister />
-        <Stepper />
-        {children}
-      </body>
-    </html>
+    <section className='flex flex-col justify-center items-center '>
+      <NavbarRegister />
+      <Stepper />
+      {children}
+    </section>
   );
 }
