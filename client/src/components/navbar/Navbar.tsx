@@ -74,7 +74,9 @@ const Navbar = (): JSX.Element => {
                     </button>
                     {showModal1 && (
                       <div className='foryou-modal'>
-                        <h2 className='font-medium mt-6 mb-6 ml-5'>Para ti</h2>
+                        <h2 className='foryou-text font-medium mt-6 mb-6 ml-5'>
+                          Para ti
+                        </h2>
                         <div className='text-sm'>
                           <p className='flex items-center mb-6 ml-5'>
                             Cuenta digital
@@ -126,7 +128,7 @@ const Navbar = (): JSX.Element => {
                           showModal2 ? 'show-modal' : ''
                         }`}
                       >
-                        <h2 className='font-medium mt-6 mb-6 ml-5'>
+                        <h2 className='forbussines-text font-medium mt-6 mb-6 ml-5'>
                           Para tu negocio
                         </h2>
                         <div className='text-sm'>

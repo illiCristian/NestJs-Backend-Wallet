@@ -106,9 +106,23 @@
     font-size: 1rem;
     z-index: 20;
 }
+.foryou-modal, .busissnes-modal {
+  width: 400px;
+  left: 200px; 
+  z-index: 1;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+}
+.forbussines-text, .foryou-text{
+display: none;
+}
 }
 @media screen and (min-width: 601px) {
   .nav_button-create2{
     display: none;
   }
+  .forbussines-text, .foryou-text{
+    display: none;
+    }
 }

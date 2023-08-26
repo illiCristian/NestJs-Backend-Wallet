@@ -21,6 +21,7 @@
     align-items: center; /* Alinea verticalmente la imagen y el contenido 
   }*/
   .card {
+   
     width: 500px;
     background-color: white;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -128,6 +129,7 @@
   }
 
   .card-vector1, .card-vector2{
+   
     max-width: 150px;
    
 }
