@@ -4,19 +4,16 @@ import { useStepperState } from "@/store/registerStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import image from "../../../public/assets/register/image-1.svg";
-import { useRouter } from "next/navigation";
+import warningImg from "../../../public/assets/register/warning.svg";
 
 export default function FormRegister() {
 	const { setStepper } = useStepperState();
-	const [check, setCheck] = useState(false);
-	const router = useRouter();
+	const [checked, setChecked] = useState(false);
 
-	const handleNextPage = () => {
-		if (check) {
-			router.push("/register/validate-steps");
-		}
-	};
+  const handleChangeCheckbox = () => {
+    if (checked) setChecked(false);
+    if (!checked) setChecked(true);
+  };
 
 	useEffect(() => {
 		setStepper({ stepOne: true, stepTwo: false, stepThree: false });
@@ -48,7 +45,8 @@ export default function FormRegister() {
 				<div className="relative flex mb-5 terms-checkbox gap">
 					<input
 						type="checkbox"
-						onChange={() => setCheck(!check)}
+            checked={checked}
+						onChange={handleChangeCheckbox}
 						name="terms"
 						id="terms"
 						className="ml-10 w-4 h-4 border-stone-300 border-3 absolute right-[320px] top-[5px] appearance-none border-2 rounded-sm bg-primary me-2 checked:bg-tertiary checked:border-0"
@@ -85,13 +83,28 @@ export default function FormRegister() {
 						</span>
 					</article>
 				</div>
+        {/* Mensaje de advertencia */}
+        {!checked && (
+          <figure className="flex justify-start gap-2 mb-2">
+            <Image src={warningImg} alt="warning" className="w-4 h-4" />
+            <span className="text-xs font-normal leading-normal text-start text-error">
+              Debe aceptar los terminos y condiciones para continuar
+            </span>
+          </figure>
+        )}
 				{/* Botón de creación de cuenta personal */}
-				<button
-					className="personal-account-button w-[289.22px] h-[49.55px] py-3 bg-tertiary rounded-md justify-center items-center gap-2 inline-flex mb-3 origin-top-left  text-center text-white text-base font-bold leading-normal"
-					onClick={handleNextPage}
-				>
-					Crear cuenta personal
-				</button>
+				<Link href={"/register/validate-steps"}>
+          <button
+            disabled={!checked ? true : false}
+            className={`${
+              !checked
+                ? "bg-secondary text-secundary"
+                : "bg-tertiary text-white"
+            }personal-account-button w-[289.22px] h-[49.55px] py-3 rounded-md justify-center items-center gap-2 inline-flex mb-3 origin-top-left  text-center text-white text-base font-bold leading-normal`}
+          >
+            Crear cuenta personal
+          </button>
+        </Link>
 				{/* Botón de creación de cuenta de empresa */}
 				<Link href={"#"}>
 					<button className="business-account-button w-[289.22px] h-[49.55px] py-3 bg-secondary rounded-md justify-center items-center gap-2 inline-flex origin-top-left  text-center text-sky-500 text-base font-bold leading-normal">
