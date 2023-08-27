@@ -40,7 +40,9 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               </div>
               <div>
                 <h2 className='text-banner text-white text-left text-4xl mb-2 tracking-wider '>
-                  HAZ MÁS CON TU DINERO
+                  HAZ MÁS
+                  <br />
+                  CON TU DINERO
                   <br />
                   ¡ES AHORA!
                 </h2>
