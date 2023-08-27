@@ -7,7 +7,7 @@ const Page = (): JSX.Element => {
     <div>
       <Navbar />
       <main>
-        <Banner />
+        {/* <Banner /> */}
       </main>
       <Footer />
     </div>

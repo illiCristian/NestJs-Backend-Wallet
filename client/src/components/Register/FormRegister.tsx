@@ -25,12 +25,12 @@ export default function FormRegister() {
 			<section className="account-creation-form w-[470px] h-[545px] bg-primary rounded-lg shadow-[0px_1px_4px_2px_#00000025] flex flex-col justify-center items-center">
 				{/* Imagen */}
 				<figure className="image-container w-[164px] h-[133px]">
-					<Image
+					{/* <Image
 						alt="image"
 						className="w-[164px] h-[133px]"
 						src={image}
 						priority
-					/>
+					/> */}
 				</figure>
 				{/* Título */}
 				<h4 className="mt-8 mb-5 text-2xl font-semibold text-center text-black origin-top-left form-title">
