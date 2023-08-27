@@ -1,5 +1,4 @@
-import { IntoEmail } from '../../components/Login/ValidationMethod/IntoValidation';
-import { InfoEmail } from '../../components/Login/ValidationMethod/InfoValidation';
+import { InfoEmail, IntoEmail } from '@/components/login';
 
 const pageLogin: React.FC = () => {
   return (
