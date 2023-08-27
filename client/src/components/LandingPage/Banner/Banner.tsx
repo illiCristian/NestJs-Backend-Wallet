@@ -4,7 +4,7 @@ import BannerImg from '../../../../public/assets/landing/images/banner6.jpeg';
 import BannerImg2 from '../../../../public/assets/landing/images/imagen-banner1.png';
 import Vector from '../../../../public/assets/landing/vectors/vector.png';
 import Vector1 from '../../../../public/assets/landing/vectors/vector1.png';
-import Dot from '../../../../public/assets/landing/vectors/Dot.png';
+import Dot from '../../../../public/assets/landing/vectors/dot.png';
 import Bar from '../../../../public/assets/landing/vectors/barra.png';
 
 interface BannerProps {
