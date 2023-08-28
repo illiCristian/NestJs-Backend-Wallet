@@ -44,13 +44,23 @@ const Navbar = (): JSX.Element => {
   // } ${isMobile ? 'mobile-max-width' : ''}`
 
   useEffect(() => {
-    if (window.innerWidth <= 894) {
-      setIsMobile(true)
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 894)
+    }
+
+    // Initial check
+    updateIsMobile()
+
+    // Update when the window is resized
+    window.addEventListener('resize', updateIsMobile)
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('resize', updateIsMobile)
     }
   }, [])
-  updateIsMobile()
 
-  window.addEventListener('resize', updateIsMobile)
+  // ... (rest of your code)
 
   const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
     mobileMenuOpen ? 'mobile-menu-open' : ''
