@@ -39,22 +39,15 @@ const Navbar = (): JSX.Element => {
     setShowModal2(false)
   }
 
-  // const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
-  //   mobileMenuOpen ? 'mobile-menu-open' : ''
-  // } ${isMobile ? 'mobile-max-width' : ''}`
-
   useEffect(() => {
     const updateIsMobile = () => {
       setIsMobile(window.innerWidth <= 894)
     }
 
-    // Initial check
     updateIsMobile()
 
-    // Update when the window is resized
     window.addEventListener('resize', updateIsMobile)
 
-    // Clean up the event listener when the component is unmounted
     return () => {
       window.removeEventListener('resize', updateIsMobile)
     }
@@ -68,8 +61,8 @@ const Navbar = (): JSX.Element => {
 
   return (
     <>
-      window.removeEventListener('resize', updateIsMobile);
       <nav className='nav-container flex justify-between items-center p-4 md:px-8'>
+        window.removeEventListener('resize', updateIsMobile);
         <ul className='flex items-center gap-6'>
           <li className='font-semibold text-xl'>
             <Link href='/' className='logo-nav text-primary'>
