@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect, use } from 'react'
 import Link from 'next/link'
 import './styles.css'
 import Image from 'next/image'
@@ -9,6 +9,7 @@ const Navbar = (): JSX.Element => {
   const [showModal1, setShowModal1] = useState(false)
   const [showModal2, setShowModal2] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const toggleParaTiModal = () => {
     setShowModal1(!showModal1)
@@ -38,7 +39,18 @@ const Navbar = (): JSX.Element => {
     setShowModal2(false)
   }
 
-  const isMobile = window.innerWidth <= 894
+  // const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
+  //   mobileMenuOpen ? 'mobile-menu-open' : ''
+  // } ${isMobile ? 'mobile-max-width' : ''}`
+
+  useEffect(() => {
+    if (window.innerWidth <= 894) {
+      setIsMobile(true)
+    }
+  }, [])
+  updateIsMobile()
+
+  window.addEventListener('resize', updateIsMobile)
 
   const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
     mobileMenuOpen ? 'mobile-menu-open' : ''
@@ -46,6 +58,7 @@ const Navbar = (): JSX.Element => {
 
   return (
     <>
+      window.removeEventListener('resize', updateIsMobile);
       <nav className='nav-container flex justify-between items-center p-4 md:px-8'>
         <ul className='flex items-center gap-6'>
           <li className='font-semibold text-xl'>
