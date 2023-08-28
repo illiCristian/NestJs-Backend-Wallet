@@ -62,7 +62,6 @@ const Navbar = (): JSX.Element => {
   return (
     <>
       <nav className='nav-container flex justify-between items-center p-4 md:px-8'>
-        window.removeEventListener('resize', updateIsMobile);
         <ul className='flex items-center gap-6'>
           <li className='font-semibold text-xl'>
             <Link href='/' className='logo-nav text-primary'>
