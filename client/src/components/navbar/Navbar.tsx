@@ -9,6 +9,7 @@ const Navbar = (): JSX.Element => {
   const [showModal1, setShowModal1] = useState(false)
   const [showModal2, setShowModal2] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const toggleParaTiModal = () => {
     setShowModal1(!showModal1)
@@ -37,8 +38,6 @@ const Navbar = (): JSX.Element => {
   const handleMouseLeaveNegocio = () => {
     setShowModal2(false)
   }
-
-  const isMobile = window.innerWidth <= 894
 
   const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
     mobileMenuOpen ? 'mobile-menu-open' : ''
