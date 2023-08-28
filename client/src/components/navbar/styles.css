@@ -82,7 +82,15 @@
     transform: scaleY(0);
     opacity: 0;
     transition: transform 0.2s ease, opacity 0.2s ease; 
-   
+    max-width: 100%;
+  }
+  .foryou-modal, .busissnes-modal {
+    width: 400px;
+    left: 200px; 
+    z-index: 1;
+    height: 300px;
+    margin: 0;
+    padding: 0;
   }
   .menu-items.open {
     width: 100%;

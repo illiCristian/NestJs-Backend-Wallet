@@ -2,7 +2,6 @@
     max-height: 500px;
 }
 .banner-image2{
-    /* position: fixed; */
     width: 500px;
     height: 500px;
     margin: auto;
@@ -11,17 +10,7 @@
 .banner-img2{
     top: 270px;
 }
-/* .card {
-    width: 500px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    display: flex;
-    align-items: center; /* Alinea verticalmente la imagen y el contenido 
-  }*/
   .card {
-   
     width: 500px;
     background-color: white;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -69,6 +58,24 @@
  }
 
  /* RESPONSIVE*/
+ @media screen and (max-width: 894px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 650px;
+  }
+  .vector-container1 {
+    margin-top: 200px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mobile-menu-open .section-uno {
+    transform: translateY(100px);
+    transition: transform 0.3s ease;
+  }
+ }
+
  @media screen and (max-width: 600px) {
   .banner-dot, .bar-banner{
     display: none;
@@ -78,17 +85,14 @@
     flex-direction: column;
     align-items: center;
   }
-
   .section-uno {
     width: 100%;
     position: relative;
   }
-
   .banner-image {
     position: relative;
     width: 100%;
   }
-
   .text-banner {
     position: absolute;
     top: 0;
@@ -99,14 +103,10 @@
     font-size: 25px;
     z-index: 2;
   }
-
   .banner-img2 {
     position: static;
     margin-left: 50%;
     margin-top: 0;
-    /* left: auto;
-    top: auto; */
-    
   }
   .banner-image2{
     position: relative;
@@ -118,8 +118,8 @@
   .vector-container1 {
     flex-direction: column;
     align-items: center;
+    margin-top: 0;
   }
-
   .card {
     flex-direction: column;
     align-items: center;
@@ -127,17 +127,10 @@
     margin-bottom: 20px; 
     width: 400px;
   }
-
   .card-vector1, .card-vector2{
-   
     max-width: 150px;
-   
 }
-
-  .mobile-menu-open .section-uno {
-    transform: translateY(100px);
-    transition: transform 0.3s ease;
-  }
+ 
 }
 @media screen and (max-width: 390px) {
   .banner-image2{

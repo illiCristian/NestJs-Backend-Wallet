@@ -38,9 +38,11 @@ const Navbar = (): JSX.Element => {
     setShowModal2(false)
   }
 
+  const isMobile = window.innerWidth <= 894
+
   const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
     mobileMenuOpen ? 'mobile-menu-open' : ''
-  }`
+  } ${isMobile ? 'mobile-max-width' : ''}`
 
   return (
     <>
@@ -163,10 +165,7 @@ const Navbar = (): JSX.Element => {
                 </li>
               </section>
               <li>
-                <Link
-                  href='/register'
-                  // className={({ isActive }) => (isActive ? activeStyle : undefined)}
-                >
+                <Link href='/register'>
                   <button className='nav_button-create2 gh bg-tertiary text-white hover:bg-tertiaryDark'>
                     Crear cuenta gratis
                   </button>
@@ -175,10 +174,7 @@ const Navbar = (): JSX.Element => {
             </ul>
           </nav>
           <li>
-            <Link
-              href='/login'
-              // className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
+            <Link href='/login'>
               <button className='nav_button-init font-bold gh bg-buttonHeader text-primary hover:bg-buttonHeaderHover'>
                 Iniciar sesión
               </button>
@@ -197,12 +193,7 @@ const Navbar = (): JSX.Element => {
           </li>
 
           <li className='help-nav text-lg'>
-            <Link
-              href='/'
-              // className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              Ayuda
-            </Link>
+            <Link href='/'>Ayuda</Link>
           </li>
         </ul>
       </nav>

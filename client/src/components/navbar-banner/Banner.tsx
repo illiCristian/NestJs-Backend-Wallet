@@ -91,8 +91,6 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               </div>
             </div>
           </div>
-          {/* </section> */}
-          {/* <section className='flex-1 relative'>*/}
           <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
             <div className='card flex items-center'>
               <Image
