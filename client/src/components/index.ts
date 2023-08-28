@@ -1,4 +1,4 @@
-import Navbar from './navbar/Navbar'
+import Navbar from './LandingPage/Navbar/Navbar'
 import SuccessfulDebitTransfer from './transferDebit/SuccessfulDebitTransfer'
 import UnsuccessfulDebitTransfer from './transferDebit/UnsuccessfulDebitTransfer'
 
