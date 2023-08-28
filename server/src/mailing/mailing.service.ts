@@ -35,6 +35,8 @@ export class MailingService {
     const emailExists = await this.emailModel.findOne({
       email: emailDto.email,
     });
+    if (emailExists.isValidate)
+      throw new UnauthorizedException('Email ya validado');
     if (emailExists) {
       await this.emailModel.findOneAndUpdate(
         { email: emailDto.email },
@@ -77,6 +79,8 @@ export class MailingService {
     });
     if (!user) new UnauthorizedException('Email no encontrado');
     if (user.code === code) {
+      user.isValidate = true;
+      await user.save();
       return 'Email validado correctamente';
     } else {
       return 'Codigo incorrecto';

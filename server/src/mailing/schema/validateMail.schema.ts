@@ -12,6 +12,9 @@ export class Email {
 
   @Prop()
   email: string;
+
+  @Prop({ default: false })
+  isValidate: boolean;
 }
 
 export const EmailSchema = SchemaFactory.createForClass(Email);
