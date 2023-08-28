@@ -35,9 +35,10 @@ export class MailingService {
     const emailExists = await this.emailModel.findOne({
       email: emailDto.email,
     });
-    if (emailExists.isValidate)
-      throw new UnauthorizedException('Email ya validado');
+
     if (emailExists) {
+      const { isValidate } = emailExists;
+      if (isValidate) throw new UnauthorizedException('Email ya validado');
       await this.emailModel.findOneAndUpdate(
         { email: emailDto.email },
         { code: code },
