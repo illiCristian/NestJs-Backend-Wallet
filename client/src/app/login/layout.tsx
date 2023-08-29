@@ -1,5 +1,4 @@
 import NavbarRegister from "@/components/Register/NavbarRegister";
-import SessionAuthProvider from "@/context/SessionAuthProvider";
 
 export default function RegisterLayout({
 	children,
@@ -9,10 +8,8 @@ export default function RegisterLayout({
 	return (
 		<html lang="en">
 			<body className="flex flex-col items-center justify-center ">
-				<SessionAuthProvider>
-					<NavbarRegister />
-					{children}
-				</SessionAuthProvider>
+				<NavbarRegister />
+				{children}
 			</body>
 		</html>
 	);

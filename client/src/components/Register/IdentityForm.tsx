@@ -15,39 +15,26 @@ const schema = yup.object().shape({
 });
 
 export default function IdentityForm() {
-	const { setStepper } = useStepperState();
-	const { email } = useRegisterUser();
 	const router = useRouter();
+	const { setStepper } = useStepperState();
+	const { setUserData } = useRegisterUser();
 	const { register, handleSubmit, formState } = useForm({
 		resolver: yupResolver(schema),
 	});
 
 	const formSubmit = async (data: FormData) => {
-		// registrar usuario
-		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_BACKEND_URL}auth/signup`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					name: data.name,
-					email: email,
-					password: data.password,
-				}),
-			}
-		);
-
-		const responseAPI = await res.json();
-
-		console.log(responseAPI);
-
-		router.push("/register/welcome");
+		// coloca los datos del usuario en el store
+		setUserData({
+			name: data.name,
+			password: data.password,
+			validateIdentity: false,
+			validateTerms: true,
+		});
+		router.push("/register/validate-steps");
 	};
 
 	useEffect(() => {
-		setStepper({ stepOne: true, stepTwo: true, stepThree: true });
+		setStepper({ stepOne: true, stepTwo: true, stepThree: false });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

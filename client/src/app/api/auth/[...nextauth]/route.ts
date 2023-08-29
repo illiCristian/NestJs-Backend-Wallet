@@ -1,3 +1,4 @@
+import { API } from "@/services/config";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -18,22 +19,16 @@ const handler = NextAuth({
 				},
 			},
 			async authorize(credentials) {
-				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_BACKEND_URL}auth/login`,
-					{
-						method: "POST",
-						body: JSON.stringify({
-							email: credentials?.email,
-							password: credentials?.password,
-						}),
-						headers: { "Content-Type": "application/json" },
-					}
-				);
-				const user = await res.json();
+				try {
+					const { data: user } = await API.post("auth/login", {
+						email: credentials?.email,
+						password: credentials?.password,
+					});
 
-				if (user.error) throw user;
-
-				return user;
+					return user;
+				} catch (error) {
+					console.log(error);
+				}
 			},
 		}),
 	],
@@ -41,6 +36,7 @@ const handler = NextAuth({
 		async jwt({ token, user }) {
 			return { ...token, ...user };
 		},
+
 		async session({ session, token }) {
 			session.user = token as any;
 			return session;

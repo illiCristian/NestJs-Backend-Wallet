@@ -1,6 +1,6 @@
 "use client";
 
-import { useStepperState } from "@/store/registerStore";
+import { useRegisterUser, useStepperState } from "@/store/registerStore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -8,38 +8,49 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import warningImg from "../../../public/assets/register/warning.svg";
+import { useMutation } from "@tanstack/react-query";
+import { API } from "@/services/config";
 
 type FormData = yup.InferType<typeof schema>;
+type Email = {
+	email: string | undefined;
+};
 
 const schema = yup.object().shape({
-	name: yup.string().required(),
 	email: yup.string().email().required(),
-	password: yup.string().min(6).required(),
 });
 
 export default function EmailValidate() {
-	const { setStepper } = useStepperState();
 	const router = useRouter();
+	const { setStepper } = useStepperState();
+	const { setUserData } = useRegisterUser();
 	const { register, handleSubmit, formState } = useForm({
 		resolver: yupResolver(schema),
 	});
 
+	const { mutateAsync } = useMutation({
+		mutationFn: (data: Email) => {
+			return API.post("mailing/send-mail", data);
+		},
+	});
+
 	const formSubmit = async (data: FormData) => {
 		// validacion del correo
-		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_BACKEND_URL}mailing/validate-code`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
+		try {
+			const { data: user } = await mutateAsync(
+				{
 					email: data.email,
-				}),
-			}
-		);
-
-		router.push("/register/validate-code");
+				},
+				{
+					onSuccess: () => {
+						setUserData(data);
+						router.push("/register/validate-code");
+					},
+				}
+			);
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	useEffect(() => {
