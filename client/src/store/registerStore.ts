@@ -10,31 +10,40 @@ interface StepperState {
 
 interface RegisterUser {
 	email: string;
+	name: string;
+	password: string;
 	validateEmail: boolean;
 	validateIdentity: boolean;
+	validateTerms: boolean;
 	setUserData: (steps: object) => void;
+	resetUserData: () => void;
 }
 
-export const useStepperState = create(
-	persist<StepperState>(
-		(set) => ({
-			stepOne: false,
-			stepTwo: false,
-			stepThree: false,
-			setStepper: (steps) => set(() => ({ ...steps })),
-		}),
-		{ name: "stepper" }
-	)
-);
+export const useStepperState = create<StepperState>((set) => ({
+	stepOne: true,
+	stepTwo: false,
+	stepThree: false,
+	setStepper: (steps) => set(() => ({ ...steps })),
+}));
+
+const initialUserState = {
+	email: "",
+	name: "",
+	password: "",
+	validateEmail: true,
+	validateIdentity: false,
+	validateTerms: false,
+};
 
 export const useRegisterUser = create(
 	persist<RegisterUser>(
 		(set) => ({
-			email: "",
-			validateEmail: true,
-			validateIdentity: false,
-			setUserData: (steps) => set(() => ({ ...steps })),
+			...initialUserState,
+			setUserData: (data) => set((state) => ({ ...state, ...data })),
+			resetUserData: () => set(initialUserState),
 		}),
-		{ name: "userValidation" }
+		{
+			name: "user",
+		}
 	)
 );
