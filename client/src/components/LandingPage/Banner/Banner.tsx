@@ -1,14 +1,14 @@
-import './styles.css';
-import Image from 'next/image';
-import BannerImg from '../../../../public/assets/landing/images/banner6.jpeg';
-import BannerImg2 from '../../../../public/assets/landing/images/imagen-banner1.png';
-import Vector from '../../../../public/assets/landing/vectors/vector.png';
-import Vector1 from '../../../../public/assets/landing/vectors/vector1.png';
-import Dot from '../../../../public/assets/landing/vectors/dot.png';
-import Bar from '../../../../public/assets/landing/vectors/barra.png';
+import './styles.css'
+import Image from 'next/image'
+import BannerImg from '../../../../public/assets/landing/images/banner6.jpeg'
+import BannerImg2 from '../../../../public/assets/landing/images/imagen-banner1.png'
+import Vector from '../../../../public/assets/landing/vectors/vector.png'
+import Vector1 from '../../../../public/assets/landing/vectors/vector1.png'
+import Dot from '../../../../public/assets/landing/vectors/dot.png'
+import Bar from '../../../../public/assets/landing/vectors/barra.png'
 
 interface BannerProps {
-  bannerClasses: string;
+  bannerClasses: string
 }
 
 const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
@@ -40,7 +40,9 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               </div>
               <div>
                 <h2 className='text-banner text-white text-left text-4xl mb-2 tracking-wider '>
-                  HAZ MÁS CON TU DINERO
+                  HAZ MÁS
+                  <br />
+                  CON TU DINERO
                   <br />
                   ¡ES AHORA!
                 </h2>
@@ -89,8 +91,6 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               </div>
             </div>
           </div>
-          {/* </section> */}
-          {/* <section className='flex-1 relative'>*/}
           <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
             <div className='card flex items-center'>
               <Image
@@ -119,7 +119,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
         </section>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Banner;
+export default Banner

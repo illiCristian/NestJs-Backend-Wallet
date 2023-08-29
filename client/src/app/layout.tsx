@@ -1,5 +1,8 @@
-import type { Metadata } from 'next';
-import './globals.css';
+
+import type { Metadata } from "next";
+import "./globals.css";
+import Providers from "./providers";
+
 
 export const metadata: Metadata = {
   title: 'Mercado Pago | De ahora en adelante, hacés más con tu dinero.',
@@ -11,9 +14,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang='en'>
-      <body className=''>{children}</body>
-    </html>
-  );
+
+	return (
+		<html lang="en">
+			<body>
+				<Providers>{children}</Providers>
+			</body>
+		</html>
+	);
+
 }

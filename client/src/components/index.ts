@@ -1,4 +1,9 @@
-import Navbar from './LandingPage/Navbar/Navbar';
-// import MyModal from './LandingPage/Modal/MyModal';
+import Navbar from './LandingPage/Navbar/Navbar'
+import SuccessfulDebitTransfer from './transferDebit/SuccessfulDebitTransfer'
+import UnsuccessfulDebitTransfer from './transferDebit/UnsuccessfulDebitTransfer'
 
-export { Navbar };
+export {
+  Navbar,
+  SuccessfulDebitTransfer,
+  UnsuccessfulDebitTransfer
+}

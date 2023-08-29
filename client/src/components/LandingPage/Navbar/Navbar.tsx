@@ -1,44 +1,63 @@
-'use client';
-import React, { useState } from 'react';
-import Link from 'next/link';
-import './styles.css';
+'use client'
+import React, { useState, useEffect, use } from 'react'
+import Link from 'next/link'
+import './styles.css'
+import Image from 'next/image'
+import Banner from '../Banner/Banner'
 
 const Navbar = (): JSX.Element => {
-  const [showModal1, setShowModal1] = useState(false);
-  const [showModal2, setShowModal2] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showModal1, setShowModal1] = useState(false)
+  const [showModal2, setShowModal2] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const toggleParaTiModal = () => {
-    setShowModal1(!showModal1);
-  };
+    setShowModal1(!showModal1)
+  }
 
   const toggleNegocioModal = () => {
-    setShowModal2(!showModal2);
-  };
+    setShowModal2(!showModal2)
+  }
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
 
   const handleMouseEnterParaTi = () => {
-    setShowModal1(true);
-  };
+    setShowModal1(true)
+  }
 
   const handleMouseLeaveParaTi = () => {
-    setShowModal1(false);
-  };
+    setShowModal1(false)
+  }
 
   const handleMouseEnterNegocio = () => {
-    setShowModal2(true);
-  };
+    setShowModal2(true)
+  }
 
   const handleMouseLeaveNegocio = () => {
-    setShowModal2(false);
-  };
+    setShowModal2(false)
+  }
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 894)
+    }
+
+    updateIsMobile()
+
+    window.addEventListener('resize', updateIsMobile)
+
+    return () => {
+      window.removeEventListener('resize', updateIsMobile)
+    }
+  }, [])
+
+  // ... (rest of your code)
 
   const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
     mobileMenuOpen ? 'mobile-menu-open' : ''
-  }`;
+  } ${isMobile ? 'mobile-max-width' : ''}`
 
   return (
     <>
@@ -161,10 +180,7 @@ const Navbar = (): JSX.Element => {
                 </li>
               </section>
               <li>
-                <Link
-                  href='/register'
-                  // className={({ isActive }) => (isActive ? activeStyle : undefined)}
-                >
+                <Link href='/register'>
                   <button className='nav_button-create2 gh bg-tertiary text-white hover:bg-tertiaryDark'>
                     Crear cuenta gratis
                   </button>
@@ -173,10 +189,7 @@ const Navbar = (): JSX.Element => {
             </ul>
           </nav>
           <li>
-            <Link
-              href='/login'
-              // className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
+            <Link href='/login'>
               <button className='nav_button-init font-bold gh bg-buttonHeader text-primary hover:bg-buttonHeaderHover'>
                 Iniciar sesión
               </button>
@@ -195,17 +208,13 @@ const Navbar = (): JSX.Element => {
           </li>
 
           <li className='help-nav text-lg'>
-            <Link
-              href='/'
-              // className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              Ayuda
-            </Link>
+            <Link href='/'>Ayuda</Link>
           </li>
         </ul>
       </nav>
+      <Banner bannerClasses={bannerClasses} />
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

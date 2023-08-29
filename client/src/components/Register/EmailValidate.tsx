@@ -1,48 +1,60 @@
 'use client';
 
-import { useStepperState } from '@/store/registerStore';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import warningImg from '../../../public/assets/register/warning.svg';
-import ModalEmailAlreadyExist from './Modal/ModalEmailAlreadyExist';
+
+import { useRegisterUser, useStepperState } from "@/store/registerStore";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import warningImg from "../../../public/assets/register/warning.svg";
+import { useMutation } from "@tanstack/react-query";
+import { API } from "@/services/config";
+
 
 type FormData = yup.InferType<typeof schema>;
+type Email = {
+	email: string | undefined;
+};
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().min(6).required(),
+	email: yup.string().email().required(),
 });
 
 export default function EmailValidate() {
-  const [showModal, setShowModal] = useState('hidden');
-  const { setStepper } = useStepperState();
-  const router = useRouter();
-  const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(schema),
-  });
+	const router = useRouter();
+	const { setStepper } = useStepperState();
+	const { setUserData } = useRegisterUser();
+	const { register, handleSubmit, formState } = useForm({
+		resolver: yupResolver(schema),
+	});
 
-  const formSubmit = async (data: FormData) => {
-    // validacion del correo
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}mailing/validate-code`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: data.email,
-        }),
-      }
-    );
+	const { mutateAsync } = useMutation({
+		mutationFn: (data: Email) => {
+			return API.post("mailing/send-mail", data);
+		},
+	});
 
-    router.push('/register/validate-code');
-  };
+	const formSubmit = async (data: FormData) => {
+		// validacion del correo
+		try {
+			const { data: user } = await mutateAsync(
+				{
+					email: data.email,
+				},
+				{
+					onSuccess: () => {
+						setUserData(data);
+						router.push("/register/validate-code");
+					},
+				}
+			);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 
   useEffect(() => {
     setStepper({ stepOne: true, stepTwo: true, stepThree: false });
