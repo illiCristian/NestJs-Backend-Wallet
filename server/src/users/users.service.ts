@@ -12,9 +12,6 @@ export class UsersService {
     @InjectModel(User.name)
     private userModel: Model<User>,
   ) {}
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
 
   findAll() {
     return this.userModel.find();
