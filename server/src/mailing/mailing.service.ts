@@ -68,7 +68,7 @@ export class MailingService {
       })
       .catch((err) => {
         console.log(err);
-        return 'Error al enviar el email';
+        throw new UnauthorizedException('Error al enviar el email');
       });
     return 'Email enviado correctamente';
   }
@@ -84,7 +84,7 @@ export class MailingService {
       await user.save();
       return 'Email validado correctamente';
     } else {
-      return 'Codigo incorrecto';
+      throw new UnauthorizedException('Codigo incorrecto');
     }
   }
 }
