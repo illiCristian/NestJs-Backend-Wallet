@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import BannerImg from '../../../../public/assets/landing/images/banner6.jpeg'
-import BannerImg2 from '../../../../public/assets/images/image-banner1.png'
+import BannerImg2 from '../../../../public/assets/images/imagen-banner1.png'
 import Vector from '../../../../public/assets/landing/vectors/vector.png'
 import Vector1 from '../../../../public/assets/landing/vectors/vector1.png'
 import Dot from '../../../../public/assets/landing/vectors/dot.png'

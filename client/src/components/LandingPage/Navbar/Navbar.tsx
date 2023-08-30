@@ -3,7 +3,7 @@ import React, { useState, useEffect, use } from 'react'
 import Link from 'next/link'
 import './styles.css'
 import Image from 'next/image'
-import Banner from '../Banner/Banner'
+import Banner from '../../LandingPage/Banner/Banner'
 
 const Navbar = (): JSX.Element => {
   const [showModal1, setShowModal1] = useState(false)
