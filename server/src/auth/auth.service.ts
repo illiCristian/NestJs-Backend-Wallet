@@ -8,48 +8,28 @@ import { SignUpDto } from './dto/sign-up.dto';
 import { LoginDto } from './dto/login-dto';
 import { UnauthorizedException } from '@nestjs/common';
 
-import { Wallet } from './schema/wallet.schema';
-import { User } from './schema/auth.schema';
+import { UsersService } from 'src/users/users.service';
+import { User } from 'src/users/schema/user.schema';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(User.name)
-    private userModel: Model<User>,
-
+    @InjectModel('User') private readonly userModel: Model<User>,
     private jwtService: JwtService,
-
-    @InjectModel(Wallet.name)
-    private readonly walletModel: Model<Wallet>,
+    private readonly usersService: UsersService,
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
-    const { name, email, password } = signUpDto;
+    const user = await this.usersService.createUser(signUpDto);
 
-    const userExists = await this.userModel.findOne({ email });
-    if (userExists) {
-      throw new UnauthorizedException('User already exists');
-    } else {
-      const hasedPasswrod = await bcrypt.hash(password, 10);
+    const token = this.jwtService.sign({
+      id: user._id,
+      email: user.email,
+    });
 
-      const newWallet = await this.walletModel.create({});
-
-      const user = await this.userModel.create({
-        name,
-        email,
-        password: hasedPasswrod,
-        wallet: newWallet._id,
-      });
-
-      const token = this.jwtService.sign({
-        id: user._id,
-        email: user.email,
-      });
-
-      return {
-        token,
-      };
-    }
+    return {
+      token,
+    };
   }
 
   async login(loginDto: LoginDto): Promise<{ token: string }> {
