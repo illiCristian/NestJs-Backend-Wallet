@@ -1,17 +1,18 @@
-import './styles.css'
 import Image from 'next/image'
 import BannerImg from '../../../../public/assets/landing/images/banner6.jpeg'
-import BannerImg2 from '../../../../public/assets/landing/images/imagen-banner1.png'
+import BannerImg2 from '../../../../public/assets/images/image-banner1.png'
 import Vector from '../../../../public/assets/landing/vectors/vector.png'
 import Vector1 from '../../../../public/assets/landing/vectors/vector1.png'
 import Dot from '../../../../public/assets/landing/vectors/dot.png'
 import Bar from '../../../../public/assets/landing/vectors/barra.png'
+import './styles.css'
 
 interface BannerProps {
   bannerClasses: string
+  mobileMenuOpen: boolean
 }
 
-const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
+const Banner: React.FC<BannerProps> = ({ bannerClasses, mobileMenuOpen }) => {
   return (
     <div className='banner-container'>
       <section className={`banner-sections relative ${bannerClasses}`}>
@@ -23,7 +24,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               src={BannerImg}
               layout='responsive'
               width={720}
-              height={100}
+              height={300}
             />
             <div className='flex absolute top-0 left-0 w-full h-full ml-0 mt-10 font-black text-center z-10'>
               <div>
@@ -54,8 +55,8 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               className={`banner-image2 object-cover object-center rounded ${bannerClasses}`}
               alt='hero'
               src={BannerImg2}
-              width={720}
-              height={600}
+              width={100}
+              height={100}
             />
           </div>
         </div>
@@ -91,6 +92,8 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               </div>
             </div>
           </div>
+          {/* </section> */}
+          {/* <section className='flex-1 relative'>*/}
           <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
             <div className='card flex items-center'>
               <Image

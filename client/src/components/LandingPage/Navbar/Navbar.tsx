@@ -94,7 +94,7 @@ const Navbar = (): JSX.Element => {
                         <h2 className='foryou-text font-medium mt-6 mb-6 ml-5'>
                           Para ti
                         </h2>
-                        <div className='text-sm'>
+                        <div className='foryou-items text-sm'>
                           <p className='flex items-center mb-6 ml-5'>
                             Cuenta digital
                           </p>
@@ -148,7 +148,7 @@ const Navbar = (): JSX.Element => {
                         <h2 className='forbussines-text font-medium mt-6 mb-6 ml-5'>
                           Para tu negocio
                         </h2>
-                        <div className='text-sm'>
+                        <div className='forbussines-items text-sm'>
                           <p className='flex items-center mb-6 ml-5'>
                             Cobrar con Point
                           </p>
