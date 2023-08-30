@@ -7,13 +7,18 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MailingModule } from './mailing/mailing.module';
 //Config agregada para nodemailer
-import * as path from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import { WalletModule } from './wallet/wallet.module';
 @Module({
   //Importamos los modulos que vamos a usar
   imports: [
+    //Si no importamos los modulos creados no los podemos usar
+    UsersModule,
+    AuthModule,
     MailingModule,
+    WalletModule,
+
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -47,10 +52,6 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
     }),
     //Conexion con la base de datos
     MongooseModule.forRoot(process.env.MONGO_URI),
-    //Si no importamos los modulos creados no los podemos usar
-    UsersModule,
-    AuthModule,
-    MailingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
