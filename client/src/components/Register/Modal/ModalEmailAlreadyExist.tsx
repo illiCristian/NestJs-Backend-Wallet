@@ -30,7 +30,7 @@ function ModalEmailAlreadyExist(props: any) {
             {' '}
             una cuenta con el e-mail
             <br />
-            somebody@hotmail.com
+            {props.emailUser}
           </span>
         </div>
         <div className='flex justify-start px-24 text-black text-base font-normal leading-normal mb-10'>
