@@ -53,6 +53,33 @@ export default function ValidateCodeCard() {
   const isFormCompleted =
     field1 !== '' && field2 !== '' && field3 !== '' && field4 !== '';
 
+  const { mutateAsync } = useMutation({
+    mutationFn: (data: Code) => {
+      return API.post('mailing/validate-code', data);
+    },
+  });
+
+  const formSubmit = async (data: FormValues) => {
+    // validacion del correo
+    const codeEmail = Object.values(data).join('');
+
+    try {
+      const { status } = await mutateAsync(
+        {
+          email: email,
+          code: codeEmail,
+        },
+        {
+          onSuccess: () => {
+            router.push('/register/validate-success');
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   useEffect(() => {
     const inputs = document.getElementById('inputs');
 
@@ -99,33 +126,6 @@ export default function ValidateCodeCard() {
       }
     };
   }, []);
-
-  const { mutateAsync } = useMutation({
-    mutationFn: (data: Code) => {
-      return API.post('mailing/validate-code', data);
-    },
-  });
-
-  const formSubmit = async (data: FormValues) => {
-    // validacion del correo
-    const codeEmail = Object.values(data).join('');
-
-    try {
-      const { status } = await mutateAsync(
-        {
-          email: email,
-          code: codeEmail,
-        },
-        {
-          onSuccess: () => {
-            router.push('/register/validate-success');
-          },
-        }
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
     setStepper({ stepOne: true, stepTwo: true, stepThree: false });

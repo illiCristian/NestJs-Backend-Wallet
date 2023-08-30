@@ -13,6 +13,9 @@ import { API } from '@/services/config';
 import ModalEmailAlreadyExist from './Modal/ModalEmailAlreadyExist';
 
 type FormData = yup.InferType<typeof schema>;
+type Email = {
+	email: string | undefined;
+};
 
 type Email = {
   email: string | undefined;
