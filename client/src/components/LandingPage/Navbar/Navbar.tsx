@@ -1,9 +1,9 @@
 'use client'
-import React, { useState, useEffect, use } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import './styles.css'
 import Image from 'next/image'
-import Banner from '../../LandingPage/Banner/Banner'
+import './styles.css'
+import Banner from '../Banner/Banner'
 
 const Navbar = (): JSX.Element => {
   const [showModal1, setShowModal1] = useState(false)
@@ -38,22 +38,6 @@ const Navbar = (): JSX.Element => {
   const handleMouseLeaveNegocio = () => {
     setShowModal2(false)
   }
-
-  useEffect(() => {
-    const updateIsMobile = () => {
-      setIsMobile(window.innerWidth <= 894)
-    }
-
-    updateIsMobile()
-
-    window.addEventListener('resize', updateIsMobile)
-
-    return () => {
-      window.removeEventListener('resize', updateIsMobile)
-    }
-  }, [])
-
-  // ... (rest of your code)
 
   const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
     mobileMenuOpen ? 'mobile-menu-open' : ''

@@ -147,4 +147,7 @@ display: none;
     font-size: 12px;
     margin-top: 5px;
   }
+  .forbussines-items, .foryou-items{
+    margin-bottom: 5px;
+  }
 }

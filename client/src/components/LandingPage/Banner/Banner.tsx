@@ -1,18 +1,17 @@
-import Image from 'next/image'
-import BannerImg from '../../../../public/assets/landing/images/banner6.jpeg'
-import BannerImg2 from '../../../../public/assets/images/imagen-banner1.png'
-import Vector from '../../../../public/assets/landing/vectors/vector.png'
-import Vector1 from '../../../../public/assets/landing/vectors/vector1.png'
-import Dot from '../../../../public/assets/landing/vectors/dot.png'
-import Bar from '../../../../public/assets/landing/vectors/barra.png'
 import './styles.css'
+import Image from 'next/image'
+import BannerImg from '../../../../public/assets/images/banner6.jpeg'
+import BannerImg2 from '../../../../public/assets/images/imagen-banner1.png'
+import Vector from '../../../../public/assets/vectors/vector.png'
+import Vector1 from '../../../../public/assets/vectors/vector1.png'
+import Dot from '../../../../public/assets/vectors/dot.png'
+import Bar from '../../../../public/assets/vectors/barra.png'
 
 interface BannerProps {
   bannerClasses: string
-  mobileMenuOpen: boolean
 }
 
-const Banner: React.FC<BannerProps> = ({ bannerClasses, mobileMenuOpen }) => {
+const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
   return (
     <div className='banner-container'>
       <section className={`banner-sections relative ${bannerClasses}`}>
@@ -24,7 +23,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses, mobileMenuOpen }) => {
               src={BannerImg}
               layout='responsive'
               width={720}
-              height={300}
+              height={100}
             />
             <div className='flex absolute top-0 left-0 w-full h-full ml-0 mt-10 font-black text-center z-10'>
               <div>
@@ -55,8 +54,8 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses, mobileMenuOpen }) => {
               className={`banner-image2 object-cover object-center rounded ${bannerClasses}`}
               alt='hero'
               src={BannerImg2}
-              width={100}
-              height={100}
+              width={720}
+              height={600}
             />
           </div>
         </div>
@@ -92,8 +91,6 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses, mobileMenuOpen }) => {
               </div>
             </div>
           </div>
-          {/* </section> */}
-          {/* <section className='flex-1 relative'>*/}
           <div className='container mx-auto flex px-5 py-24 items-center justify-center flex-col'>
             <div className='card flex items-center'>
               <Image

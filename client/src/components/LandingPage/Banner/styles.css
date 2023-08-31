@@ -2,19 +2,16 @@
   max-height: 500px;
 }
 .banner-image2{
-  width: 700px;
+  width: 500px;
   height: 500px;
-  top: -90px;
-  filter: contrast(1.3) brightness(1) saturate(1) blur(0) opacity(1);
+  margin: auto;
   
 }
-
 .banner-img2{
   top: 270px;
 }
 .card {
   width: 500px;
-  height: 300px;
   background-color: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -42,11 +39,10 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.card-vector1, .card-vector2{
+.card-vector{
   width: 150px;
   height: 150px;
 }
-
 .flex-1 {
   width: 50%;
 }
@@ -77,6 +73,12 @@
 .mobile-menu-open .section-uno {
   transform: translateY(100px);
   transition: transform 0.3s ease;
+}
+.banner-image2{
+  position: relative;
+  width: 300px;
+  height: 300px;
+  top: -70px;
 }
 }
 

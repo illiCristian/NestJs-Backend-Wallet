@@ -19,17 +19,37 @@ export default function SuccessfulDebitTransfer () {
   }, [])
 
   return (
-    <div>
-      <section className='successful-debit-transfer'>
+    <div className='success-container flex flex-col justify-center items-center'>
+      <section className='success-debit_transfer flex flex-col align-middle justify-center bg-green-500 rounded-md w-2/4 h-80'>
+        <div>
+          <Image
+            src={Success}
+            alt='success'
+            width='180'
+            height='180'
+            className='success-image border-2 bg-white mt-5'
+          />
+          <div className='text-center text-white mt-5 font-semibold text-2xl'>
+            <p>¡Listo! Se acreditó tu pago</p>
+            <p>Número de Operación: {numberOperationTransferDebit}</p>
+          </div>
+        </div>
+      </section>
+      <section className='success-creditcard'>
         <div>
           <Image src={Success} alt='success' width='100' height='100' />
-          <p>¡Listo! Se acreditó tu pago</p>
-          <p>Número de Operación: {numberOperationTransferDebit}</p>
         </div>
         <div>
-          <p>Fecha y hora:</p>
+          <p>Ingresaste a tu cuenta</p>
+          <p>VISA 7895</p>
+          <p>
+            En el resúmen de tu tarjeta verás el cargo a nombre de "MERCADO
+            PAGO"
+          </p>
         </div>
-        <Link href='/'>
+      </section>
+      <section className='success-button'>
+        <Link href='/success'>
           <button className='btn btn-primary'>Continuar</button>
         </Link>
       </section>
