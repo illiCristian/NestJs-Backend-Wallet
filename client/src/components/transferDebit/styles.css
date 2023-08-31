@@ -1,14 +1,21 @@
-/* .success-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-} */
+.success-debit_transfer{
+    width: 50%;
+    height: 460px;
+}
 .success-image{
     border-radius: 50%;
     object-fit: cover;
     width: 200px;
     height: 200px;
     margin: 0 auto;
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 798px) {
+    .success-text{
+        font-size: 1.2rem;
+    }
+    .success-button{
+        margin-top: 180px;
+    }
 }
