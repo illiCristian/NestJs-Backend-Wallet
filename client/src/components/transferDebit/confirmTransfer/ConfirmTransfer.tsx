@@ -1,12 +1,17 @@
 import Image from "next/image";
 import chip from '../../../../public/chip.png'; 
+import {MouseEventHandler} from 'react';
+
+interface props {
+  component: string,
+  nextStep: MouseEventHandler<HTMLButtonElement>
+}
 
 
 
-
-function ConfirmTransfer() {
+function ConfirmTransfer({component, nextStep}: props) {
   return (
-    <div className='flex flex-col justify-start items-center h-min-[1000px] w-full mt-20'>
+    <div className={`${component} flex-col justify-start items-start ml-[20px] h-min-[1000px] w-full mt-20`}>
       <h1 className="text-left mr-[750px] mb-5 font-semibold">Completa los datos de tu tarjeta</h1>
       <section className="flex flex-row justify-center items-start">
         <div className='flex flex-col bg-white border-t-white border-b-2 border-b-gray-400 shadow-[0_15px_25px_-31px_rgba(0,0,0,1)] border-[1px] border-gray-400 px-[50px] rounded-xl sh mb-20'>
@@ -84,10 +89,15 @@ function ConfirmTransfer() {
             
           </div>
           <div className="flex flex-row justify-end items-end gap-3 mt-4 mb-9">
-            <button className=" bg-secondary px-10 text-xs py-2 font-medium text-[#00B1EA] rounded-md">
+            <button 
+              className="bg-secondary px-10 text-xs py-2 font-medium text-[#00B1EA] rounded-md cursor-pointer"
+              onClick={nextStep}
+            >
               Volver
             </button>
-            <button className="bg-[#00B1EA] px-10 text-xs py-2 font-medium text-white rounded-md">
+            <button 
+              className="bg-[#00B1EA] px-10 text-xs py-2 font-medium text-white rounded-md"
+              >
               Continuar
             </button>
             
