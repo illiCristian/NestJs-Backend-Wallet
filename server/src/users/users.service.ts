@@ -15,11 +15,13 @@ import { Types } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import { WalletService } from 'src/wallet/wallet.service';
 import { User } from './schema/user.model';
+import { Wallet } from 'src/wallet/schema/wallet.model';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel('User') private readonly userModel: Model<User>,
+    @InjectModel('Wallet') private readonly walletModel: Model<Wallet>,
     @Inject(forwardRef(() => WalletService))
     private readonly walletService: WalletService,
   ) {}
@@ -27,7 +29,7 @@ export class UsersService {
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     try {
       const { name, email, password } = createUserDto;
-
+      //Podria agregar la logica de que permita el registro solo a usarios con mail validado
       const newWallet = await this.walletService.createWallet();
 
       const user = new this.userModel({
@@ -70,7 +72,10 @@ export class UsersService {
       if (!Types.ObjectId.isValid(id)) {
         throw new BadRequestException('Invalid ObjectId');
       }
-      const user = await this.userModel.findById(id);
+      const user = await this.userModel
+        .findById(id)
+        .populate('walletId', '', this.walletModel)
+        .exec();
 
       if (!user) {
         throw new BadRequestException('User not found');
@@ -85,7 +90,7 @@ export class UsersService {
     }
 
     const user = await this.userModel.findById(id);
-
+    console.log('asd');
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -102,7 +107,7 @@ export class UsersService {
     // Continuar con otros campos que se permitia actualizar
 
     await user.save();
-
+    console.log(user);
     return user;
   }
 
