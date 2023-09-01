@@ -1,10 +1,6 @@
 import Image from 'next/image'
-import { useState } from 'react'
 import chip from '../../../../public/chip.png'
 import { MouseEventHandler } from 'react'
-import SuccessfulDebitTransfer from '../successfulTransfer/SuccessfulDebitTransfer' //Agregado por Adriana
-import UnsuccessfulPage from '../unsuccessTransfer/UnsuccessfulDebitTransfer' //Agregado por Adriana
-import Link from 'next/link'
 
 interface props {
   component: string
@@ -12,18 +8,6 @@ interface props {
 }
 
 function ConfirmTransfer ({ component, nextStep }: props) {
-  const [isSuccessful, setIsSuccessful] = useState(false) //Agregado por Adriana
-  const [isUnsuccessful, setIsUnsuccessful] = useState(false) //Agregado por Adriana
-
-  //Agregado por Adriana para visualizar la página de éxito o fracaso
-  const handleSuccessful = () => {
-    setIsSuccessful(true)
-  }
-  const handleUnsuccessful = () => {
-    setIsUnsuccessful(true)
-  }
-  //-----------------------------------------------------------------------------------
-
   return (
     <div
       className={`${component} flex-col justify-start items-start ml-[20px] h-min-[1000px] w-full mt-20`}
@@ -84,13 +68,9 @@ function ConfirmTransfer ({ component, nextStep }: props) {
             >
               Volver
             </button>
-
-            {/* Link Agregado por Adriana para visualizar la página de éxito o fracaso */}
-            <Link href='/transferDebit/successfulTransfer/SuccessfulDebitTransfer'>
-              <button className='bg-[#00B1EA] px-10 text-xs py-2 font-medium text-white rounded-md'>
-                Continuar
-              </button>
-            </Link>
+            <button className='bg-[#00B1EA] px-10 text-xs py-2 font-medium text-white rounded-md'>
+              Continuar
+            </button>
           </div>
         </div>
         <div className='flex flex-col items-start justify-start w-[350px] bg-white border-t-white border-b-2 border-b-gray-400 shadow-[0_15px_25px_-31px_rgba(0,0,0,1)] border-[1px] border-gray-400  ml-4 rounded-xl sh'>
