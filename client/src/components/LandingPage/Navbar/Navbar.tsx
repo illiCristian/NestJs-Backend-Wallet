@@ -1,8 +1,8 @@
 'use client'
-import React, { useState, useEffect, use } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import './styles.css'
 import Image from 'next/image'
+import './styles.css'
 import Banner from '../Banner/Banner'
 
 const Navbar = (): JSX.Element => {
@@ -38,22 +38,6 @@ const Navbar = (): JSX.Element => {
   const handleMouseLeaveNegocio = () => {
     setShowModal2(false)
   }
-
-  useEffect(() => {
-    const updateIsMobile = () => {
-      setIsMobile(window.innerWidth <= 894)
-    }
-
-    updateIsMobile()
-
-    window.addEventListener('resize', updateIsMobile)
-
-    return () => {
-      window.removeEventListener('resize', updateIsMobile)
-    }
-  }, [])
-
-  // ... (rest of your code)
 
   const bannerClasses = `section-uno max-w-full px-0 py-0 items-center justify-center flex-col ${
     mobileMenuOpen ? 'mobile-menu-open' : ''
@@ -94,7 +78,7 @@ const Navbar = (): JSX.Element => {
                         <h2 className='foryou-text font-medium mt-6 mb-6 ml-5'>
                           Para ti
                         </h2>
-                        <div className='text-sm'>
+                        <div className='foryou-items text-sm'>
                           <p className='flex items-center mb-6 ml-5'>
                             Cuenta digital
                           </p>
@@ -148,7 +132,7 @@ const Navbar = (): JSX.Element => {
                         <h2 className='forbussines-text font-medium mt-6 mb-6 ml-5'>
                           Para tu negocio
                         </h2>
-                        <div className='text-sm'>
+                        <div className='forbussines-items text-sm'>
                           <p className='flex items-center mb-6 ml-5'>
                             Cobrar con Point
                           </p>
