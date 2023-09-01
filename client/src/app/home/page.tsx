@@ -5,7 +5,6 @@ import MoneyCharge from '@/components/Home/MoneyCharge';
 import BalanceWallet from '@/components/Home/BalanceWallet';
 import arrow from '../../../public/assets/dashboard/arrow2.svg';
 import image from '../../../public/assets/dashboard/image.png';
-import { SuccessfulDebitTransfer } from '@/components';
 
 export default function page() {
   return (
@@ -66,8 +65,8 @@ export default function page() {
             </p>
           </Link>
         </div>
-        <SuccessfulDebitTransfer />
-        {/* <ActivityBox /> */}
+
+        <ActivityBox />
       </section>
     </>
   );
