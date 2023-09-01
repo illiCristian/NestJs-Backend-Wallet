@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Unsuccess from '../../../public/assets/transfer-debit/unsuccess2.png'
+import Unsuccess from '../../../../public/assets/transfer-debit/unsuccess2.png'
 import './styles.css'
 
 export default function UnsuccessfulDebitTransfer () {

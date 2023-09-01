@@ -1,17 +1,13 @@
-.success-debit_transfer, .unsuccess-debit_transfer{
+.unsuccess-debit_transfer{
     width: 50%;
     height: 460px;
 }
 
-.success-image, .unsuccess-image{
+.unsuccess-image{
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto;
     margin-top: 50px;
-}
-.success-image{
-    width: 200px;
-    height: 200px;
 }
 .unsuccess-image{
     width: 180px;
@@ -22,11 +18,8 @@
 }
 
 @media screen and (max-width: 798px) {
-    .success-text, .unsuccess-text{
+    .unsuccess-text{
         font-size: 1.5rem;
-    }
-    .success-button {
-        margin-top: 220px;
     }
     .unsuccess-creditcard{
         font-size: 1.5rem;

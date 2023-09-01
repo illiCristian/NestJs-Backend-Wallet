@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Success from '../../../public/assets/transfer-debit/success.png'
-import Visa from '../../../public/assets/transfer-debit/visa.png'
-import Master from '../../../public/assets/transfer-debit/master.png'
-import CardPay from '../../../public/assets/transfer-debit/icon-card.png'
+import Success from '../../../../public/assets/transfer-debit/success.png'
+import Visa from '../../../../public/assets/transfer-debit/visa.png'
+import Master from '../../../../public/assets/transfer-debit/master.png'
+import CardPay from '../../../../public/assets/transfer-debit/icon-card.png'
 import './styles.css'
 
 export default function SuccessfulDebitTransfer () {
