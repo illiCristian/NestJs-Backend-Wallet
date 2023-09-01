@@ -2,40 +2,44 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Success from '../../../public/assets/vectors/success.png'
+import Success from '../../../public/assets/transfer-debit/success.png'
 import Visa from '../../../public/assets/transfer-debit/visa.png'
 import Master from '../../../public/assets/transfer-debit/master.png'
 import CardPay from '../../../public/assets/transfer-debit/icon-card.png'
 import './styles.css'
 
 export default function SuccessfulDebitTransfer () {
+  //--------------------------------------------------------------------
+  //* TODO ESTE CODIGO ES PARA USARLO CON EL BACKEND DE MERCADO PAGO U OTRA API QUE TENGA BACKEND
   const [numberOperationTransferDebit, setNumberOperationTransferDebit] =
     useState('')
-  const [cardTypeTransfer, setCardTypeTransfer] = useState('')
 
-  useEffect(() => {
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-    const numberOperation = urlParams.get('numberOperationTransferDebit')
-    const card = urlParams.get('cardType') || ''
-    if (numberOperation) {
-      setNumberOperationTransferDebit(numberOperation)
-    }
-    setCardTypeTransfer(card.toLowerCase())
-  }, [])
+  // const [cardTypeTransfer, setCardTypeTransfer] = useState('')
 
-  let cardImage = CardPay // Imagen por defecto
+  // useEffect(() => {
+  //   const queryString = window.location.search
+  //   const urlParams = new URLSearchParams(queryString)
+  //   const numberOperation = urlParams.get('numberOperationTransferDebit')
+  //   const card = urlParams.get('cardType') || ''
+  //   if (numberOperation) {
+  //     setNumberOperationTransferDebit(numberOperation)
+  //   }
+  //   setCardTypeTransfer(card.toLowerCase())
+  // }, [])
 
-  if (cardTypeTransfer === 'visa') {
-    cardImage = Visa
-  } else if (cardTypeTransfer === 'master') {
-    cardImage = Master
-  } else if (cardTypeTransfer === 'amex') {
-    cardImage = CardPay
-  }
+  // let cardImage = CardPay // Imagen por defecto
+
+  // if (cardTypeTransfer === 'visa') {
+  //   cardImage = Visa
+  // } else if (cardTypeTransfer === 'master') {
+  //   cardImage = Master
+  // } else if (cardTypeTransfer === 'amex') {
+  //   cardImage = CardPay
+  // }
+  //--------------------------------------------------------------------
 
   return (
-    <div className='success-container flex flex-col justify-center items-center'>
+    <div className='success-container flex flex-col justify-center items-center mt-32'>
       <section className='success-debit_transfer flex flex-col align-middle justify-center bg-green-500 rounded-lg shadow-lg shadow-slate-400'>
         <div>
           <Image

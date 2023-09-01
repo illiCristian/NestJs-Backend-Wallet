@@ -1,21 +1,34 @@
-.success-debit_transfer{
+.success-debit_transfer, .unsuccess-debit_transfer{
     width: 50%;
     height: 460px;
 }
-.success-image{
+
+.success-image, .unsuccess-image{
     border-radius: 50%;
     object-fit: cover;
-    width: 200px;
-    height: 200px;
     margin: 0 auto;
     margin-top: 50px;
 }
+.success-image{
+    width: 200px;
+    height: 200px;
+}
+.unsuccess-image{
+    width: 180px;
+    height: 180px;
+}
+.unsuccess-creditcard, .unsuccess-button{
+    margin-left: 25%;
+}
 
 @media screen and (max-width: 798px) {
-    .success-text{
-        font-size: 1.2rem;
+    .success-text, .unsuccess-text{
+        font-size: 1.5rem;
     }
-    .success-button{
-        margin-top: 180px;
+    .success-button {
+        margin-top: 220px;
+    }
+    .unsuccess-creditcard{
+        font-size: 1.5rem;
     }
 }
