@@ -15,7 +15,7 @@ import { User } from 'src/users/schema/user.schema';
 export class AuthService {
   constructor(
     @InjectModel('User') private readonly userModel: Model<User>,
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
   ) {}
 
@@ -33,6 +33,9 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto): Promise<{ token: string }> {
+    console.log(process.env.JWT_SECRET);
+    console.log(process.env.JWT_EXPIRES);
+
     const { email, password } = loginDto;
     const user = await this.userModel.findOne({ email });
     if (!user) {
@@ -42,6 +45,7 @@ export class AuthService {
     if (!isMatch) {
       throw new UnauthorizedException('Invalid credentials');
     }
+
     const payload = { id: user._id, email: user.email };
     const token = await this.jwtService.signAsync(payload);
     return {

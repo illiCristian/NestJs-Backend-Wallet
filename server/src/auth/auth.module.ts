@@ -14,11 +14,11 @@ import { WalletSchema } from 'src/wallet/schema/wallet.model';
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
-
-    JwtModule.register({
-      global: true,
-      secret: 'secret',
-      signOptions: { expiresIn: '1d' },
+    JwtModule.registerAsync({
+      useFactory: () => ({
+        secret: process.env.JWT_SECRET,
+        signOptions: { expiresIn: process.env.JWT_EXPIRES },
+      }),
     }),
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },
