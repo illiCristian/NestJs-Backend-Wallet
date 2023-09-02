@@ -39,7 +39,10 @@ export default function TransferCard() {
             <Image src={arrow} alt='arrow' className=' w-6 h-6 ' />
           </div>
         </Link>
-        <Link href={'#'} className=' flex justify-between'>
+        <Link
+          href={'/home/money-charge/transfer-debit'}
+          className=' flex justify-between'
+        >
           <div className=' flex gap-3'>
             <Image
               src={mail}
@@ -50,7 +53,7 @@ export default function TransferCard() {
               <h4 className='TransferenciaConClabe text-black text-base font-semibold leading-normal'>
                 Tarjeta de débito
               </h4>
-              <div className='flex gap-3'>
+              <div className='flex gap-2'>
                 <h5 className=' text-neutral-500 text-base font-normal leading-normal'>
                   2 Ingresos gratis al mes
                 </h5>
