@@ -47,7 +47,7 @@ import { WalletModule } from './wallet/wallet.module';
       },
     }),
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: '.env.local',
       isGlobal: true,
     }),
     //Conexion con la base de datos

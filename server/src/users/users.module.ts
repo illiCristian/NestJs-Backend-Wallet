@@ -16,11 +16,11 @@ import { ConfigService } from '@nestjs/config';
     ]),
     JwtModule.registerAsync({
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
+      useFactory: () => {
         return {
-          secret: config.get<string>('JWT_SECRET'),
+          secret: process.env.JWT_SECRET,
           signOptions: {
-            expiresIn: config.get<string | number>('JWT_EXPIRES'),
+            expiresIn: process.env.JWT_EXPIRES,
           },
         };
       },
