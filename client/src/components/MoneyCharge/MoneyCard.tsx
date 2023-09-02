@@ -20,7 +20,7 @@ export default function MoneyCard() {
               <h4 className=' text-black text-base font-semibold leading-normal'>
                 Otras tiendas
               </h4>
-              <div className='flex gap-3'>
+              <div className='flex gap-2'>
                 <h5 className=' text-neutral-500 text-base font-normal leading-normal'>
                   Con costo
                 </h5>
@@ -32,8 +32,8 @@ export default function MoneyCard() {
             </div>
           </div>
           <div className='flex gap-5'>
-            <div className=' w-[110px] w-16 h-6 bg-sky-500 rounded-3xl'>
-              <p className=' w-11 h-6 text-center text-white text-xs font-bold leading-normal px-3 py-1'>
+            <div className=' w-[61px]  h-6 bg-sky-500 rounded-3xl'>
+              <p className=' w-11 h-6 text-center text-white text-xs font-semibold leading-normal px-2 py-1'>
                 NUEVO
               </p>
             </div>
