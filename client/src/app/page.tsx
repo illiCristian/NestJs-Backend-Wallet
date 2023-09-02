@@ -1,13 +1,18 @@
 import { Navbar } from '@/components'
+import Providers from './providers'
 import Footer from '../components/LandingPage/Footer/Footer'
-//import Banner from '@/components/LandingPage/Banner/Banner';
+import Profile from '@/components/Profile/Profile'
 
 const Page = (): JSX.Element => {
   return (
     <div>
-      <Navbar />
-      <main></main>
-      <Footer />
+      <Providers>
+        <Navbar />
+        <main>
+          <Profile />
+        </main>
+        <Footer />
+      </Providers>
     </div>
   )
 }

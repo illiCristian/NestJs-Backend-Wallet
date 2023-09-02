@@ -35,25 +35,27 @@ function Modal1(props: any) {
   return (
     <div
       className={`fixed inset-0 bg-black 
-    bg-opacity-25 backdrop-blur-sm 
-    flex justify-center items-center ${props.isVisible}`}
+			bg-opacity-25 
+			flex justify-center items-center ${props.isVisible}`}
     >
-      <button onClick={() => props.onClose()}>X</button>
-      <div className="w-[400px] bg-white flex flex-col justify-center items-center rounded border-2 border-gray-400">
+      {/* <button onClick={() => props.onClose()}>X</button> */}
+      <div className="w-[548px] h-[473px] bg-white flex flex-col items-center shadow-[0px_1px_4px_2px_#00000025] rounded-lg">
         <Image
           src={formIcon}
           alt="security"
-          width={90}
-          height={90}
-          className="mt-9"
+          width={148}
+          height={148}
+          className="mt-16"
         />
-        <h1 className="my-3 font-semibold">Términos y condiciones</h1>
-        <p className="my-3 text-blue-400 text-xs mr-[75px]">
+        <h1 className="my-3 text-2xl font-semibold text-black">
+          Términos y condiciones
+        </h1>
+        <p className="my-3 text-sky-500 text-base font-normal leading-normal mr-[114px]">
           Validado con éxito
         </p>
         <button
           onClick={handleSubmit}
-          className="bg-[#00B1EA] py-3 px-12 text-white rounded-lg mt-6 mb-12 text-xs font-semibold"
+          className="inline-flex items-center justify-center h-12 gap-2 px-16 py-3 mt-10 text-base font-bold leading-normal text-center text-white rounded-md w-52 bg-sky-500"
         >
           Continuar
         </button>

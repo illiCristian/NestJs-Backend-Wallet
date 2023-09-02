@@ -2,11 +2,16 @@ import Image from "next/image";
 import credit_icon from '../../../../public/credit-card-icon.svg'; 
 import transfer_spei from '../../../../public/transfer-spei.svg'; 
 import next_arrow from '../../../../public/next-arrow-icon.svg'; 
+import {MouseEventHandler} from 'react';
 
+interface props {
+  component: string,
+  nextStep: MouseEventHandler<HTMLImageElement>
+}
 
-const TransferOptions = () => {
+const TransferOptions = ({component, nextStep}: props) => {
   return (
-    <div className='flex flex-col justify-start items-center h-min-[700px] w-full mt-20'>
+    <div className={`${component} flex-col justify-start items-start ml-10 h-min-[700px] w-full mt-20`}>
       <h1 className="text-left mr-[750px] mb-5 font-semibold">¿Cuanto quieres ingresar?</h1>
       <section className="flex flex-row justify-center items-start">
         <div className='flex flex-col bg-white border-t-white border-b-2 border-b-gray-400 shadow-[0_15px_25px_-31px_rgba(0,0,0,1)] border-[1px] border-gray-400 px-[50px] rounded-xl sh'>
@@ -31,7 +36,10 @@ const TransferOptions = () => {
               alt="next-arrow"
               width={25}
               height={25}
-              className="ml-80"
+              className="ml-80 cursor-pointer"
+              onClick={
+                nextStep
+              }
             />
         
           </div>
@@ -57,7 +65,10 @@ const TransferOptions = () => {
               alt="next-arrow"
               width={25}
               height={25}
-              className="ml-[100px]"
+              className="ml-[100px] cursor-pointer"
+              onClick={
+                nextStep
+              }
             />
         
           </div>

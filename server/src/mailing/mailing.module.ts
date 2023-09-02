@@ -8,9 +8,11 @@ import { EmailSchema } from './schema/validateMail.schema';
 
 @Module({
   imports: [
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '1d' },
+    JwtModule.registerAsync({
+      useFactory: () => ({
+        secret: process.env.JWT_SECRET,
+        signOptions: { expiresIn: process.env.JWT_EXPIRES },
+      }),
     }),
     MongooseModule.forFeature([{ name: 'Email', schema: EmailSchema }]),
   ],

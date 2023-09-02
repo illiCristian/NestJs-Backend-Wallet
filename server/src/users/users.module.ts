@@ -5,6 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { WalletSchema } from 'src/wallet/schema/wallet.model';
 import { WalletService } from 'src/wallet/wallet.service';
 import { UserSchema } from './schema/user.model';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -12,6 +14,17 @@ import { UserSchema } from './schema/user.model';
       { name: 'User', schema: UserSchema },
       { name: 'Wallet', schema: WalletSchema },
     ]),
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: () => {
+        return {
+          secret: process.env.JWT_SECRET,
+          signOptions: {
+            expiresIn: process.env.JWT_EXPIRES,
+          },
+        };
+      },
+    }),
   ],
   controllers: [UsersController],
   providers: [UsersService, WalletService],

@@ -16,162 +16,129 @@ import LogoutButton from './LogoutButton'
 import ProfileHeader from './ProfileHeader'
 
 export default function Drawer() {
-    return (
-        <section>
-            <section className="flex flex-col">
-                <ProfileHeader />
-                <div className="w-[319px] h-[1080px] bg-white border-r py-6">
-                    <section className="space-y-6 ">
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={home} alt="home" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Inicio
-                            </h6>
-                        </Link>
+  return (
+    <section>
+      <section className="flex flex-col">
+        <ProfileHeader />
+        <div className="w-[319px] h-[1080px] bg-white border-r py-6">
+          <section className="space-y-6 ">
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={home} alt="home" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
+                Inicio
+              </h6>
+            </Link>
 
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={help} alt="help" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Ayuda
-                            </h6>
-                        </Link>
-                    </section>
-                    <div className="h-px mt-2 w-80 bg-zinc-300"> </div>
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={help} alt="help" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Ayuda
+              </h6>
+            </Link>
+          </section>
+          <div className="h-px mt-2 w-80 bg-zinc-300"> </div>
 
-                    <section className="py-4 space-y-6">
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500 "
-                        >
-                            <Image src={wallet} alt="wallet" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Tu Dinero
-                            </h6>
-                        </Link>
+          <section className="py-4 space-y-6">
+            <Link
+              href={'home/balance'}
+              className="flex gap-5 px-3 text-neutral-500 "
+            >
+              <Image src={wallet} alt="wallet" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
+                Tu Dinero
+              </h6>
+            </Link>
 
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={activity} alt="activity" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Actividad
-                            </h6>
-                        </Link>
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={activity} alt="activity" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Actividad
+              </h6>
+            </Link>
 
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image
-                                src={sendMoney}
-                                alt="sendMoney"
-                                className=""
-                            />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Enviar Dinero
-                            </h6>
-                        </Link>
-                    </section>
-                    <div className="h-px w-80 bg-zinc-300"> </div>
-                    <section className="py-4">
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={loan} alt="loan" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Préstamos
-                            </h6>
-                        </Link>
-                    </section>
-                    <div className="h-px w-80 bg-zinc-300"> </div>
-                    <section className="py-4 space-y-6">
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={charge} alt="charge" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Cobrar en tu local
-                            </h6>
-                        </Link>
+            <Link
+              href={'home/send-money'}
+              className="flex gap-5 px-3 text-neutral-500"
+            >
+              <Image src={sendMoney} alt="sendMoney" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
+                Enviar Dinero
+              </h6>
+            </Link>
+          </section>
+          <div className="h-px w-80 bg-zinc-300"> </div>
+          <section className="py-4">
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={loan} alt="loan" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Préstamos
+              </h6>
+            </Link>
+          </section>
+          <div className="h-px w-80 bg-zinc-300"> </div>
+          <section className="py-4 space-y-6">
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={charge} alt="charge" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Cobrar en tu local
+              </h6>
+            </Link>
 
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={link} alt="link" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Link de pago
-                            </h6>
-                        </Link>
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={link} alt="link" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Link de pago
+              </h6>
+            </Link>
 
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={bill} alt="bill" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Informes y Facturación
-                            </h6>
-                        </Link>
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={bill} alt="bill" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Informes y Facturación
+              </h6>
+            </Link>
 
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={money} alt="help" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Planes de suscripción
-                            </h6>
-                        </Link>
-                        <Link
-                            href={'/dashboard'}
-                            className="flex gap-5 px-3 text-neutral-500"
-                        >
-                            <Image src={market} alt="help" className="" />
-                            <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
-                                Tu negocio
-                            </h6>
-                        </Link>
-                    </section>
-                    <div className="h-px mb-3 w-80 bg-zinc-300"> </div>
-                    <LogoutButton />
-                    <div className="h-px mt-2 Rectangle429 w-80 bg-zinc-300">
-                        {' '}
-                    </div>
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={money} alt="help" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Planes de suscripción
+              </h6>
+            </Link>
+            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+              <Image src={market} alt="help" className="" />
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+                Tu negocio
+              </h6>
+            </Link>
+          </section>
+          <div className="h-px mb-3 w-80 bg-zinc-300"> </div>
+          <LogoutButton />
+          <div className="h-px mt-2 Rectangle429 w-80 bg-zinc-300"> </div>
 
-                    <section className="flex gap-5 px-3 mt-4 text-neutral-500">
-                        <Image src={phone} alt="phone" className="" />
-                        <div>
-                            <h6 className="text-xs font-semibold leading-normal text-neutral-500">
-                                Tu celular es tu nueva billetera.
-                            </h6>
-                            <h6 className="mt-1 text-xs font-bold leading-normal text-sky-500">
-                                Descarga la app
-                            </h6>
-                        </div>
-                    </section>
+          <section className="flex gap-5 px-3 mt-4 text-neutral-500">
+            <Image src={phone} alt="phone" className="" />
+            <div>
+              <h6 className="text-xs font-semibold leading-normal text-neutral-500">
+                Tu celular es tu nueva billetera.
+              </h6>
+              <h6 className="mt-1 text-xs font-bold leading-normal text-sky-500">
+                Descarga la app
+              </h6>
+            </div>
+          </section>
 
-                    <div className="h-px mt-2 w-80 bg-zinc-300"> </div>
-                    <section className="mt-6 px-14">
-                        <div className="text-xs font-semibold leading-7 text-sky-500">
-                            Cómo cuidamos tu privacidad
-                            <br />
-                            Cómo proteger tu cuenta
-                            <br />
-                            Accesibilidad
-                        </div>
-                    </section>
-                </div>
-            </section>
-        </section>
-    )
+          <div className="h-px mt-2 w-80 bg-zinc-300"> </div>
+          <section className="mt-6 px-14">
+            <div className="text-xs font-semibold leading-7 text-sky-500">
+              Cómo cuidamos tu privacidad
+              <br />
+              Cómo proteger tu cuenta
+              <br />
+              Accesibilidad
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+  )
 }
