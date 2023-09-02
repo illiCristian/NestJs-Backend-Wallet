@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Success from '../../../public/assets/vectors/success.png'
+import Success from '../../../../public/assets/transfer-debit/success.png'
 import './styles.css'
 
 export default function SuccessfulDebitTransfer () {

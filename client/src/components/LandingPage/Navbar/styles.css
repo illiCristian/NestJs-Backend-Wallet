@@ -134,3 +134,20 @@ display: none;
   display: none;
   }
 }
+@media screen and (max-width: 390px) {
+  .foryou-modal, .busissnes-modal {
+    position: relative;
+    z-index: 1;
+    height: 150px;
+    overflow: auto; 
+    
+  }
+  .foryou-items, .forbussines-items {
+    line-height: .1rem;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .forbussines-items, .foryou-items{
+    margin-bottom: 5px;
+  }
+}
