@@ -7,11 +7,11 @@ const Page = (): JSX.Element => {
   return (
     <div>
       <Providers>
-        <Navbar />
+        {/* <Navbar /> */}
         <main>
           <Profile />
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </Providers>
     </div>
   )
