@@ -3,11 +3,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
+
 .profile-info{
-    
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
 
+.profile-icons{
+  border: 2px solid #423f3f;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-top: 35px;
+    margin-left: 50px;
+}
+.go-go {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    margin-right: 10px; 
 }

@@ -4,7 +4,7 @@ const nextConfig = {
   //   figma: "www.figma.com",
   // }
   images: {
-    domains: ["www.figma.com", "http2.mlstatic.com"],
+    domains: ["www.figma.com", "http2.mlstatic.com", "localhost"],
   },
 }
 
