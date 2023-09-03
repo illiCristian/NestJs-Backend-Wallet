@@ -19,7 +19,7 @@ export default function Profile () {
   return (
     <div>
       <section>
-        <div className='profile-container mt-20'>
+        <div className='profile-container mt-10'>
           <div className='profile-info flex text-center w-2/3 h-44 mt-30 mb-10 rounded-md relative'>
             <div>
               <img
