@@ -87,7 +87,7 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
         </div>
-        {/* Bloque 3 SECURITY */}
+        {/* Bloque 3 SEGURIDAD */}
         <div className='profile-info3 flex text-center w-2/3 h-36 relative'>
           <div>
             <div className='flex profile-icons relative'>
@@ -152,7 +152,7 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
         </div>
-        {/* Bloque 5 DIRECTION */}
+        {/* Bloque 5 DIRECCIONES */}
         <div className='profile-info5 flex text-center w-2/3 h-36 relative'>
           <div>
             <div className='flex profile-icons relative'>
@@ -183,7 +183,7 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
         </div>
-        {/* Bloque 6 PRIVACITY */}
+        {/* Bloque 6 PRIVACIDAD */}
         <div className='profile-info6 flex text-center w-2/3 h-36 relative'>
           <div>
             <div className='flex profile-icons relative'>
