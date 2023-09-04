@@ -1,8 +1,18 @@
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export const WalletSchema = new mongoose.Schema({
-  name: { type: String, default: 'Mercado Pago' },
-  // userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true },
-  status: { type: Boolean, default: false },
-  balance: { type: Number, default: 0 },
-});
+@Schema()
+export class Wallet {
+  @Prop({ default: 'Mercado Pago' })
+  name: string;
+
+  @Prop({ default: false })
+  status: boolean;
+
+  @Prop({ default: 0 })
+  balance: number;
+
+  @Prop({ type: [String], default: [] })
+  paymentMethods: string[];
+}
+
+export const WalletSchema = SchemaFactory.createForClass(Wallet);

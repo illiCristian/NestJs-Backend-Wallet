@@ -1,6 +1,8 @@
 import {
+  BadRequestException,
   Inject,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
   UnprocessableEntityException,
   forwardRef,
@@ -14,22 +16,45 @@ import { UsersService } from 'src/users/users.service';
 import { ActionGetInfo, ActionPostWallet } from './interfaces/wallet.types';
 import { TransferResult } from './interfaces/Transfer-result';
 
+import { CreateWalletDto } from './dto/create-wallet.dto';
+import { CreditCardMethod } from 'src/payment/schema/creditCard.model';
+
 @Injectable()
 export class WalletService {
-  [x: string]: any;
+  private walletDto: CreateWalletDto;
   constructor(
     @InjectModel('Wallet') private readonly walletModel: Model<Wallet>,
+    @InjectModel('CreditCard')
+    private readonly creditCardModel: Model<CreditCardMethod>,
+
     @Inject(forwardRef(() => UsersService))
     private readonly userService: UsersService,
-  ) {}
+  ) {
+    this.walletDto = new this.walletModel();
+  }
 
   async findById(walletId: string): Promise<Wallet | null> {
     return this.walletModel.findById(walletId).exec();
   }
 
   async createWallet(): Promise<Wallet> {
-    const newWallet = new this.walletModel();
-    return newWallet.save();
+    try {
+      const { ...data } = this.walletDto;
+
+      const newWallet = new this.walletModel({
+        data,
+      });
+
+      await newWallet.save();
+      return newWallet;
+    } catch (error) {
+      if (error.code === 11000) {
+        throw new BadRequestException(`Wallet already exists!`);
+      }
+      throw new InternalServerErrorException(
+        'Something happened creating the wallet',
+      );
+    }
   }
 
   async getInfoWallet(
