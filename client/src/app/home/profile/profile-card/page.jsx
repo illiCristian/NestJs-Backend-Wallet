@@ -35,7 +35,7 @@ export default function ProfileCard({ }) {
             </div>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='profile-title font-semibold font-semibold mt-2'>Información personal</p>
+            <p className='profile-title font-semibold mt-2'>Información personal</p>
             <p className='profile-subtitle text-base font-light mt-2'>
               Información de tu identificación oficial y tu actividad fiscal.
             </p>
