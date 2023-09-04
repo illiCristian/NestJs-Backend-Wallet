@@ -1,6 +1,6 @@
 import './styles.css'
 import Image from 'next/image'
-import BannerImg from '../../../../public/assets/landing/banner/banner6.jpeg'
+import BannerImg from '../../../../public/assets/landing/banner/banner9.jpeg'
 import BannerImg2 from '../../../../public/assets/landing/banner/imagen-banner1.png'
 import Vector from '../../../../public/assets/landing/vectors/vector.png'
 import Vector1 from '../../../../public/assets/landing/vectors/vector1.png'
@@ -28,7 +28,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
             <div className='flex absolute top-0 left-0 w-full h-full ml-0 mt-10 font-black text-center z-10'>
               <div>
                 <Image
-                  className='banner-dot'
+                  className='banner-dot bg-orange-500'
                   alt='vector '
                   src={Dot}
                   width={250}
@@ -39,7 +39,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
                 <Image alt='vector ' src={Bar} width={100} height={100} />
               </div>
               <div>
-                <h2 className='text-banner text-white text-left text-4xl mb-2 tracking-wider '>
+                <h2 className='text-banner text-orange-600 text-left text-4xl mb-2 tracking-wider '>
                   HAZ MÁS
                   <br />
                   CON TU DINERO
