@@ -1,24 +1,39 @@
-"use client"
+'use client'
 
-import ConfirmTransfer from "@/components/transferDebit/confirmTransfer/ConfirmTransfer";
-import DepositMoney from "@/components/transferDebit/depositMoney/DepositMoney";
-import TransferOptions from "@/components/transferDebit/transferOptions/TransferOptions";
-import { Fragment, useState } from "react";
-
+import ConfirmTransfer from '@/components/TransferDebit/confirmTransfer/ConfirmTransfer'
+import DepositMoney from '@/components/TransferDebit/depositMoney/DepositMoney'
+import TransferOptions from '@/components/TransferDebit/transferOptions/TransferOptions'
+import { Fragment, useState } from 'react'
 
 const depositMoney = () => {
-  const [first, setFirst] = useState('flex');
-  const [second, setSecond] = useState('hidden');
-  const [third, setThird] = useState('hidden');
+  const [first, setFirst] = useState('flex')
+  const [second, setSecond] = useState('hidden')
+  const [third, setThird] = useState('hidden')
 
   return (
-    <Fragment >
-      <DepositMoney component={first} nextStep={() => { setFirst('hidden'); setSecond('flex');}} />
-      <TransferOptions component={second} nextStep={() => { setSecond('hidden'); setThird('flex');}} />
-      <ConfirmTransfer component={third} nextStep={() => { setThird('hidden'); setSecond('flex');}} />
+    <Fragment>
+      <DepositMoney
+        component={first}
+        nextStep={() => {
+          setFirst('hidden')
+          setSecond('flex')
+        }}
+      />
+      <TransferOptions
+        component={second}
+        nextStep={() => {
+          setSecond('hidden')
+          setThird('flex')
+        }}
+      />
+      <ConfirmTransfer
+        component={third}
+        nextStep={() => {
+          setThird('hidden')
+          setSecond('flex')
+        }}
+      />
     </Fragment>
-
-
   )
   // const [value, setValue] = useState(0);
 
@@ -29,7 +44,7 @@ const depositMoney = () => {
   //       <div className="flex flex-row justify-center items-center my-4 mx-5">
   //       <p className="text-xl mx-3">$</p>
   //       <form action="">
-  //         <input 
+  //         <input
   //           type="number"
   //           className=" border-none hover:border-none focus:border-none"
   //           onChange={() => setValue(value)}
@@ -53,7 +68,7 @@ const depositMoney = () => {
   //         </button>
 
   //       </div>
-       
+
   //     </div>
   //     <button className="bg-gray-400 px-8 py-2 mt-4 ml-64 text-xs rounded-md text-gray-700">
   //         Continuar
@@ -62,4 +77,4 @@ const depositMoney = () => {
   // )
 }
 
-export default depositMoney;
+export default depositMoney
