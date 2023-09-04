@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
@@ -10,6 +9,9 @@ import { UsersService } from 'src/users/users.service';
 import { WalletService } from 'src/wallet/wallet.service';
 import { UserSchema } from 'src/users/schema/user.model';
 import { WalletSchema } from 'src/wallet/schema/wallet.model';
+import { PaymentService } from 'src/payment/payment.service';
+import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
+import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 
 @Module({
   imports: [
@@ -23,10 +25,24 @@ import { WalletSchema } from 'src/wallet/schema/wallet.model';
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },
       { name: 'Wallet', schema: WalletSchema },
+      {
+        name: 'CreditCard',
+        schema: CreditCardSchema,
+      },
+      {
+        name: 'BankAccount',
+        schema: BankAccountSchema,
+      },
     ]),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, UsersService, WalletService],
+  providers: [
+    AuthService,
+    JwtStrategy,
+    UsersService,
+    WalletService,
+    PaymentService,
+  ],
   exports: [PassportModule, JwtStrategy],
 })
 export class AuthModule {}
