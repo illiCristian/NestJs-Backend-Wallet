@@ -35,8 +35,8 @@ export default function ProfileCard({ }) {
             </div>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Información personal</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold font-semibold mt-2'>Información personal</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Información de tu identificación oficial y tu actividad fiscal.
             </p>
           </div>
@@ -69,8 +69,8 @@ export default function ProfileCard({ }) {
             </div>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Datos de tu cuenta</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Datos de tu cuenta</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Datos que representan a la cuenta de mercado pago y mercado
               libre.
             </p>
@@ -104,8 +104,8 @@ export default function ProfileCard({ }) {
             </div>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Seguridad</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Seguridad</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Tienes configurada la seguridad de tu cuenta.
             </p>
           </div>
@@ -135,8 +135,8 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Tarjetas</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Tarjetas</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Tienes configurada la seguridad de tu cuenta.
             </p>
           </div>
@@ -166,8 +166,8 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Direcciones</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Direcciones</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Direcciones guardadas en tu cuenta.
             </p>
           </div>
@@ -197,8 +197,8 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Privacidad</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Privacidad</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Preferencias y control sobre el uso de tus datos.
             </p>
           </div>
@@ -228,8 +228,8 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Comunicaciones</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Comunicaciones</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Elige el tipo de información que quieres recibir.
             </p>
           </div>
@@ -259,8 +259,8 @@ export default function ProfileCard({ }) {
             </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Suscripciones</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Suscripciones</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Gestiona tus suscripciones.
             </p>
           </div>
