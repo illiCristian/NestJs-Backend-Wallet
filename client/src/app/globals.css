@@ -2,14 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   html {
-    font-family: Proxima Nova, system-ui, sans-serif;
+    font-family:
+      Proxima Nova,
+      system-ui,
+      sans-serif;
+  }
+}
 
+.remove-arrow::-webkit-inner-spin-button,
+.remove-arrow::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-      }
-    }
-
-
+.remove-arrow {
+  -moz-appearance: textfield;
+}
