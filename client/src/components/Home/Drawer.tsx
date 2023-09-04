@@ -40,7 +40,7 @@ export default function Drawer() {
 
           <section className="py-4 space-y-6">
             <Link
-              href={'home/balance'}
+              href={'/balance'}
               className="flex gap-5 px-3 text-neutral-500 "
             >
               <Image src={wallet} alt="wallet" className="" />
@@ -57,7 +57,7 @@ export default function Drawer() {
             </Link>
 
             <Link
-              href={'home/send-money'}
+              href={'/send-money'}
               className="flex gap-5 px-3 text-neutral-500"
             >
               <Image src={sendMoney} alt="sendMoney" className="" />

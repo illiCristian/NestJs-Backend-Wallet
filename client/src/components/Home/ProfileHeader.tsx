@@ -18,7 +18,7 @@ function ProfileHeader() {
         <h5 className="text-2xl font-semibold text-center text-white">
           Hola, {user?.name.split(' ')[0]}
         </h5>
-        <Link href={'home/profile'} className="flex gap-3">
+        <Link href={'/profile'} className="flex gap-3">
           <h6 className="text-base font-normal leading-normal text-center text-white ">
             Tu perfil
           </h6>
