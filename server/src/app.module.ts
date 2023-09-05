@@ -10,6 +10,7 @@ import { MailingModule } from './mailing/mailing.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { WalletModule } from './wallet/wallet.module';
+import { MovementsModule } from './movements/movements.module';
 @Module({
   //Importamos los modulos que vamos a usar
   imports: [
@@ -52,6 +53,7 @@ import { WalletModule } from './wallet/wallet.module';
     }),
     //Conexion con la base de datos
     MongooseModule.forRoot(process.env.MONGO_URI),
+    MovementsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
