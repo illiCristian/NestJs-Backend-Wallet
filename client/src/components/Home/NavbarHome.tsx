@@ -12,6 +12,7 @@ export default function NavbarHome() {
     { path: '/home', title: 'Inicio' },
     { path: '/profile', title: 'Perfil' },
     { path: '/balance', title: 'Tu dinero' },
+    { path: '/send-money', title: 'Enviar dinero' },
     { path: '/money-charge', title: 'Ingresar dinero' },
     { path: '/money-charge/transfer-debit', title: 'Ingresar dinero' },
   ]
