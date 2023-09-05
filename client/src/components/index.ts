@@ -1,9 +1,5 @@
 import Navbar from './LandingPage/Navbar/Navbar'
-import SuccessfulDebitTransfer from './transferDebit/SuccessfulDebitTransfer'
-import UnsuccessfulDebitTransfer from './transferDebit/UnsuccessfulDebitTransfer'
+import SuccessfulDebitTransfer from './TransferDebit/successfulTransfer/SuccessfulDebitTransfer'
+import UnsuccessfulDebitTransfer from './TransferDebit/unsuccessTransfer/UnsuccessfulDebitTransfer'
 
-export {
-  Navbar,
-  SuccessfulDebitTransfer,
-  UnsuccessfulDebitTransfer
-}
+export { Navbar, SuccessfulDebitTransfer, UnsuccessfulDebitTransfer }

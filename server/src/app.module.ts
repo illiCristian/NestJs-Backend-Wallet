@@ -23,32 +23,34 @@ import { MovementsModule } from './movements/movements.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MailerModule.forRoot({
-      //transport: 'smtps://user@domain.com:pass@smtp.domain.com',
-      transport: {
-        service: 'gmail',
-        host: 'smtp.gmail.com',
-        port: 587,
-        ignoreTLS: true,
-        secure: false,
-        tls: {
-          rejectUnauthorized: false,
+    MailerModule.forRootAsync({
+      useFactory: () => ({
+        //transport: 'smtps://user@domain.com:pass@smtp.domain.com',
+        transport: {
+          service: 'gmail',
+          host: 'smtp.gmail.com',
+          port: 587,
+          ignoreTLS: true,
+          secure: false,
+          tls: {
+            rejectUnauthorized: false,
+          },
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD,
+          },
         },
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD,
+        template: {
+          dir: process.cwd() + '/templates/',
+          adapter: new HandlebarsAdapter(),
+          options: {
+            strict: true,
+          },
         },
-      },
-      template: {
-        dir: process.cwd() + '/templates/',
-        adapter: new HandlebarsAdapter(),
-        options: {
-          strict: true,
-        },
-      },
+      }),
     }),
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: '.env.local',
       isGlobal: true,
     }),
     //Conexion con la base de datos
