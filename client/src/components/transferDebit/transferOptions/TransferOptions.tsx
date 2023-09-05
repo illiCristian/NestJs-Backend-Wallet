@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import credit_icon from '../../../../public/credit-card-icon.svg'
-import transfer_spei from '../../../../public/transfer-spei.svg'
 import next_arrow from '../../../../public/next-arrow-icon.svg'
 import { MouseEventHandler } from 'react'
 import DetailMoney from '../DetailMoney/DetailMoney'
