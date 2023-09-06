@@ -1,22 +1,54 @@
-import Image from 'next/image'
-import chip from '../../../../public/chip.png'
-import { MouseEventHandler } from 'react'
-import DetailMoney from '../DetailMoney/DetailMoney'
-import Link from 'next/link'
+import { createCreditCard, depositMoneyCard } from '@/services'
 import { useTempMoney, useUserProfile } from '@/store/userStore'
+import { useMutation } from '@tanstack/react-query'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import chip from '../../../../public/chip.png'
+import DetailMoney from '../DetailMoney/DetailMoney'
 
 interface props {
   component: string
-  nextStep: MouseEventHandler<HTMLButtonElement>
+  nextStep: () => void
 }
 
 function ConfirmTransfer({ component, nextStep }: props) {
+  const router = useRouter()
   const { updateWallet } = useUserProfile()
   const { tempMoney, setTempMoney } = useTempMoney()
+  const { mutate: depositMoney } = useMutation(depositMoneyCard)
+  const { mutate: createCard } = useMutation(createCreditCard)
+  const { register, handleSubmit } = useForm()
 
-  const handleSendMoney = () => {
-    updateWallet(tempMoney)
-    setTempMoney(0)
+  const handleSendMoney = (data: any) => {
+    console.log(data)
+
+    createCard(
+      {
+        paymentType: 'CreditCard',
+        ...data,
+      },
+      {
+        onSuccess(data) {
+          const { paymentMethodsCards } = data.data
+
+          depositMoney(
+            {
+              amount: tempMoney,
+              selectedPaymentId:
+                paymentMethodsCards[paymentMethodsCards.length - 1],
+            },
+            {
+              onSuccess: () => {
+                updateWallet(tempMoney)
+                setTempMoney(0)
+                router.push('/money-charge/transfer-debit/operation-success')
+              },
+            },
+          )
+        },
+      },
+    )
   }
 
   return (
@@ -27,7 +59,10 @@ function ConfirmTransfer({ component, nextStep }: props) {
         Completa los datos de tu tarjeta
       </h1>
       <section className="flex flex-row items-start justify-center">
-        <div className="flex flex-col bg-white border-t-white rounded-lg shadow-[0px_4px_4px_0px_#00000025]  px-[50px]  sh mb-20">
+        <form
+          onSubmit={handleSubmit(handleSendMoney)}
+          className="flex flex-col bg-white border-t-white rounded-lg shadow-[0px_4px_4px_0px_#00000025]  px-[50px]  sh mb-20"
+        >
           <div className="flex flex-col justify-center items-start my-4 bg-[#BFBFBF] mx-24 mt-12 border rounded-lg shadow-[7px_15px_25px_-18px_rgba(0,0,0,1)]">
             <div className="flex flex-row items-center justify-between mx-4 mt-3 ">
               <Image src={chip} alt="chip-image" width={15} height={15} />
@@ -40,55 +75,51 @@ function ConfirmTransfer({ component, nextStep }: props) {
             <div className="flex flex-col items-start justify-center">
               <label htmlFor="numero-tarjeta">Número de tarjeta</label>
               <input
-                type="number"
-                name="numero-tarjeta"
+                {...register('cardNumber', { minLength: 16, maxLength: 16 })}
+                id="numero-tarjeta"
                 className="px-4 py-3 border border-gray-200 rounded-md w-72 focus:outline-primary remove-arrow"
               />
             </div>
             <div className="flex flex-col items-start justify-center">
-              <label htmlFor="numero-tarjeta">Vencimiento</label>
+              <label htmlFor="vencimiento-tarjeta">Vencimiento</label>
               <input
-                type="number"
-                name="numero-tarjeta"
+                {...register('expirationDate')}
+                id="vencimiento-tarjeta"
                 className="px-4 py-3 border border-gray-200 rounded-md w-44 focus:outline-primary remove-arrow"
               />
             </div>
           </div>
           <div className="flex flex-row items-center justify-center gap-3 mt-4 ">
             <div className="flex flex-col items-start justify-center">
-              <label htmlFor="numero-tarjeta">Nombre del Titular</label>
+              <label htmlFor="titular-tarjeta">Nombre del Titular</label>
               <input
-                type="text"
-                name="numero-tarjeta"
+                {...register('name')}
+                id="titular-tarjeta"
                 className="px-4 py-3 border border-gray-200 rounded-md w-72 focus:outline-primary remove-arrow "
               />
             </div>
             <div className="flex flex-col justify-start">
-              <label htmlFor="numero-tarjeta">CVV</label>
+              <label htmlFor="cvv-tarjeta">CVV</label>
               <input
-                type="number"
-                name="numero-tarjeta"
+                {...register('cvv')}
+                id="cvv-tarjeta"
                 className="px-4 py-3 border border-gray-200 rounded-md w-44 focus:outline-primary remove-arrow"
               />
             </div>
           </div>
           <div className="flex flex-row items-end justify-end gap-3 mt-4 mb-9">
             <button
+              type="button"
               className="bg-secondary px-10 text-base py-2 font-medium text-[#00B1EA] rounded-md cursor-pointer w-[175px] h-[48px]"
               onClick={nextStep}
             >
               Volver
             </button>
-            <Link href={'/money-charge/transfer-debit/operation-success'}>
-              <button
-                onClick={handleSendMoney}
-                className="bg-[#00B1EA] px-10 text-base py-2 font-medium  text-white rounded-md w-[175px] h-[48px]"
-              >
-                Continuar
-              </button>
-            </Link>
+            <button className="bg-[#00B1EA] px-10 text-base py-2 font-medium  text-white rounded-md w-[175px] h-[48px]">
+              Continuar
+            </button>
           </div>
-        </div>
+        </form>
         <DetailMoney />
       </section>
     </div>

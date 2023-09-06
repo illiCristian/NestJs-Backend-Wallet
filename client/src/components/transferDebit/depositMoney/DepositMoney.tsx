@@ -15,10 +15,6 @@ const DepositMoney = ({ component, nextStep }: props) => {
     nextStep()
   }
 
-  const handleChange = (e: any) => {
-    setTempMoney(e.target.value)
-  }
-
   return (
     <div className={`${component} flex-col items-start d w-full mt-5 ms-96 `}>
       <h1 className="text-black text-[25px] font-semibold leading-normal mb-5">
@@ -26,18 +22,18 @@ const DepositMoney = ({ component, nextStep }: props) => {
       </h1>
       <form onSubmit={handleSubmit(handleForm)}>
         <div className="flex flex-col bg-white  rounded-lg shadow-[0px_4px_4px_0px_#00000025] w-[544px]  px-[50px]  sh">
-          <div className="flex flex-row justify-start items-center my-4 mx-5">
+          <div className="flex flex-row items-center justify-start mx-5 my-4">
             <p className="text-xl">$</p>
             <input
               {...register('money')}
               autoFocus
               type="number"
               placeholder="0"
-              className=" outline-none focus:outline-none flex items-center border-white w-32 remove-arrow ms-44"
+              className="flex items-center w-32 border-white outline-none  focus:outline-none remove-arrow ms-44"
             />
           </div>
           <hr className="-mx-[50px] bg-gray-200 border-1" />
-          <div className="flex flex-row items-center justify-center my-4 gap-5">
+          <div className="flex flex-row items-center justify-center gap-5 my-4">
             <button
               type="button"
               className="text-xs border-[1px] rounded-2xl text-gray-500 py-2 px-3 border-gray-200"
