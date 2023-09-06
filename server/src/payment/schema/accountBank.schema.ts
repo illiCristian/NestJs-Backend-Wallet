@@ -13,6 +13,9 @@ export class BankAccount {
 
   @Prop({ required: true })
   accountNumber: string;
+
+  @Prop({ default: 1000000 })
+  balance: number;
 }
 
 export const BankAccountSchema = SchemaFactory.createForClass(BankAccount);

@@ -14,7 +14,10 @@ export class Wallet extends mongoose.Document {
   name: string;
 
   @Prop({ type: [String], default: [] })
-  paymentMethods: string[];
+  paymentMethodsCards: string[];
+
+  @Prop({ type: [String], default: [] })
+  paymentMethodsBanks: string[];
 }
 
 export const WalletModel = mongoose.model<Wallet>('Wallet', WalletSchema);

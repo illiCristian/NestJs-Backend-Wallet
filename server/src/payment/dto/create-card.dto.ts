@@ -13,12 +13,18 @@ export class CrediCardDto {
   @IsNotEmpty()
   paymentType: PaymentTypes;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'John Doe',
+    description: 'Nombre del titular de la tarjeta',
+  })
   @IsNotEmpty()
   @IsString()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: '1111 2222 3333 4444',
+    description: 'Número de la tarjeta con un minimo y maximo de 16 digitos',
+  })
   @IsNotEmpty()
   @IsString()
   @MinLength(16)
@@ -28,6 +34,10 @@ export class CrediCardDto {
   })
   cardNumber: string;
 
+  @ApiProperty({
+    example: '08/23',
+    description: 'Fecha de vencimiento de la tarjeta de 3 o 4 dígitos',
+  })
   @IsNotEmpty()
   @IsString()
   @Matches(/^(0[1-9]|1[0-2])\/\d{2}$/, {
@@ -35,7 +45,10 @@ export class CrediCardDto {
   })
   expirationDate: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: '123',
+    description: 'Código de seguridad de la tarjeta',
+  })
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(4)

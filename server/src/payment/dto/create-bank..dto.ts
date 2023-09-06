@@ -13,12 +13,15 @@ export class CreateBankDto {
   @IsNotEmpty()
   paymentType: PaymentTypes;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'John Doe',
+    description: 'Nombre del titular de la cuenta',
+  })
   @IsNotEmpty()
   @IsString()
-  accountNumber: string;
+  accountHolderName: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: '1551441545', description: 'Número de cuenta' })
   @IsNotEmpty()
   @IsString()
   @MinLength(4)
@@ -26,9 +29,12 @@ export class CreateBankDto {
   @Matches(/^\d[\d\s-]*$/, {
     message: 'Number account bank no valid',
   })
-  accountHolderName: string;
+  accountNumber: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Banco Santander Rio',
+    description: 'Nombre del Banco',
+  })
   @IsNotEmpty()
   @IsString()
   bankName: string;
