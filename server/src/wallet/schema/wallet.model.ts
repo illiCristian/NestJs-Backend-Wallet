@@ -1,12 +1,23 @@
-/* eslint-disable prettier/prettier */
-import * as mongoose from 'mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 import { WalletSchema } from './wallet.schema';
 
-export interface Wallet extends mongoose.Document {
-  // userId: mongoose.Schema.Types.ObjectId;
+@Schema()
+export class Wallet extends mongoose.Document {
+  @Prop()
   balance: number;
+
+  @Prop()
   status: boolean;
+
+  @Prop({ default: 'Mercado Pago' })
   name: string;
+
+  @Prop({ type: [String], default: [] })
+  paymentMethodsCards: string[];
+
+  @Prop({ type: [String], default: [] })
+  paymentMethodsBanks: string[];
 }
 
 export const WalletModel = mongoose.model<Wallet>('Wallet', WalletSchema);

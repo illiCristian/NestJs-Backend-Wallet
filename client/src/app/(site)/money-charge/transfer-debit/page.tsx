@@ -1,8 +1,8 @@
 'use client'
 
-import ConfirmTransfer from '@/components/TransferDebit/confirmTransfer/ConfirmTransfer'
-import DepositMoney from '@/components/TransferDebit/depositMoney/DepositMoney'
-import TransferOptions from '@/components/TransferDebit/transferOptions/TransferOptions'
+import ConfirmTransfer from '@/components/transferDebit/confirmTransfer/ConfirmTransfer'
+import DepositMoney from '@/components/transferDebit/depositMoney/DepositMoney'
+import TransferOptions from '@/components/transferDebit/transferOptions/TransferOptions'
 import { Fragment, useState } from 'react'
 
 const depositMoney = () => {

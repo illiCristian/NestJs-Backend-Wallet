@@ -1,13 +1,12 @@
 import Image from 'next/image'
 import credit_icon from '../../../../public/credit-card-icon.svg'
 import next_arrow from '../../../../public/next-arrow-icon.svg'
-import { MouseEventHandler } from 'react'
 import DetailMoney from '../DetailMoney/DetailMoney'
 import Link from 'next/link'
 
 interface props {
   component: string
-  nextStep: MouseEventHandler<HTMLImageElement>
+  nextStep: () => void
 }
 
 const TransferOptions = ({ component, nextStep }: props) => {
