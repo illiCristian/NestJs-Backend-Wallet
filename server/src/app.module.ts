@@ -11,6 +11,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { WalletModule } from './wallet/wallet.module';
 import { MovementsModule } from './movements/movements.module';
+import { PaymentModule } from './payment/payment.module';
+import { CvuGeneratorService } from './cvu/cvu-generator.service';
 @Module({
   //Importamos los modulos que vamos a usar
   imports: [
@@ -19,6 +21,8 @@ import { MovementsModule } from './movements/movements.module';
     AuthModule,
     MailingModule,
     WalletModule,
+    PaymentModule,
+    CvuGeneratorService,
 
     ConfigModule.forRoot({
       isGlobal: true,

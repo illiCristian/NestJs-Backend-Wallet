@@ -5,6 +5,8 @@ import {
   Inject,
   Param,
   Post,
+  Req,
+  UseGuards,
   forwardRef,
 } from '@nestjs/common';
 import { WalletService } from './wallet.service';
@@ -12,7 +14,14 @@ import { Wallet } from './schema/wallet.model';
 import { TransferData } from './interfaces/transfer-data';
 import { TransferResult } from './interfaces/Transfer-result';
 import { UsersService } from 'src/users/users.service';
-import { ActionGetInfo, ActionPostWallet } from './interfaces/wallet.types';
+
+import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { AuthGuard } from 'src/users/guard/auth-guard';
+import { Request } from 'express';
+import { User } from 'src/users/schema/user.model';
+import { PaymentTypes } from 'src/payment/interfaces/payment.types';
+import { ActionGetInfo } from './interfaces/operations-get-wallet';
+import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
 
 @Controller('wallet')
 export class WalletController {
@@ -23,55 +32,45 @@ export class WalletController {
     private readonly userService: UsersService,
   ) {}
 
-  @Post(':userId/deposit')
-  async depositToWallet(
-    @Param('userId') userId: string,
-    @Body() depositData: { amount: number },
-  ): Promise<Wallet> {
-    return this.walletService.depositToWallet(userId, depositData.amount);
-  }
-
-  @Get(':userId/balance')
-  async getWalletBalance(
-    @Param('userId') userId: string,
-  ): Promise<{ balance: number }> {
-    return this.walletService.getWalletBalance(userId);
-  }
-
-  @Get(':userId/wallet/:action')
+  // Peticion del usuario autenticado sin roles de administrador
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Get('/wallet/:action')
   async getInfoWallet(
-    @Param('userId') userId: string,
+    @Req() { user }: Request & { user: User },
     @Param('action') action: ActionGetInfo,
   ): Promise<Wallet | { balance: number } | string> {
-    return this.walletService.getInfoWallet(userId, action);
+    return this.walletService.getInfoWallet(user.id, action);
   }
 
-  @Post(':userId/wallet/:action')
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Post('wallet/:action/:paymentTypes')
   async operationsWallet(
-    @Param('userId') userId: string,
+    @Req() { user }: Request & { user: User },
     @Param('action') action: ActionPostWallet,
-    @Body() depositData: { amount: number },
-  ): Promise<Wallet | { amount: number } | string> {
+    @Param('paymentTypes') paymentTypes: PaymentTypes,
+    @Body() depositData: { amount: number; selectedPaymentId: string },
+  ): Promise<Wallet | { amount: number; selectedPaymentId: string } | string> {
     return this.walletService.operationsWallet(
-      userId,
+      user.id,
       depositData.amount,
+      depositData.selectedPaymentId,
       action,
+      paymentTypes,
     );
   }
 
-  @Post(':userId/withdraw')
-  async withdrawFromWallet(
-    @Param('userId') userId: string,
-    @Body('balance') balance: number,
-  ): Promise<Wallet | null> {
-    return this.walletService.withdraw(userId, balance);
-  }
-
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @Post(':userId/transfer')
   async transferBetweenWallets(
-    @Param('userId') userId: string,
+    @Req() { user }: Request & { user: User },
     @Body() transferData: TransferData,
   ): Promise<TransferResult> {
-    return this.walletService.transferFunds(userId, transferData);
+    return this.walletService.transferFunds(user.id, transferData);
   }
 }

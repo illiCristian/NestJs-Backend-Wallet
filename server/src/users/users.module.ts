@@ -7,12 +7,23 @@ import { WalletService } from 'src/wallet/wallet.service';
 import { UserSchema } from './schema/user.model';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { PaymentService } from 'src/payment/payment.service';
+import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
+import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },
       { name: 'Wallet', schema: WalletSchema },
+      {
+        name: 'CreditCard',
+        schema: CreditCardSchema,
+      },
+      {
+        name: 'BankAccount',
+        schema: BankAccountSchema,
+      },
     ]),
     JwtModule.registerAsync({
       inject: [ConfigService],
@@ -27,7 +38,7 @@ import { ConfigService } from '@nestjs/config';
     }),
   ],
   controllers: [UsersController],
-  providers: [UsersService, WalletService],
+  providers: [UsersService, WalletService, PaymentService],
   exports: [MongooseModule, UsersService],
 })
 export class UsersModule {}
