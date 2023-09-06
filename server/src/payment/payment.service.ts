@@ -55,12 +55,12 @@ export class PaymentService {
         case 'card':
           newPaymentMethod = new this.creditCardModel(paymentDto);
           await newPaymentMethod.save();
-          updateWallet.paymentMethods.push(newPaymentMethod._id);
+          updateWallet.paymentMethodsCards.push(newPaymentMethod._id);
           break;
         case 'bank':
           newPaymentMethod = new this.bankAccountModel(paymentDto);
           await newPaymentMethod.save();
-          updateWallet.paymentMethods.push(newPaymentMethod._id);
+          updateWallet.paymentMethodsBanks.push(newPaymentMethod._id);
           break;
         default:
           throw new Error('Invalid action');
@@ -79,5 +79,61 @@ export class PaymentService {
         );
       }
     }
+  }
+
+  async getCardById(cardId: string): Promise<CreditCardMethod | null> {
+    const card = await this.creditCardModel.findById(cardId).exec();
+    return card;
+  }
+
+  async getBankAccountById(
+    bankAccountId: string,
+  ): Promise<BankAccountMethod | null> {
+    const bankAccount = await this.bankAccountModel
+      .findById(bankAccountId)
+      .exec();
+    return bankAccount;
+  }
+
+  async getAllPaymentMethodsCards(userId: string): Promise<CreditCardMethod[]> {
+    const user = await this.userService.getUserAndCheck(userId);
+    const wallet = await this.walletService.getWalletAndCheck(
+      user.walletId.toString(),
+    );
+
+    // Obtén todas las tarjetas de crédito de la wallet
+    const creditCards: CreditCardMethod[] = [];
+
+    for (const creditCardId of wallet.paymentMethodsCards) {
+      const creditCard = await this.getCardById(creditCardId);
+
+      if (creditCard) {
+        creditCards.push(creditCard);
+      }
+    }
+
+    return creditCards;
+  }
+
+  async getAllPaymentMethodsBanks(
+    userId: string,
+  ): Promise<BankAccountMethod[]> {
+    const user = await this.userService.getUserAndCheck(userId);
+    const wallet = await this.walletService.getWalletAndCheck(
+      user.walletId.toString(),
+    );
+
+    // Obtén todas las tarjetas de crédito de la wallet
+    const accountBanks: BankAccountMethod[] = [];
+
+    for (const accountBankId of wallet.paymentMethodsBanks) {
+      const accountBank = await this.getBankAccountById(accountBankId);
+
+      if (accountBank) {
+        accountBanks.push(accountBank);
+      }
+    }
+
+    return accountBanks;
   }
 }

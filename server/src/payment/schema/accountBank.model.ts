@@ -15,6 +15,9 @@ export class BankAccountMethod extends mongoose.Document {
 
   @Prop({ required: true })
   accountNumber: string;
+
+  @Prop({ default: 1000000 })
+  balance: number;
 }
 
 export const BankAccountModel = mongoose.model<BankAccountMethod>(

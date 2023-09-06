@@ -14,7 +14,7 @@ export class CreditCardMethod extends mongoose.Document {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ unique: [true, 'This card already exists!'] })
+  @Prop({ required: true })
   cardNumber: string;
 
   @Prop({ required: true })
@@ -22,6 +22,9 @@ export class CreditCardMethod extends mongoose.Document {
 
   @Prop({ required: true })
   cvv: string;
+
+  @Prop({ default: 1000000 })
+  balance: number;
 }
 
 export const CreditCardModel = mongoose.model<CreditCardMethod>(

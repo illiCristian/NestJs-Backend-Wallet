@@ -26,6 +26,11 @@ export class CreateWalletDto {
 
   @ApiProperty()
   @IsArray()
+  @IsMongoId({ each: true })
+  paymentMethodsCards: string[];
+
+  @ApiProperty()
+  @IsArray()
   @IsMongoId({ each: true }) // Esto valida que cada elemento sea un ObjectId válido
-  paymentMethods: string[];
+  paymentMethodsBanks: string[];
 }

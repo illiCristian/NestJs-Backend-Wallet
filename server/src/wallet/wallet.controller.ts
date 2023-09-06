@@ -14,11 +14,14 @@ import { Wallet } from './schema/wallet.model';
 import { TransferData } from './interfaces/transfer-data';
 import { TransferResult } from './interfaces/Transfer-result';
 import { UsersService } from 'src/users/users.service';
-import { ActionGetInfo, ActionPostWallet } from './interfaces/wallet.types';
+
 import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AuthGuard } from 'src/users/guard/auth-guard';
 import { Request } from 'express';
 import { User } from 'src/users/schema/user.model';
+import { PaymentTypes } from 'src/payment/interfaces/payment.types';
+import { ActionGetInfo } from './interfaces/operations-get-wallet';
+import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
 
 @Controller('wallet')
 export class WalletController {
@@ -44,16 +47,19 @@ export class WalletController {
   @ApiUnauthorizedResponse()
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
-  @Post('/wallet/:action')
+  @Post('wallet/:action/:paymentTypes')
   async operationsWallet(
     @Req() { user }: Request & { user: User },
     @Param('action') action: ActionPostWallet,
-    @Body() depositData: { amount: number },
-  ): Promise<Wallet | { amount: number } | string> {
+    @Param('paymentTypes') paymentTypes: PaymentTypes,
+    @Body() depositData: { amount: number; selectedPaymentId: string },
+  ): Promise<Wallet | { amount: number; selectedPaymentId: string } | string> {
     return this.walletService.operationsWallet(
       user.id,
       depositData.amount,
+      depositData.selectedPaymentId,
       action,
+      paymentTypes,
     );
   }
 

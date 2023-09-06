@@ -11,8 +11,14 @@ export class Wallet {
   @Prop({ default: 0 })
   balance: number;
 
+  // @Prop({ type: [String], default: [] })
+  // paymentMethods: string[];
+
   @Prop({ type: [String], default: [] })
-  paymentMethods: string[];
+  paymentMethodsCards: string[];
+
+  @Prop({ type: [String], default: [] })
+  paymentMethodsBanks: string[];
 }
 
 export const WalletSchema = SchemaFactory.createForClass(Wallet);

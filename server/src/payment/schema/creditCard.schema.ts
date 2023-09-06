@@ -11,7 +11,7 @@ export class CreditCardMethod {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ unique: [true, 'This card already exists!'] })
+  @Prop({ required: true })
   cardNumber: string;
 
   @Prop({ required: true })
@@ -19,6 +19,9 @@ export class CreditCardMethod {
 
   @Prop({ required: true })
   cvv: string;
+
+  @Prop({ default: 1000000 })
+  balance: number;
 }
 
 export const CreditCardSchema = SchemaFactory.createForClass(CreditCardMethod);
