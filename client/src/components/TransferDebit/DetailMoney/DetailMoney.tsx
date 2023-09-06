@@ -1,6 +1,9 @@
+import { useTempMoney } from '@/store/userStore'
 import React from 'react'
 
 export default function DetailMoney() {
+  const { tempMoney } = useTempMoney()
+
   return (
     <>
       <div className="flex flex-col items-start justify-start w-[350px] bg-white shadow-[0px_4px_4px_0px_#00000025] ml-4 rounded-xl sh">
@@ -8,7 +11,7 @@ export default function DetailMoney() {
 
         <div className="flex flex-row justify-between pt-1 pb-12 pl-4">
           <p className="text-base text-black">Ingresas</p>
-          <p className="ml-52 text-base">$ 600</p>
+          <p className="ml-52 text-base">$ {tempMoney}</p>
         </div>
       </div>
     </>
