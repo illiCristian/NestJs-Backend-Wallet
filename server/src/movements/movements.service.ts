@@ -26,12 +26,12 @@ export class MovementsService {
 
   async createMovement(
     createMovementDto: CreateMovementDto,
-    userId: string,
+    id: string,
   ): Promise<Movement> {
     try {
       const { type, amount, source, destination, status } = createMovementDto;
 
-      const user = await this.userService.getUserAndCheck(userId);
+      const user = await this.userService.getUserAndCheck(id);
       const wallet = await this.walletService.findById(
         user.walletId.toString(),
       );
@@ -56,16 +56,20 @@ export class MovementsService {
     }
   }
 
-  findAllMovements() {
-    return this.movementModel.find();
+  async findAllMovements() {
+    return await this.movementModel.find();
   }
 
-  async findOneMovement(id: string) {
+  async findUserMovement(id: string) {
     {
       if (!Types.ObjectId.isValid(id)) {
         throw new BadRequestException('Invalid ObjectId');
       }
-      const mov = await this.movementModel.find({ walletId: id });
+      const user = await this.userService.getUserAndCheck(id);
+      const wallet = await this.walletService.findById(
+        user.walletId.toString(),
+      );
+      const mov = await this.movementModel.find({ walletId: wallet.id });
 
       if (!mov.length) {
         throw new BadRequestException('Movement not found');

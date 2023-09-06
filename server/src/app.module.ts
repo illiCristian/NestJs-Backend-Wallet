@@ -12,7 +12,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { WalletModule } from './wallet/wallet.module';
 import { MovementsModule } from './movements/movements.module';
 import { PaymentModule } from './payment/payment.module';
-import { CvuGeneratorService } from './cvu/cvu-generator.service';
+//import { CvuGeneratorService } from './cvu-generator/cvu-generator.service';
 @Module({
   //Importamos los modulos que vamos a usar
   imports: [
@@ -22,7 +22,7 @@ import { CvuGeneratorService } from './cvu/cvu-generator.service';
     MailingModule,
     WalletModule,
     PaymentModule,
-    CvuGeneratorService,
+    //CvuGeneratorService,
 
     ConfigModule.forRoot({
       isGlobal: true,
