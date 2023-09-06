@@ -2,6 +2,7 @@ import Image from 'next/image'
 import credit_icon from '../../../../public/credit-card-icon.svg'
 import next_arrow from '../../../../public/next-arrow-icon.svg'
 import DetailMoney from '../DetailMoney/DetailMoney'
+import Link from 'next/link'
 
 interface props {
   component: string
@@ -46,7 +47,10 @@ const TransferOptions = ({ component, nextStep }: props) => {
             />
           </div>
           <hr className=" bg-gray-200 border-1" />
-          <div className="flex flex-row justify-between  items-start my-4 px-4">
+          <Link
+            href={'/spei'}
+            className="flex flex-row justify-between  items-start my-4 px-4"
+          >
             <div className="flex ">
               <div className="border rounded-full border-gray-300 mx-2">
                 <Image
@@ -70,9 +74,8 @@ const TransferOptions = ({ component, nextStep }: props) => {
               width={25}
               height={25}
               className=" cursor-pointer"
-              onClick={nextStep}
             />
-          </div>
+          </Link>
         </div>
         <DetailMoney />
       </section>
