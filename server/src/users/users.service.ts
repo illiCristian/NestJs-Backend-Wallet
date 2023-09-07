@@ -16,12 +16,18 @@ import * as bcrypt from 'bcryptjs';
 import { WalletService } from 'src/wallet/wallet.service';
 import { User } from './schema/user.model';
 import { Wallet } from 'src/wallet/schema/wallet.model';
+import { CreditCardMethod } from 'src/payment/schema/creditCard.model';
+import { BankAccountMethod } from 'src/payment/schema/accountBank.model';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel('User') private readonly userModel: Model<User>,
     @InjectModel('Wallet') private readonly walletModel: Model<Wallet>,
+    @InjectModel('CreditCard')
+    private readonly creditCardModel: Model<CreditCardMethod>,
+    @InjectModel('BankAccount')
+    private readonly bankAccountModel: Model<BankAccountMethod>,
     @Inject(forwardRef(() => WalletService))
     private readonly walletService: WalletService,
   ) {}
@@ -67,21 +73,51 @@ export class UsersService {
     return this.userModel.find();
   }
 
-  async findOne(id: string): Promise<User> {
-    {
-      if (!Types.ObjectId.isValid(id)) {
-        throw new BadRequestException('Invalid ObjectId');
-      }
-      const user = await this.userModel
-        .findById(id)
-        .populate('walletId', '', this.walletModel)
-        .exec();
+  // async findOne(id: string): Promise<User> {
+  //   {
+  //     if (!Types.ObjectId.isValid(id)) {
+  //       throw new BadRequestException('Invalid ObjectId');
+  //     }
+  //     const user = await this.userModel
+  //       .findById(id)
+  //       .populate('walletId', '', this.walletModel)
+  //       .exec();
 
-      if (!user) {
-        throw new BadRequestException('User not found');
-      }
-      return user;
+  //     if (!user) {
+  //       throw new BadRequestException('User not found');
+  //     }
+  //     return user;
+  //   }
+  // }
+
+  async findOne(id: string): Promise<User> {
+    if (!Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid ObjectId');
     }
+
+    const user = await this.userModel
+      .findById(id)
+      .populate({
+        path: 'walletId',
+        model: this.walletModel,
+        populate: [
+          {
+            path: 'paymentMethodsCards', // Campo que contiene las tarjetas de crédito
+            model: this.creditCardModel, // Modelo de tarjeta de crédito
+          },
+          {
+            path: 'paymentMethodsBanks', // Campo que contiene las cuentas bancarias
+            model: this.bankAccountModel, // Modelo de cuenta bancaria
+          },
+        ],
+      })
+      .exec();
+
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    return user;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {

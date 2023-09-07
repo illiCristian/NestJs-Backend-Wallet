@@ -16,6 +16,25 @@ type UserData = {
   password: string | undefined
 }
 
+type WalletData = {
+  amount: number
+  selectedPaymentId: string
+}
+
+export type CreditCard = {
+  paymentType: string
+  name: string
+  cardNumber: string
+  expirationDate: string
+  cvv: string
+}
+
+type BankAccount = {
+  paymentType: string
+  bankName: string
+  accountNumber: string
+}
+
 export const getProfile = async () => {
   const session = await getSession()
 
@@ -34,4 +53,36 @@ export const sendConfirmationCode = async (data: Code) => {
 
 export const registerUser = async (data: UserData) => {
   return API.post('auth/signup', data)
+}
+
+export const depositMoneyBank = async (data: WalletData) => {
+  const session = await getSession()
+
+  return API.post('wallet/wallet/deposit/accountBank', data, {
+    headers: { Authorization: `Bearer ${session?.user.token}` },
+  })
+}
+
+export const depositMoneyCard = async (data: WalletData) => {
+  const session = await getSession()
+
+  return API.post('wallet/wallet/deposit/creditCard', data, {
+    headers: { Authorization: `Bearer ${session?.user.token}` },
+  })
+}
+
+export const createCreditCard = async (data: CreditCard) => {
+  const session = await getSession()
+
+  return API.post('payment/add-payment/card', data, {
+    headers: { Authorization: `Bearer ${session?.user.token}` },
+  })
+}
+
+export const createBankAccount = async (data: BankAccount) => {
+  const session = await getSession()
+
+  return API.post('payment/add-payment/bank', data, {
+    headers: { Authorization: `Bearer ${session?.user.token}` },
+  })
 }

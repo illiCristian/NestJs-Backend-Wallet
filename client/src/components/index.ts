@@ -3,8 +3,5 @@ import SuccessfulDebitTransfer from './TransferDebit/successfulTransfer/Successf
 import UnsuccessfulDebitTransfer from './TransferDebit/unsuccessTransfer/UnsuccessfulDebitTransfer'
 
 
-export {
-  Navbar,
-  SuccessfulDebitTransfer,
-  UnsuccessfulDebitTransfer,
-}
+
+export { Navbar, SuccessfulDebitTransfer, UnsuccessfulDebitTransfer }
