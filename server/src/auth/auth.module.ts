@@ -12,6 +12,7 @@ import { WalletSchema } from 'src/wallet/schema/wallet.model';
 import { PaymentService } from 'src/payment/payment.service';
 import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
 import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
+import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
     UsersService,
     WalletService,
     PaymentService,
+    CvuGeneratorService,
   ],
   exports: [PassportModule, JwtStrategy],
 })

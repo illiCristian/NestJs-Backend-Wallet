@@ -37,6 +37,7 @@ export class UsersService {
       const { name, email, password } = createUserDto;
       //Podria agregar la logica de que permita el registro solo a usarios con mail validado
       const newWallet = await this.walletService.createWallet();
+      //creo el cvu y el alias
 
       const user = new this.userModel({
         password: bcrypt.hashSync(password, 10),

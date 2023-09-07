@@ -11,7 +11,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Wallet } from 'src/wallet/schema/wallet.model';
 import { TransferData } from './interfaces/transfer-data';
-
+import { CvuGeneratorService } from './cvu-alias-generator/cvu-generator.service';
 import { UsersService } from 'src/users/users.service';
 
 import { TransferResult } from './interfaces/Transfer-result';
@@ -36,6 +36,9 @@ export class WalletService {
 
     @Inject(forwardRef(() => PaymentService))
     private readonly paymentService: PaymentService,
+
+    @Inject(forwardRef(() => CvuGeneratorService))
+    private readonly cvuGeneratorService: CvuGeneratorService,
   ) {
     this.walletDto = new this.walletModel();
   }
@@ -56,10 +59,16 @@ export class WalletService {
 
   async createWallet(): Promise<Wallet> {
     try {
+      const cvu = await this.cvuGeneratorService.generateUniqueCVU();
+      const alias = await this.cvuGeneratorService.generateUniqueAlias();
+      //const alias = await this;
+
       const { ...data } = this.walletDto;
 
       const newWallet = new this.walletModel({
+        alias,
         data,
+        cvu: cvu,
       });
 
       await newWallet.save();
@@ -68,6 +77,7 @@ export class WalletService {
       if (error.code === 11000) {
         throw new BadRequestException(`Wallet already exists!`);
       }
+
       throw new InternalServerErrorException(
         'Something happened creating the wallet',
       );
@@ -222,5 +232,15 @@ export class WalletService {
       toWallet: toWallet.toObject(),
       message: 'Operation successful',
     };
+  }
+
+  async getWallets(): Promise<Wallet[]> {
+    return this.walletModel.find().exec();
+  }
+  async getWalletByCvu(cvu: string): Promise<Wallet | null> {
+    return this.walletModel.findOne({ cvu }).exec();
+  }
+  async getWalletByAlias(alias: string): Promise<Wallet | null> {
+    return this.walletModel.findOne({ alias }).exec();
   }
 }

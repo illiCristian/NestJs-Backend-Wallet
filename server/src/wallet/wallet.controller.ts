@@ -73,4 +73,13 @@ export class WalletController {
   ): Promise<TransferResult> {
     return this.walletService.transferFunds(user.id, transferData);
   }
+
+  //Este lo dejo asi para poder hacer los test de prueba
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Get()
+  async getWallets(): Promise<Wallet[]> {
+    return this.walletService.getWallets();
+  }
 }

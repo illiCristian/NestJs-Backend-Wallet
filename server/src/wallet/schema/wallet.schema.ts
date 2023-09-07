@@ -19,6 +19,12 @@ export class Wallet {
 
   @Prop({ type: [String], default: [] })
   paymentMethodsBanks: string[];
+
+  @Prop({ default: '' })
+  cvu: string;
+
+  @Prop({ default: '' })
+  alias: string;
 }
 
 export const WalletSchema = SchemaFactory.createForClass(Wallet);
