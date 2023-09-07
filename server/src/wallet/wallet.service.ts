@@ -217,9 +217,7 @@ export class WalletService {
     if (!fromWallet || !toWallet) {
       throw new NotFoundException('Wallet not found');
     }
-    console.log(fromWallet._id);
-    console.log(toWallet._id);
-    console.log('from');
+
     if (String(fromWallet._id) === String(toWallet._id)) {
       throw new BadRequestException(
         'You cannot transfer funds to the same wallet',
