@@ -22,6 +22,7 @@ import { PaymentService } from 'src/payment/payment.service';
 import { PaymentTypes } from 'src/payment/interfaces/payment.types';
 import { ActionGetInfo } from './interfaces/operations-get-wallet';
 import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
+import { TransferDto } from './dto/transfer-dto';
 
 @Injectable()
 export class WalletService {
@@ -204,12 +205,11 @@ export class WalletService {
 
   async transferFunds(
     fromUserId: string,
-    transferData: TransferData,
+    walletDto: TransferDto,
+    userId: string,
   ): Promise<TransferResult> {
     const fromUser = await this.userService.getUserAndCheck(fromUserId);
-    const toUser = await this.userService.getUserAndCheck(
-      transferData.toUserId,
-    );
+    const toUser = await this.userService.getUserAndCheck(userId);
 
     const fromWallet = await this.findById(fromUser.walletId.toString());
     const toWallet = await this.findById(toUser.walletId.toString());
@@ -217,13 +217,20 @@ export class WalletService {
     if (!fromWallet || !toWallet) {
       throw new NotFoundException('Wallet not found');
     }
-
-    if (fromWallet.balance < transferData.balance) {
+    console.log(fromWallet._id);
+    console.log(toWallet._id);
+    console.log('from');
+    if (String(fromWallet._id) === String(toWallet._id)) {
+      throw new BadRequestException(
+        'You cannot transfer funds to the same wallet',
+      );
+    }
+    if (fromWallet.balance < walletDto.balance) {
       throw new UnprocessableEntityException('Insufficient balance');
     }
 
-    fromWallet.balance -= transferData.balance;
-    toWallet.balance += transferData.balance;
+    fromWallet.balance -= walletDto.balance;
+    toWallet.balance += walletDto.balance;
 
     await Promise.all([fromWallet.save(), toWallet.save()]);
 

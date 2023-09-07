@@ -22,6 +22,7 @@ import { User } from 'src/users/schema/user.model';
 import { PaymentTypes } from 'src/payment/interfaces/payment.types';
 import { ActionGetInfo } from './interfaces/operations-get-wallet';
 import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
+import { TransferDto } from './dto/transfer-dto';
 
 @Controller('wallet')
 export class WalletController {
@@ -69,9 +70,10 @@ export class WalletController {
   @Post(':userId/transfer')
   async transferBetweenWallets(
     @Req() { user }: Request & { user: User },
-    @Body() transferData: TransferData,
+    @Body() walletDto: TransferDto,
+    @Param('userId') userId: string,
   ): Promise<TransferResult> {
-    return this.walletService.transferFunds(user.id, transferData);
+    return this.walletService.transferFunds(user.id, walletDto, userId);
   }
 
   //Este lo dejo asi para poder hacer los test de prueba

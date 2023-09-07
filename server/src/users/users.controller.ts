@@ -58,7 +58,7 @@ export class UsersController {
   @ApiUnauthorizedResponse()
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
-  @Get(':cvu')
+  @Get('/cvu/:cvu')
   findOneByCvu(@Req() request: Request) {
     const { cvu } = request.params;
     return this.usersService.findOneByCvu(cvu);
