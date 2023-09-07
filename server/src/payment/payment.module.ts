@@ -9,9 +9,16 @@ import { UsersService } from 'src/users/users.service';
 import { WalletService } from 'src/wallet/wallet.service';
 import { BankAccountSchema } from './schema/accountBank.model';
 import { JwtService } from '@nestjs/jwt';
+import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
 
 @Module({
-  providers: [PaymentService, UsersService, WalletService, JwtService],
+  providers: [
+    PaymentService,
+    UsersService,
+    WalletService,
+    JwtService,
+    CvuGeneratorService,
+  ],
   controllers: [PaymentController],
   exports: [PaymentService],
   imports: [
