@@ -54,4 +54,13 @@ export class UsersController {
     const { id } = request.user;
     return this.usersService.remove(id);
   }
+
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Get('/cvu/:cvu')
+  findOneByCvu(@Req() request: Request) {
+    const { cvu } = request.params;
+    return this.usersService.findOneByCvu(cvu);
+  }
 }

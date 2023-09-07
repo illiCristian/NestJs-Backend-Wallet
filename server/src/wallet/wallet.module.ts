@@ -10,7 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
 import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 import { PaymentService } from 'src/payment/payment.service';
-
+import { CvuGeneratorService } from './cvu-alias-generator/cvu-generator.service';
 @Module({
   controllers: [WalletController],
   imports: [
@@ -33,7 +33,13 @@ import { PaymentService } from 'src/payment/payment.service';
       },
     ]),
   ],
-  providers: [WalletService, UsersService, JwtService, PaymentService],
+  providers: [
+    WalletService,
+    UsersService,
+    JwtService,
+    PaymentService,
+    CvuGeneratorService,
+  ],
   exports: [WalletService, MongooseModule],
 })
 export class WalletModule {}
