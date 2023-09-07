@@ -161,4 +161,30 @@ export class UsersService {
 
     return user;
   }
+
+  async findOneByCvu(cvu: string): Promise<User> {
+    const user = await this.userModel
+      .aggregate([
+        {
+          $lookup: {
+            from: 'wallets',
+            localField: 'walletId',
+            foreignField: '_id',
+            as: 'wallet',
+          },
+        },
+        {
+          $match: {
+            'wallet.cvu': cvu,
+          },
+        },
+      ])
+      .exec();
+
+    if (!user || user.length === 0) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user[0];
+  }
 }
