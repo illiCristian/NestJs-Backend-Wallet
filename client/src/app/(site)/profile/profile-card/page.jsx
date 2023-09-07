@@ -21,7 +21,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 1 INFORMACIÓN PERSONAL*/}
         <div className='profile-info1 flex text-center w-2/3 h-36 mt-30 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={PersonalInfo}
                 alt='Admin'
@@ -29,14 +29,14 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
             <div className='absolute ml-28 -mt-6 bg-white'>
               <Image src={Check} alt='Admin' width='20' height='20' />
             </div>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Información personal</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Información personal</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Información de tu identificación oficial y tu actividad fiscal.
             </p>
           </div>
@@ -55,7 +55,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 2 DATOS DE LA CUENTA */}
         <div className='profile-info2 flex text-center w-2/3 h-36 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={AccountDetail}
                 alt='Admin'
@@ -63,14 +63,14 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
             <div className='absolute ml-28 -mt-6 bg-white'>
               <Image src={Check} alt='Admin' width='20' height='20' />
             </div>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Datos de tu cuenta</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Datos de tu cuenta</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Datos que representan a la cuenta de mercado pago y mercado
               libre.
             </p>
@@ -90,7 +90,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 3 SEGURIDAD */}
         <div className='profile-info3 flex text-center w-2/3 h-36 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={Security}
                 alt='Admin'
@@ -98,14 +98,14 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
             <div className='absolute ml-28 -mt-6 bg-white'>
               <Image src={Check} alt='Admin' width='20' height='20' />
             </div>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Seguridad</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Seguridad</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Tienes configurada la seguridad de tu cuenta.
             </p>
           </div>
@@ -124,7 +124,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 4 TARJETAS DE BANCO */}
         <div className='profile-info4 flex text-center w-2/3 h-36 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={BankCard}
                 alt='Admin'
@@ -132,11 +132,11 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Tarjetas</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Tarjetas</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Tienes configurada la seguridad de tu cuenta.
             </p>
           </div>
@@ -155,7 +155,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 5 DIRECCIONES */}
         <div className='profile-info5 flex text-center w-2/3 h-36 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={Direction}
                 alt='Admin'
@@ -163,11 +163,11 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Direcciones</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Direcciones</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Direcciones guardadas en tu cuenta.
             </p>
           </div>
@@ -186,7 +186,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 6 PRIVACIDAD */}
         <div className='profile-info6 flex text-center w-2/3 h-36 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={Privacity}
                 alt='Admin'
@@ -194,11 +194,11 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Privacidad</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Privacidad</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Preferencias y control sobre el uso de tus datos.
             </p>
           </div>
@@ -217,7 +217,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 7 COMUNICACIONES */}
         <div className='profile-info7 flex text-center w-2/3 h-36 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={Network}
                 alt='Admin'
@@ -225,11 +225,11 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Comunicaciones</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Comunicaciones</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Elige el tipo de información que quieres recibir.
             </p>
           </div>
@@ -248,7 +248,7 @@ export default function ProfileCard({ }) {
         {/* Bloque 8 SUSCRIPCIONES*/}
         <div className='profile-info8 flex text-center w-2/3 h-36 mb-32 relative'>
           <div>
-            <div className='flex profile-icons relative'>
+            <Link href='./' className='flex profile-icons relative'>
               <Image
                 src={Suscription}
                 alt='Admin'
@@ -256,11 +256,11 @@ export default function ProfileCard({ }) {
                 width='50'
                 height='50'
               />
-            </div>
+            </Link>
           </div>
           <div className='leading-loose text-left ml-10 mt-10'>
-            <p className='text-lg font-semibold mt-2'>Suscripciones</p>
-            <p className='text-base font-light mt-2'>
+            <p className='profile-title font-semibold mt-2'>Suscripciones</p>
+            <p className='profile-subtitle text-base font-light mt-2'>
               Gestiona tus suscripciones.
             </p>
           </div>

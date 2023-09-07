@@ -37,7 +37,7 @@
     border-right: 0 solid;
   }
 .profile-icons{
-  border: 2px solid #b4adade3;
+    border: 2px solid #b4adade3;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
@@ -53,4 +53,10 @@
     right: 0;
     transform: translateY(-50%);
     margin-right: 10px; 
+}
+
+@media screen and (max-width: 390px) {
+  .profile-subtitle{
+    display: none;
+}
 }
