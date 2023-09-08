@@ -3,6 +3,10 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class CreateMovementDto {
   @IsNotEmpty()
   @IsString()
+  movement: string;
+
+  @IsNotEmpty()
+  @IsString()
   type: string;
 
   @IsNotEmpty()

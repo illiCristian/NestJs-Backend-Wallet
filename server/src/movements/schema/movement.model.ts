@@ -3,6 +3,7 @@ import { MovementSchema } from './movement.schema';
 
 export interface Movement extends mongoose.Document {
   walletId: mongoose.Schema.Types.ObjectId;
+  movement: string;
   type: string;
   amount: number;
   source: string;

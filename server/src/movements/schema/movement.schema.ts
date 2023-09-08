@@ -12,6 +12,9 @@ export class Movement {
   walletId: mongoose.Schema.Types.ObjectId;
 
   @Prop()
+  movement: string;
+
+  @Prop()
   type: string;
 
   @Prop()

@@ -29,7 +29,8 @@ export class MovementsService {
     id: string,
   ): Promise<Movement> {
     try {
-      const { type, amount, source, destination, status } = createMovementDto;
+      const { type, movement, amount, source, destination, status } =
+        createMovementDto;
 
       const user = await this.userService.getUserAndCheck(id);
       const wallet = await this.walletService.findById(
@@ -38,6 +39,7 @@ export class MovementsService {
 
       const mov = new this.movementModel({
         walletId: wallet._id,
+        movement,
         type,
         amount,
         source,

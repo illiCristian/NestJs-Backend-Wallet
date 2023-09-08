@@ -167,6 +167,18 @@ export class WalletService {
           await wallet.save();
           card.balance -= amount; // Resta el monto de la tarjeta de crédito
           await card.save();
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: card._id,
+              destination: wallet._id,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
         }
         if (paymentTypes === 'accountBank') {
           const bankAccount = await this.paymentService.getBankAccountById(
@@ -178,6 +190,18 @@ export class WalletService {
 
           bankAccount.balance -= amount;
           await bankAccount.save();
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: bankAccount._id,
+              destination: wallet._id,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
         }
         wallet.balance += amount;
         await wallet.save();
@@ -191,6 +215,18 @@ export class WalletService {
           card.balance += amount;
           await card.save();
           wallet.balance -= amount;
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: card._id,
+              destination: wallet._id,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
         }
         if (paymentTypes === 'accountBank') {
           const bankAccount = await this.paymentService.getBankAccountById(
@@ -201,6 +237,18 @@ export class WalletService {
           }
           bankAccount.balance += amount;
           await bankAccount.save();
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: bankAccount._id,
+              destination: wallet._id,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
         }
         wallet.balance -= amount;
         await wallet.save();
@@ -233,6 +281,7 @@ export class WalletService {
     if (fromWallet.balance < walletDto.balance) {
       const movement = await this.movementService.createMovement(
         {
+          movement: 'Transfer',
           type: 'Transfer Funds',
           amount: walletDto.balance,
           source: fromWallet._id,
@@ -251,6 +300,7 @@ export class WalletService {
     await Promise.all([fromWallet.save(), toWallet.save()]);
     const movement = await this.movementService.createMovement(
       {
+        movement: 'Transfer',
         type: 'Transfer Funds',
         amount: walletDto.balance,
         source: fromWallet._id,
