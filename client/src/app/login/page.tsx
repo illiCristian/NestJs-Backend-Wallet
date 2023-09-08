@@ -1,5 +1,4 @@
-import { InfoEmail, IntoEmail } from "@/components/login"
-
+import { InfoEmail, IntoEmail } from '@/components/Login'
 
 const pageLogin: React.FC = () => {
   return (

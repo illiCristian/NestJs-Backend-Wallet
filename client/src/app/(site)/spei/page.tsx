@@ -1,5 +1,5 @@
-import DepositButtonBank from '@/components/transferDebit/DepositButtonBank/DepositButtonBank'
-import DetailMoney from '@/components/transferDebit/DetailMoney/DetailMoney'
+import DepositButtonBank from '@/components/TransferDebit/DepositButtonBank/DepositButtonBank'
+import DetailMoney from '@/components/TransferDebit/DetailMoney/DetailMoney'
 import Image from 'next/image'
 import Link from 'next/link'
 import credit_icon from '../../../../public/assets/spei/atom (7).svg'

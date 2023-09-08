@@ -1,10 +1,9 @@
-import SendMoneyCard from '@/components/SendMoney/SendMoneyCard'
-import React from 'react'
+import SendMoneyOptions from '@/components/SendMoney/SendMoneyOptions'
 
 export default function page() {
   return (
     <>
-      <SendMoneyCard />
+      <SendMoneyOptions />
     </>
   )
 }

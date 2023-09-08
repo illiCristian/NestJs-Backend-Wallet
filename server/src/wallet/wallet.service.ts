@@ -152,12 +152,7 @@ export class WalletService {
     if (!wallet) {
       throw new NotFoundException('Wallet not found');
     }
-    const bankAccount = await this.paymentService.getBankAccountById(
-      wallet.paymentMethodsBanks[0],
-    );
-    if (!bankAccount) {
-      throw new NotFoundException('Bank account not found');
-    }
+
     switch (action) {
       case 'deposit':
         if (paymentTypes === 'creditCard') {
@@ -165,9 +160,13 @@ export class WalletService {
           if (!card) {
             throw new NotFoundException('Card not found');
           }
-          card.balance -= amount;
+          console.log(amount);
+          console.log(wallet.balance);
+          console.log(card.balance);
+          wallet.balance += amount; // Agrega el monto a la wallet
+          await wallet.save();
+          card.balance -= amount; // Resta el monto de la tarjeta de crédito
           await card.save();
-          wallet.balance += amount;
         }
         if (paymentTypes === 'accountBank') {
           const bankAccount = await this.paymentService.getBankAccountById(
@@ -176,26 +175,10 @@ export class WalletService {
           if (!bankAccount) {
             throw new NotFoundException('Bank account not found');
           }
+
           bankAccount.balance -= amount;
           await bankAccount.save();
         }
-        const card = await this.paymentService.getCardById(selectedPaymentId);
-        const bankAccount = await this.paymentService.getBankAccountById(
-          selectedPaymentId,
-        );
-        const movement = await this.movementService.createMovement(
-          {
-            type: `${action} ${paymentTypes}`,
-            amount,
-            source: `${card.name || bankAccount.bankName} ${
-              card.cardNumber || bankAccount.accountNumber
-            }`,
-            destination: wallet._id,
-            status: 'Successful',
-          },
-          userId,
-        );
-        await movement.save();
         wallet.balance += amount;
         await wallet.save();
         return wallet;
