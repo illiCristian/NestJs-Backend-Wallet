@@ -145,12 +145,7 @@ export class WalletService {
     if (!wallet) {
       throw new NotFoundException('Wallet not found');
     }
-    const bankAccount = await this.paymentService.getBankAccountById(
-      wallet.paymentMethodsBanks[0],
-    );
-    if (!bankAccount) {
-      throw new NotFoundException('Bank account not found');
-    }
+
     switch (action) {
       case 'deposit':
         if (paymentTypes === 'creditCard') {
@@ -158,9 +153,13 @@ export class WalletService {
           if (!card) {
             throw new NotFoundException('Card not found');
           }
-          card.balance -= amount;
+          console.log(amount);
+          console.log(wallet.balance);
+          console.log(card.balance);
+          wallet.balance += amount; // Agrega el monto a la wallet
+          await wallet.save();
+          card.balance -= amount; // Resta el monto de la tarjeta de crédito
           await card.save();
-          wallet.balance += amount;
         }
         if (paymentTypes === 'accountBank') {
           const bankAccount = await this.paymentService.getBankAccountById(
@@ -169,12 +168,14 @@ export class WalletService {
           if (!bankAccount) {
             throw new NotFoundException('Bank account not found');
           }
+
           bankAccount.balance -= amount;
           await bankAccount.save();
+          wallet.balance += amount;
+          await wallet.save();
+          return wallet;
         }
-        wallet.balance += amount;
-        await wallet.save();
-        return wallet;
+
       case 'withdraw':
         if (paymentTypes === 'creditCard') {
           const card = await this.paymentService.getCardById(selectedPaymentId);
