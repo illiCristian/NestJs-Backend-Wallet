@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import { useState } from 'react'
 // import axios from 'axios'
 
@@ -28,7 +29,10 @@ const example = [
 
 const Card = ({ imageSrc, user, email }: CardProps) => {
   return (
-    <section className="w-[730px] h-[126] mb-4 rounded border shadow-lg">
+    <Link
+      href={'/send-money/deposit-money'}
+      className="w-[730px] h-[126] mb-4 rounded border shadow-lg"
+    >
       <div className="flex items-center justify-start gap-4 px-6 py-10">
         <img className="w-12 h-12 rounded-full" src={imageSrc} alt={user} />
         <div>
@@ -36,7 +40,7 @@ const Card = ({ imageSrc, user, email }: CardProps) => {
           <p className="text-gray-700 text-base">{email}</p>
         </div>
       </div>
-    </section>
+    </Link>
   )
 }
 

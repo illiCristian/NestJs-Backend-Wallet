@@ -1,8 +1,5 @@
-
-
-import SendMoneyOne from '@/components/SendMoneyOne/SendMoneyOne'
+import SendMoneyOne from '@/components/SendMoney/SendMoneyOne'
 import React from 'react'
-
 
 function SendMoneyStepTwo() {
   return (
