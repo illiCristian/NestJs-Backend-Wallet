@@ -1,7 +1,9 @@
 import {
+  BadRequestException,
   Inject,
   Injectable,
   InternalServerErrorException,
+  NotAcceptableException,
   NotFoundException,
   forwardRef,
 } from '@nestjs/common';
@@ -53,6 +55,11 @@ export class PaymentService {
       let newPaymentMethod: CreditCardMethod | BankAccountMethod;
       switch (action) {
         case 'card':
+          const { cardNumber } = paymentDto as CrediCardDto;
+          const card = await this.creditCardModel.findOne({ cardNumber });
+          if (card) {
+            throw new BadRequestException('Card already exists');
+          }
           newPaymentMethod = new this.creditCardModel(paymentDto);
           await newPaymentMethod.save();
           updateWallet.paymentMethodsCards.push(newPaymentMethod._id);
@@ -70,10 +77,11 @@ export class PaymentService {
       return updateWallet;
     } catch (error) {
       // Manejo de errores específicos
-      if (error instanceof NotFoundException) {
+      if (error instanceof BadRequestException) {
         throw error;
       } else {
         // Manejo de otros errores
+        console.log(error);
         throw new InternalServerErrorException(
           'Can not add payment method, card no valid',
         );
