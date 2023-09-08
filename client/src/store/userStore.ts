@@ -45,9 +45,17 @@ const initialUserState = {
   __v: 0,
 }
 
-interface TempMoney {
+interface ToUserData {
+  alias: string
+  cvu: string
+  email: string
+  id: string
+  name: string
   tempMoney: number
+  selectedPaymentId: string
   setTempMoney: (money: number) => void
+  setSelectedPaymentId: (id: string) => void
+  setUserData: (data: object) => void
 }
 
 export const useUserProfile = create<User>((set) => ({
@@ -65,7 +73,15 @@ export const useUserProfile = create<User>((set) => ({
     })),
 }))
 
-export const useTempMoney = create<TempMoney>((set) => ({
+export const useTransferData = create<ToUserData>((set) => ({
+  id: '',
+  name: '',
+  email: '',
+  alias: '',
+  cvu: '',
   tempMoney: 0,
+  selectedPaymentId: '',
   setTempMoney: (money) => set({ tempMoney: money }),
+  setSelectedPaymentId: (id) => set({ selectedPaymentId: id }),
+  setUserData: (data) => set((state) => ({ ...state, ...data })),
 }))

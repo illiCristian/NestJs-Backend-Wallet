@@ -1,4 +1,5 @@
 import { API } from '@/services/config'
+import { error } from 'console'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -26,8 +27,9 @@ const handler = NextAuth({
           })
 
           return user
-        } catch (error) {
-          console.log(error)
+        } catch (error: any) {
+          console.log(error.response.data)
+          throw new Error(JSON.stringify(error.response.data))
         }
       },
     }),

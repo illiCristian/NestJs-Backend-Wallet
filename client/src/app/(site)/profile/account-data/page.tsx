@@ -3,11 +3,14 @@ import AccountData from '@/components/AccountData/AccountData'
 
 const pageAccountData = () => {
   return (
-    <section className=" max-w-6xl m-auto">
-      <Link href={'/'} className="m-4 text-lg text-primary font-bold py-2 px-4">
+    <section className="max-w-6xl m-auto ">
+      <Link
+        href={'/profile'}
+        className="px-4 py-2 m-4 text-lg font-bold text-primary"
+      >
         &#11013; Volver
       </Link>
-      <h1 className="m-6 font-bold text-2xl">Datos de tu cuenta</h1>
+      <h1 className="m-6 text-2xl font-bold">Datos de tu cuenta</h1>
       <AccountData />
     </section>
   )
