@@ -11,6 +11,8 @@ import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
 import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 import { PaymentService } from 'src/payment/payment.service';
 import { CvuGeneratorService } from './cvu-alias-generator/cvu-generator.service';
+import { MovementSchema } from 'src/movements/schema/movement.model';
+import { MovementsService } from 'src/movements/movements.service';
 @Module({
   controllers: [WalletController],
   imports: [
@@ -31,6 +33,10 @@ import { CvuGeneratorService } from './cvu-alias-generator/cvu-generator.service
         name: 'BankAccount',
         schema: BankAccountSchema,
       },
+      {
+        name: 'Movement',
+        schema: MovementSchema,
+      },
     ]),
   ],
   providers: [
@@ -39,6 +45,7 @@ import { CvuGeneratorService } from './cvu-alias-generator/cvu-generator.service
     JwtService,
     PaymentService,
     CvuGeneratorService,
+    MovementsService,
   ],
   exports: [WalletService, MongooseModule],
 })

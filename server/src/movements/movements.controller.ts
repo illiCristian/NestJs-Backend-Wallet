@@ -24,6 +24,7 @@ import { User } from 'src/users/schema/user.model';
 export class MovementsController {
   constructor(private readonly movementsService: MovementsService) {}
 
+  //Endpoint para realizar pruebas en la base de datos.
   @ApiUnauthorizedResponse()
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
@@ -36,6 +37,7 @@ export class MovementsController {
     return this.movementsService.createMovement(createMovementDto, id);
   }
 
+  //Endpoint para traer todos los registros de movimientos.
   @ApiUnauthorizedResponse()
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
@@ -44,6 +46,7 @@ export class MovementsController {
     return this.movementsService.findAllMovements();
   }
 
+  //Endpoint para traer todos los registros de movimientos del usuario logeado.
   @ApiUnauthorizedResponse()
   @ApiBearerAuth()
   @UseGuards(AuthGuard)

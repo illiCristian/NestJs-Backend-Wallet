@@ -23,7 +23,7 @@ import { PaymentModule } from './payment/payment.module';
     MailingModule,
     WalletModule,
     PaymentModule,
-    CvuGeneratorService,
+    //CvuGeneratorService,
 
     ConfigModule.forRoot({
       isGlobal: true,

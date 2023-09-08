@@ -13,6 +13,8 @@ import { PaymentService } from 'src/payment/payment.service';
 import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
 import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
+import { MovementSchema } from 'src/movements/schema/movement.model';
+import { MovementsService } from 'src/movements/movements.service';
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generato
     }),
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },
+      { name: 'Movement', schema: MovementSchema },
       { name: 'Wallet', schema: WalletSchema },
       {
         name: 'CreditCard',
@@ -44,6 +47,7 @@ import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generato
     WalletService,
     PaymentService,
     CvuGeneratorService,
+    MovementsService,
   ],
   exports: [PassportModule, JwtStrategy],
 })
