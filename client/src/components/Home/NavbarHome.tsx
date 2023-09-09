@@ -33,11 +33,11 @@ export default function NavbarHome() {
 
   return (
     <>
-      <header className="w-[1600px] h-16 bg-tertiary">
+      <header className="w-full h-16 bg-tertiary">
         {/* Sección del logo */}
         <section className="w-auto h-16 flex-col justify-center ps-14 gap-2.5 inline-flex">
           {/* Imagen del logo */}
-          <p className="w-auto inline-flex text-white text-lg font-bold">
+          <p className="inline-flex w-auto text-lg font-bold text-white">
             {pageTitle}
           </p>
         </section>

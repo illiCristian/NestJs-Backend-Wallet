@@ -59,7 +59,7 @@ export const registerUser = async (data: UserData) => {
 export const depositMoneyWallet = async (data: WalletData) => {
   const session = await getSession()
 
-  return API.post('wallet/wallet/deposit', data, {
+  return API.post('wallet/wallet/deposit/creditCard', data, {
     headers: { Authorization: `Bearer ${session?.user.token}` },
   })
 }
@@ -84,6 +84,30 @@ export const getUserByCvu = async (cvu: string) => {
   const session = await getSession()
 
   return API.get(`users/cvu/${cvu}`, {
+    headers: { Authorization: `Bearer ${session?.user.token}` },
+  })
+}
+
+export const transferMoneyToUser = async (userId: string, amount: object) => {
+  const session = await getSession()
+
+  return API.post(`wallet/${userId}/transfer`, amount, {
+    headers: { Authorization: `Bearer ${session?.user.token}` },
+  })
+}
+
+export const getCreditCards = async () => {
+  const session = await getSession()
+
+  return API.get('payment/credit-cards', {
+    headers: { Authorization: `Bearer ${session?.user.token}` },
+  })
+}
+
+export const getWallet = async () => {
+  const session = await getSession()
+
+  return API.get('wallet/wallet/balance', {
     headers: { Authorization: `Bearer ${session?.user.token}` },
   })
 }

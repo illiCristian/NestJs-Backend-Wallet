@@ -1,7 +1,7 @@
 import AddCard from '@/components/SendMoney/SelectMethod/AddCard'
 import Card from '@/components/SendMoney/SelectMethod/Card'
+import TransferButton from '@/components/SendMoney/SelectMethod/TransferButton'
 import TransferDetail from '@/components/SendMoney/SelectMethod/TransferDetail'
-import Link from 'next/link'
 
 export default function page() {
   return (
@@ -16,12 +16,7 @@ export default function page() {
             <AddCard />
             <Card />
           </div>
-          <Link
-            href={'/success'}
-            className="w-[900px] h-[42px] px-16 py-3 bg-sky-500 rounded-md justify-center items-center gap-2 inline-flex text-center text-white text-base font-bold leading-normal mt-10 place-self-center"
-          >
-            <button>Trasnferir</button>
-          </Link>
+          <TransferButton />
         </section>
       </div>
     </>

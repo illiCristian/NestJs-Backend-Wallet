@@ -1,13 +1,17 @@
 'use client'
 
-import { useUserProfile } from '@/store/userStore'
+import { getWallet } from '@/services'
+import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
+import { useState } from 'react'
 import arrow from '../../../public/assets/dashboard/arrow2.svg'
 import warning from '../../../public/assets/dashboard/warning.svg'
-import { useState } from 'react'
+import Link from 'next/link'
 
 export default function BalanceWallet() {
-  const { walletId } = useUserProfile()
+  const { data } = useQuery(['wallet'], getWallet)
+  const balance = data?.data
+
   const [hidden, setHidden] = useState(true)
 
   return (
@@ -17,14 +21,19 @@ export default function BalanceWallet() {
           <div className="px-5 mt-2 text-base font-semibold leading-normal text-black text-start">
             Disponible en Mercado pago Wallet
           </div>
-          <div className="inline-flex items-center w-6 h-6 ">
-            <Image src={warning} alt="warning" className="mt-4 "></Image>
-          </div>
+          <Link
+            href={'/money-charge/clabe'}
+            className="flex items-center w-6 h-6 pt-4"
+          >
+            <p className="px-2 py-1 font-semibold rounded-lg text-primary bg-slate-200">
+              CVU
+            </p>
+          </Link>
         </div>
         <div className="flex items-center justify-between px-5">
           <div className="flex gap-4 ">
             <p className="text-start  mt-3 text-black text-[31px] font-semibold leading-normal">
-              $ {!hidden ? walletId.balance : '***'}
+              $ {!hidden ? balance?.balance : '***'}
             </p>
             <svg
               onClick={() => setHidden(!hidden)}

@@ -18,7 +18,9 @@ interface User {
 
 interface WalletId {
   _id: string
+  alias: string
   name: string
+  cvu: string
   status: boolean
   balance: number
   __v: number
@@ -26,7 +28,9 @@ interface WalletId {
 
 const wallet = {
   _id: '',
+  alias: '',
   name: '',
+  cvu: '',
   status: true,
   balance: 0,
   __v: 0,
@@ -63,6 +67,7 @@ export const useUserProfile = create<User>((set) => ({
   getUserData: async () => {
     const user = await getProfile()
     set({ ...user.data })
+    return user.data
   },
   updateWallet: (data) =>
     set((state) => ({

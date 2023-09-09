@@ -1,12 +1,14 @@
 'use client'
 
-import { useUserProfile } from '@/store/userStore'
+import { getWallet } from '@/services'
+import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import aton from '../../../../public/assets/send-money/aton.svg'
 import logo from '../../../../public/assets/send-money/logo.svg'
 
 export default function Card() {
-  const { walletId } = useUserProfile()
+  const { data } = useQuery(['wallet'], getWallet)
+  const balance = data?.data
 
   return (
     <>
@@ -14,7 +16,7 @@ export default function Card() {
         <div className="flex justify-between p-4">
           <Image src={logo} alt="logo" className="" />
           <div className="flex items-center gap-4 ">
-            <p className="text-white">$ {walletId.balance}</p>
+            <p className="text-white">$ {balance?.balance}</p>
             <Image src={aton} alt="eye" />
           </div>
         </div>

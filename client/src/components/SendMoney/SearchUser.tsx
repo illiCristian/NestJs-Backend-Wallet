@@ -66,8 +66,10 @@ const SearchUser = () => {
           </button>
           <input
             {...register('search')}
-            className="w-full px-6 py-4 mx-2 leading-tight text-gray-700 border rounded-sm shadow appearance-none focus:outline-none focus:shadow-outline"
+            autoFocus
+            type="text"
             placeholder="search-email@gmail.com"
+            className="w-full px-6 py-4 mx-2 leading-tight text-gray-700 border rounded-sm shadow appearance-none focus:outline-none focus:shadow-outline"
           />
         </div>
       </form>

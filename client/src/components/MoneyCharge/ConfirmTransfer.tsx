@@ -2,18 +2,26 @@
 
 import chip from '@/../public/chip.png'
 import DetailMoney from '@/components/TransferDebit/DetailMoney/DetailMoney'
-import { createCreditCard, depositMoneyWallet } from '@/services'
+import {
+  createCreditCard,
+  depositMoneyWallet,
+  transferMoneyToUser,
+} from '@/services'
 import { useTransferData, useUserProfile } from '@/store/userStore'
 import { useMutation } from '@tanstack/react-query'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
 function ConfirmTransfer() {
   const router = useRouter()
+  const pathname = usePathname()
+
+  // Store Handlers
   const { updateWallet } = useUserProfile()
-  const { tempMoney, setTempMoney, setSelectedPaymentId, selectedPaymentId } =
-    useTransferData()
+  const { tempMoney, setTempMoney, id } = useTransferData()
+
+  // Mutations and Form Handlers
   const { mutate: depositMoney } = useMutation(depositMoneyWallet)
   const { mutate: createCard } = useMutation(createCreditCard)
   const { register, handleSubmit } = useForm()
@@ -25,17 +33,26 @@ function ConfirmTransfer() {
         ...data,
       },
       {
-        onSuccess(data) {
-          const { paymentMethodsCards } = data.data
-          setSelectedPaymentId(
-            paymentMethodsCards[paymentMethodsCards.lenght - 1],
-          )
+        onSuccess: async (data) => {
+          // funcion para realizar la transferencia
+          if (pathname === '/send-money/charge-money') {
+            const response = await transferMoneyToUser(id, {
+              balance: tempMoney,
+            })
+            if (response.status === 201) {
+              router.push('/success')
+              return
+            }
+          }
 
+          // funcion para realizar el deposito
+          const { paymentMethodsCards } = data.data
           depositMoney(
             {
               paymentType: 'CreditCard',
               amount: tempMoney,
-              selectedPaymentId: selectedPaymentId,
+              selectedPaymentId:
+                paymentMethodsCards[paymentMethodsCards.length - 1],
             },
             {
               onSuccess: () => {

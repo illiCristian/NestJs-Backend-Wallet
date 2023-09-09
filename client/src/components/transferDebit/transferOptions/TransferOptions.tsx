@@ -1,8 +1,9 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import credit_icon from '../../../../public/credit-card-icon.svg'
 import next_arrow from '../../../../public/next-arrow-icon.svg'
 import DetailMoney from '../DetailMoney/DetailMoney'
-import Link from 'next/link'
+import MyCards from '../MyCards/MyCards'
 
 const TransferOptions = () => {
   return (
@@ -72,6 +73,7 @@ const TransferOptions = () => {
         </div>
         <DetailMoney />
       </section>
+      <MyCards />
     </div>
   )
 }
