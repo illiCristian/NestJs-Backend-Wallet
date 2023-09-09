@@ -2,11 +2,44 @@ import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema } from 'src/auth/schema/auth.schema';
+import { WalletSchema } from 'src/wallet/schema/wallet.model';
+import { WalletService } from 'src/wallet/wallet.service';
+import { UserSchema } from './schema/user.model';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { PaymentService } from 'src/payment/payment.service';
+import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
+import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
+import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
+  imports: [
+    MongooseModule.forFeature([
+      { name: 'User', schema: UserSchema },
+      { name: 'Wallet', schema: WalletSchema },
+      {
+        name: 'CreditCard',
+        schema: CreditCardSchema,
+      },
+      {
+        name: 'BankAccount',
+        schema: BankAccountSchema,
+      },
+    ]),
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: () => {
+        return {
+          secret: process.env.JWT_SECRET,
+          signOptions: {
+            expiresIn: process.env.JWT_EXPIRES,
+          },
+        };
+      },
+    }),
+  ],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService, WalletService, PaymentService, CvuGeneratorService],
+  exports: [MongooseModule, UsersService],
 })
 export class UsersModule {}

@@ -1,36 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './schema/auth.schema';
+
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { Model } from 'mongoose';
 import { SignUpDto } from './dto/sign-up.dto';
 import { LoginDto } from './dto/login-dto';
 import { UnauthorizedException } from '@nestjs/common';
+
+import { UsersService } from 'src/users/users.service';
+import { User } from 'src/users/schema/user.schema';
+
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(User.name)
-    private userModel: Model<User>,
-    private jwtService: JwtService,
+    @InjectModel('User') private readonly userModel: Model<User>,
+    private readonly jwtService: JwtService,
+    private readonly usersService: UsersService,
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
-    const { name, email, password } = signUpDto;
+    const user = await this.usersService.createUser(signUpDto);
 
-    const userExists = await this.userModel.findOne({ email });
-    if (userExists) {
-      throw new UnauthorizedException('User already exists');
-    }
-
-    const hasedPasswrod = await bcrypt.hash(password, 10);
-    const user = await this.userModel.create({
-      name,
-      email,
-      password: hasedPasswrod,
-    });
-
-    const token = this.jwtService.sign({
+    const token = await this.jwtService.signAsync({
       id: user._id,
       email: user.email,
     });
@@ -41,6 +33,9 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto): Promise<{ token: string }> {
+    console.log(process.env.JWT_SECRET);
+    console.log(process.env.JWT_EXPIRES);
+
     const { email, password } = loginDto;
     const user = await this.userModel.findOne({ email });
     if (!user) {
@@ -51,10 +46,8 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const token = await this.jwtService.signAsync({
-      id: user._id,
-      email: user.email,
-    });
+    const payload = { id: user._id, email: user.email };
+    const token = await this.jwtService.signAsync(payload);
     return {
       token,
     };

@@ -1,46 +1,66 @@
 import {
   Controller,
   Get,
-  Post,
   Body,
   Patch,
-  Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiTags } from '@nestjs/swagger';
-
+import {
+  ApiBearerAuth,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { AuthGuard } from './guard/auth-guard';
+import { Request } from 'express';
+import { User } from './schema/user.model';
 //API TAGS es para la documentacion con swagger
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
-
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @Get()
-  findAll() {
-    return this.usersService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    console.log(id);
+  findOne(@Req() request: Request & { user: User }) {
+    const { id } = request.user;
     return this.usersService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  //<-- ApiUnauthorizedResponse,ApiBearerAuth son para la documentacion}
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Patch()
+  update(
+    @Req() request: Request & { user: User },
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    const { id } = request.user;
     return this.usersService.update(id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  //ruta que deberia poder acceder solo el admin o el mismo usuario que quiera borrar su cuenta
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Delete()
+  remove(@Req() request: Request & { user: User }) {
+    const { id } = request.user;
     return this.usersService.remove(id);
+  }
+
+  @ApiUnauthorizedResponse()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Get('/cvu/:cvu')
+  findOneByCvu(@Req() request: Request) {
+    const { cvu } = request.params;
+    return this.usersService.findOneByCvu(cvu);
   }
 }

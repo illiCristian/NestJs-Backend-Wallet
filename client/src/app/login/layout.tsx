@@ -1,16 +1,16 @@
 import NavbarRegister from "@/components/Register/NavbarRegister";
 
 export default function RegisterLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body className="flex flex-col justify-center items-center ">
-        <NavbarRegister />
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className="flex flex-col items-center justify-center ">
+				<NavbarRegister />
+				{children}
+			</body>
+		</html>
+	);
 }
