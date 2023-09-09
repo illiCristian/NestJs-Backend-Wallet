@@ -1,5 +1,4 @@
-
-import DepositMoney from '@/components/TransferDebit/DepositMoney/DepositMoney'
+import DepositMoney from '@/components/transferDebit/DepositMoney/DepositMoney'
 
 function page() {
   return <DepositMoney />
