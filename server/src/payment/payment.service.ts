@@ -69,15 +69,14 @@ export class PaymentService {
       await updateWallet.save();
       return updateWallet;
     } catch (error) {
-      // Manejo de errores específicos
-      if (error instanceof NotFoundException) {
+      /*  if (error instanceof NotFoundException) {
         throw error;
       } else {
-        // Manejo de otros errores
         throw new InternalServerErrorException(
           'Can not add payment method, card no valid',
         );
-      }
+      } */
+      console.log(error);
     }
   }
 

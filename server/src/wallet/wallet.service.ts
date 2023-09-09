@@ -23,6 +23,7 @@ import { PaymentTypes } from 'src/payment/interfaces/payment.types';
 import { ActionGetInfo } from './interfaces/operations-get-wallet';
 import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
 import { TransferDto } from './dto/transfer-dto';
+import { type } from 'os';
 
 @Injectable()
 export class WalletService {
@@ -145,22 +146,28 @@ export class WalletService {
     if (!wallet) {
       throw new NotFoundException('Wallet not found');
     }
+    console.log(wallet);
     const bankAccount = await this.paymentService.getBankAccountById(
       wallet.paymentMethodsBanks[0],
     );
-    if (!bankAccount) {
+
+    /*    if (!bankAccount) {
       throw new NotFoundException('Bank account not found');
-    }
+    } */
     switch (action) {
       case 'deposit':
         if (paymentTypes === 'creditCard') {
           const card = await this.paymentService.getCardById(selectedPaymentId);
+
           if (!card) {
             throw new NotFoundException('Card not found');
           }
+
           card.balance -= amount;
+
           await card.save();
-          wallet.balance += amount;
+
+          wallet.balance = wallet.balance + amount;
         }
         if (paymentTypes === 'accountBank') {
           const bankAccount = await this.paymentService.getBankAccountById(
@@ -171,9 +178,9 @@ export class WalletService {
           }
           bankAccount.balance -= amount;
           await bankAccount.save();
+          wallet.balance += amount;
+          await wallet.save();
         }
-        wallet.balance += amount;
-        await wallet.save();
         return wallet;
       case 'withdraw':
         if (paymentTypes === 'creditCard') {
