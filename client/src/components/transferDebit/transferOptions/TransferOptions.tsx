@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import credit_icon from '../../../../public/credit-card-icon.svg'
 import next_arrow from '../../../../public/next-arrow-icon.svg'
-import DetailMoney from '../DetailMoney/DetailMoney'
-import MyCards from '../MyCards/MyCards'
+import DetailMoney from '@/components/TransferDebit/DetailMoney/DetailMoney'
+import MyCards from '@/components/TransferDebit/MyCards/MyCards'
 
 const TransferOptions = () => {
   return (
