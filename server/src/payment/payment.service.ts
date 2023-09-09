@@ -56,6 +56,17 @@ export class PaymentService {
       switch (action) {
         case 'card':
           const { cardNumber } = paymentDto as CrediCardDto;
+          const newCard = cardNumber.split(' ').join('');
+          if (/^\d+$/.test(newCard)) {
+            if (newCard.length !== 16)
+              throw new NotAcceptableException(
+                'Invalid card number, min 16 Max 16',
+              );
+          } else {
+            throw new NotAcceptableException(
+              'Invalid card number, only numbers',
+            );
+          }
           const card = await this.creditCardModel.findOne({ cardNumber });
           if (card) {
             throw new BadRequestException('Card already exists');

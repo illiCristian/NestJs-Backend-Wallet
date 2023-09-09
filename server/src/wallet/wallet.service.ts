@@ -108,32 +108,6 @@ export class WalletService {
     }
   }
 
-  // async operationsWallet(
-  //   userId: string,
-  //   amount: number,
-  //   action: ActionPostWallet,
-  // ): Promise<Wallet | { amount: number } | string> {
-  //   const user = await this.userService.getUserAndCheck(userId);
-  //   const wallet = await this.findById(user.walletId.toString());
-  //   if (!wallet) {
-  //     throw new NotFoundException('Wallet not found');
-  //   }
-
-  //   switch (action) {
-  //     case 'deposit':
-  //       wallet.balance += amount;
-  //       await wallet.save();
-  //       return wallet;
-
-  //     case 'withdraw':
-  //       wallet.balance -= amount;
-  //       await wallet.save();
-  //       return wallet;
-  //     default:
-  //       throw new Error('Invalid action');
-  //   }
-  // }
-
   async operationsWallet(
     userId: string,
     amount: number,
@@ -146,14 +120,7 @@ export class WalletService {
     if (!wallet) {
       throw new NotFoundException('Wallet not found');
     }
-    console.log(wallet);
-    const bankAccount = await this.paymentService.getBankAccountById(
-      wallet.paymentMethodsBanks[0],
-    );
 
-    /*    if (!bankAccount) {
-      throw new NotFoundException('Bank account not found');
-    } */
     switch (action) {
       case 'deposit':
         if (paymentTypes === 'creditCard') {
@@ -162,7 +129,10 @@ export class WalletService {
           if (!card) {
             throw new NotFoundException('Card not found');
           }
-
+          console.log(amount);
+          if (amount <= 0) {
+            throw new BadRequestException('Invalid amount');
+          }
           if (card.balance < amount) {
             throw new UnprocessableEntityException('Insufficient balance');
           }
@@ -179,11 +149,16 @@ export class WalletService {
           const bankAccount = await this.paymentService.getBankAccountById(
             selectedPaymentId,
           );
+          console.log(bankAccount);
           if (!bankAccount) {
             throw new NotFoundException('Bank account not found');
           }
           if (bankAccount.balance < amount) {
             throw new UnprocessableEntityException('Insufficient balance');
+          }
+
+          if (amount <= 0) {
+            throw new BadRequestException('Invalid amount');
           }
           wallet.balance = Number(wallet.balance) + Number(amount);
 
@@ -194,6 +169,7 @@ export class WalletService {
           await bankAccount.save();
         }
         return wallet;
+
       case 'withdraw':
         if (paymentTypes === 'creditCard') {
           const card = await this.paymentService.getCardById(selectedPaymentId);
@@ -211,6 +187,7 @@ export class WalletService {
           if (!bankAccount) {
             throw new NotFoundException('Bank account not found');
           }
+
           bankAccount.balance += amount;
           await bankAccount.save();
         }
