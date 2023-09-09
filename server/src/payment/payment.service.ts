@@ -58,7 +58,6 @@ export class PaymentService {
           updateWallet.paymentMethodsCards.push(newPaymentMethod._id);
           break;
         case 'bank':
-          console.log(paymentDto);
           newPaymentMethod = new this.bankAccountModel(paymentDto);
           await newPaymentMethod.save();
           updateWallet.paymentMethodsBanks.push(newPaymentMethod._id);
