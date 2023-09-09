@@ -26,10 +26,10 @@ export default function SendMoneyOptions() {
               </div>
               <div className="flex flex-col items-start justify-start mt-2">
                 <p className="text-base font-normal leading-normal text-black">
-                  Transferencias SPEI
+                  A cuenta de Mercado Pago Wallet
                 </p>
                 <p className="text-sm font-normal leading-normal text-neutral-500">
-                  Mercado pago standard
+                  Con e-mail, celular o nombre
                 </p>
               </div>
             </div>

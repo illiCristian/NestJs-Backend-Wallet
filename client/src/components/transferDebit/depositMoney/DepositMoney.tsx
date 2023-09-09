@@ -1,22 +1,21 @@
-import { useTempMoney } from '@/store/userStore'
+'use client'
+
+import { useTransferData } from '@/store/userStore'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
-interface props {
-  component: string
-  nextStep: () => void
-}
-
-const DepositMoney = ({ component, nextStep }: props) => {
-  const { setTempMoney } = useTempMoney()
+const DepositMoney = () => {
+  const router = useRouter()
+  const { setTempMoney } = useTransferData()
   const { register, handleSubmit, watch, setValue } = useForm()
 
   const handleForm = (data: any) => {
     setTempMoney(parseInt(data.money))
-    nextStep()
+    router.push('/money-charge/transfer-debit/transfer-options')
   }
 
   return (
-    <div className={`${component} flex-col items-start d w-full mt-5 ms-96 `}>
+    <div className="flex flex-col items-start w-full mt-5 d ms-96">
       <h1 className="text-black text-[25px] font-semibold leading-normal mb-5">
         ¿Cuanto quieres ingresar?
       </h1>
@@ -29,7 +28,7 @@ const DepositMoney = ({ component, nextStep }: props) => {
               autoFocus
               type="number"
               placeholder="0"
-              className="flex items-center w-32 border-white outline-none  focus:outline-none remove-arrow ms-44"
+              className="flex items-center w-32 border-white outline-none focus:outline-none remove-arrow ms-44"
             />
           </div>
           <hr className="-mx-[50px] bg-gray-200 border-1" />

@@ -1,10 +1,9 @@
 'use client'
 
-import { useTempMoney } from '@/store/userStore'
-import React from 'react'
+import { useTransferData } from '@/store/userStore'
 
 export default function DetailMoney() {
-  const { tempMoney } = useTempMoney()
+  const { tempMoney } = useTransferData()
 
   return (
     <>

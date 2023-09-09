@@ -2,7 +2,7 @@ import DepositButtonBank from '@/components/TransferDebit/DepositButtonBank/Depo
 import DetailMoney from '@/components/TransferDebit/DetailMoney/DetailMoney'
 import Image from 'next/image'
 import Link from 'next/link'
-import credit_icon from '../../../../public/assets/spei/atom (7).svg'
+import credit_icon from '@/../public/assets/spei/atom (7).svg'
 
 export default function page() {
   return (

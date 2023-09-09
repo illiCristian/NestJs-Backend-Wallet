@@ -10,6 +10,7 @@ import { ConfigService } from '@nestjs/config';
 import { PaymentService } from 'src/payment/payment.service';
 import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
 import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
+import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
 
 @Module({
   imports: [
@@ -38,7 +39,7 @@ import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
     }),
   ],
   controllers: [UsersController],
-  providers: [UsersService, WalletService, PaymentService],
+  providers: [UsersService, WalletService, PaymentService, CvuGeneratorService],
   exports: [MongooseModule, UsersService],
 })
 export class UsersModule {}

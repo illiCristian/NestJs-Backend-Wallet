@@ -18,6 +18,7 @@ import { User } from './schema/user.model';
 import { Wallet } from 'src/wallet/schema/wallet.model';
 import { CreditCardMethod } from 'src/payment/schema/creditCard.model';
 import { BankAccountMethod } from 'src/payment/schema/accountBank.model';
+import { UserWallet } from './interfaces/userWallet';
 
 @Injectable()
 export class UsersService {
@@ -37,6 +38,7 @@ export class UsersService {
       const { name, email, password } = createUserDto;
       //Podria agregar la logica de que permita el registro solo a usarios con mail validado
       const newWallet = await this.walletService.createWallet();
+      //creo el cvu y el alias
 
       const user = new this.userModel({
         password: bcrypt.hashSync(password, 10),
@@ -159,5 +161,38 @@ export class UsersService {
     }
 
     return user;
+  }
+
+  async findOneByCvu(cvu: string): Promise<UserWallet> {
+    const user = await this.userModel
+      .aggregate([
+        {
+          $lookup: {
+            from: 'wallets',
+            localField: 'walletId',
+            foreignField: '_id',
+            as: 'wallet',
+          },
+        },
+        {
+          $match: {
+            'wallet.cvu': cvu,
+          },
+        },
+      ])
+      .exec();
+
+    if (!user || user.length === 0) {
+      throw new NotFoundException('User not found');
+    }
+    const userWallet = {
+      name: user[0].name,
+      email: user[0].email,
+      cvu: user[0].wallet[0].cvu,
+      alias: user[0].wallet[0].alias,
+      id: user[0]._id,
+    };
+
+    return userWallet;
   }
 }
