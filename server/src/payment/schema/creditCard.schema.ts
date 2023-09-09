@@ -11,7 +11,7 @@ export class CreditCardMethod {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   cardNumber: string;
 
   @Prop({ required: true })

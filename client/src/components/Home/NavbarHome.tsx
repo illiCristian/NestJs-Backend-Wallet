@@ -12,6 +12,18 @@ export default function NavbarHome() {
     { path: '/home', title: 'Inicio' },
     { path: '/profile', title: 'Perfil' },
     { path: '/balance', title: 'Tu dinero' },
+
+    { path: '/send-money', title: 'Enviar dinero' },
+    { path: '/send-money/deposit-money', title: 'Enviar dinero' },
+    {
+      path: '/send-money/pay-method',
+      title: 'Enviar dinero',
+    },
+    {
+      path: '/send-money/search-user',
+      title: 'Enviar dinero',
+    },
+    { path: '/spei', title: 'Enviar dinero' },
     { path: '/money-charge', title: 'Ingresar dinero' },
     { path: '/money-charge/transfer-debit', title: 'Ingresar dinero' },
   ]
@@ -21,11 +33,11 @@ export default function NavbarHome() {
 
   return (
     <>
-      <header className="w-[1600px] h-16 bg-tertiary">
+      <header className="w-full h-16 bg-tertiary">
         {/* Sección del logo */}
         <section className="w-auto h-16 flex-col justify-center ps-14 gap-2.5 inline-flex">
           {/* Imagen del logo */}
-          <p className="w-auto inline-flex text-white text-lg font-bold">
+          <p className="inline-flex w-auto text-lg font-bold text-white">
             {pageTitle}
           </p>
         </section>

@@ -14,7 +14,7 @@ export class CreditCardMethod extends mongoose.Document {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   cardNumber: string;
 
   @Prop({ required: true })

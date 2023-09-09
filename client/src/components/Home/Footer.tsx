@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
 export default function Footer() {
   return (
     <>
-      <div className='w-[1596px] h-px bg-zinc-300 my-10 mb-10' />
-      <span className='w-[1501px] px-12 text-neutral-500 text-xs font-normal leading-[18px] mb-14'>
+      <div className="w-full h-px my-10 mb-10 bg-zinc-300" />
+      <span className="w-full px-12 text-neutral-500 text-xs font-normal leading-[18px] mb-14">
         Viarleth Aurora Martinez Jimenez · Último ingreso: 22 ago 2023 · 20:27
         hs.
         <br />
@@ -18,5 +18,5 @@ export default function Footer() {
         Pago Wallet.
       </span>
     </>
-  );
+  )
 }
