@@ -14,6 +14,11 @@ export default function BalanceWallet() {
 
   const [hidden, setHidden] = useState(true)
 
+  // Función para formatear el saldo como una cantidad de dinero
+  const formatMoney = (amount: any) => {
+    return amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  }
+
   return (
     <>
       <section className=" w-[370px] h-[136px] bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)]">
@@ -33,7 +38,7 @@ export default function BalanceWallet() {
         <div className="flex items-center justify-between px-5">
           <div className="flex gap-4 ">
             <p className="text-start  mt-3 text-black text-[31px] font-semibold leading-normal">
-              $ {!hidden ? balance?.balance : '***'}
+              {hidden ? '***' : `$ ${formatMoney(balance?.balance)}`}
             </p>
             <svg
               onClick={() => setHidden(!hidden)}

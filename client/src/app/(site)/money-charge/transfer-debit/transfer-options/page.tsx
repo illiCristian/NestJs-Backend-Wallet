@@ -1,4 +1,4 @@
-import TransferOptions from '@/components/TransferDebit/transferOptions/TransferOptions'
+import TransferOptions from '@/components/TransferDebit/TransferOptions/TransferOptions'
 
 const PaymentMethod = () => {
   return <TransferOptions />
