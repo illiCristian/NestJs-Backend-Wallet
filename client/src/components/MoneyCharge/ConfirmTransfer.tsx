@@ -8,10 +8,20 @@ import {
   transferMoneyToUser,
 } from '@/services'
 import { useTransferData, useUserProfile } from '@/store/userStore'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import InputMask from 'react-input-mask'
+import * as yup from 'yup'
+
+const schema = yup.object().shape({
+  cardNumber: yup.string().required(),
+  name: yup.string().required(),
+  expirationDate: yup.string().required(),
+  cvv: yup.string().required(),
+})
 
 function ConfirmTransfer() {
   const router = useRouter()
@@ -24,7 +34,9 @@ function ConfirmTransfer() {
   // Mutations and Form Handlers
   const { mutate: depositMoney } = useMutation(depositMoneyWallet)
   const { mutate: createCard } = useMutation(createCreditCard)
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, watch, formState } = useForm({
+    resolver: yupResolver(schema),
+  })
 
   const handleSendMoney = (data: any) => {
     createCard(
@@ -77,29 +89,45 @@ function ConfirmTransfer() {
           onSubmit={handleSubmit(handleSendMoney)}
           className="flex flex-col bg-white border-t-white rounded-lg shadow-[0px_4px_4px_0px_#00000025]  px-[50px]  sh mb-20"
         >
+          {/* // ----------- Card -------------- */}
           <div className="flex flex-col justify-start items-start my-4 bg-[#BFBFBF] mx-24 mt-12 border rounded-lg shadow-[7px_15px_25px_-18px_rgba(0,0,0,1)]">
             <div className="flex flex-row items-center justify-between mx-4 mt-3 ">
               <Image src={chip} alt="chip-image" width={15} height={15} />
-              <p className="my-3 ml-32 text-xs text-black">Expired 10/28</p>
+              <p className="my-3 ml-32 text-xs text-black">
+                Expired {watch('expirationDate')}
+              </p>
             </div>
-            <p className="mt-6 ml-4 ">5168 1234 4567 7890</p>
-            <p className="mt-1 mb-4 ml-4 text-sm">Aurora Martínez</p>
+            <p className="h-6 mt-6 ml-4">{watch('cardNumber')}</p>
+            <p className="h-4 mt-1 mb-4 ml-4 text-sm">{watch('name')}</p>
           </div>
+          {/* // -------------- Form ---------------- */}
           <div className="flex flex-row items-center justify-center gap-3 mt-4">
             <div className="flex flex-col items-start justify-center">
               <label htmlFor="numero-tarjeta">Número de tarjeta</label>
-              <input
-                {...register('cardNumber', { minLength: 16, maxLength: 16 })}
+              <InputMask
+                {...register('cardNumber')}
+                mask="9999 9999 9999 9999"
+                maskChar=""
                 id="numero-tarjeta"
-                className="px-4 py-3 border border-gray-200 rounded-md w-72 focus:outline-primary remove-arrow"
+                className={`px-4 py-3 border border-gray-200 rounded-md w-72 outline-none ${
+                  formState.errors.cardNumber
+                    ? 'focus:outline-red-500'
+                    : 'focus:outline-primary'
+                }`}
               />
             </div>
             <div className="flex flex-col items-start justify-center">
               <label htmlFor="vencimiento-tarjeta">Vencimiento</label>
-              <input
+              <InputMask
                 {...register('expirationDate')}
+                mask="99/99"
+                maskChar=""
                 id="vencimiento-tarjeta"
-                className="px-4 py-3 border border-gray-200 rounded-md w-44 focus:outline-primary remove-arrow"
+                className={`px-4 py-3 border border-gray-200 rounded-md w-44 outline-none ${
+                  formState.errors.expirationDate
+                    ? 'focus:outline-red-500'
+                    : 'focus:outline-primary'
+                }`}
               />
             </div>
           </div>
@@ -109,15 +137,25 @@ function ConfirmTransfer() {
               <input
                 {...register('name')}
                 id="titular-tarjeta"
-                className="px-4 py-3 border border-gray-200 rounded-md w-72 focus:outline-primary remove-arrow "
+                className={`px-4 py-3 border border-gray-200 rounded-md w-72 outline-none ${
+                  formState.errors.name
+                    ? 'focus:outline-red-500'
+                    : 'focus:outline-primary'
+                }`}
               />
             </div>
             <div className="flex flex-col justify-start">
               <label htmlFor="cvv-tarjeta">CVV</label>
-              <input
+              <InputMask
                 {...register('cvv')}
+                mask="999"
+                maskChar=""
                 id="cvv-tarjeta"
-                className="px-4 py-3 border border-gray-200 rounded-md w-44 focus:outline-primary remove-arrow"
+                className={`px-4 py-3 border border-gray-200 rounded-md w-44 outline-none ${
+                  formState.errors.cvv
+                    ? 'focus:outline-red-500'
+                    : 'focus:outline-primary'
+                }`}
               />
             </div>
           </div>
@@ -129,7 +167,14 @@ function ConfirmTransfer() {
             >
               Volver
             </button>
-            <button className="bg-[#00B1EA] px-10 text-base text-center py-2 font-medium  text-white rounded-md w-[175px] h-[48px]">
+            <button
+              disabled={!formState.isValid}
+              className={`px-10 text-base text-center py-2 font-medium text-white rounded-md w-[175px] h-[48px] ${
+                formState.isValid
+                  ? 'bg-tertiary text-white hover:bg-tertiaryDark transition-all duration-500'
+                  : ' bg-secondary text-neutral-500'
+              }`}
+            >
               Continuar
             </button>
           </div>
