@@ -3,6 +3,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
@@ -23,14 +24,22 @@ const IntoEmail: React.FC = () => {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   })
+  const router = useRouter()
 
   const onSubmit = async (data: FormData) => {
     try {
-      await signIn('credentials', {
+      const { error }: any = await signIn('credentials', {
+        redirect: false,
         email: data.emailOrPhone,
         password: data.password,
-        callbackUrl: '/home',
       })
+
+      if (error) {
+        console.log(JSON.parse(error))
+        throw new Error(error)
+      }
+
+      router.push('/home')
     } catch (error) {
       console.log(error)
     }
