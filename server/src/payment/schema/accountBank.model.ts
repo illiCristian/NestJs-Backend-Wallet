@@ -5,8 +5,6 @@ import mongoose from 'mongoose';
 
 @Schema()
 export class BankAccountMethod extends mongoose.Document {
-  _id?: string;
-
   @Prop({ required: true })
   paymentType: PaymentTypes;
 
