@@ -58,6 +58,7 @@ export class PaymentService {
           updateWallet.paymentMethodsCards.push(newPaymentMethod._id);
           break;
         case 'bank':
+          console.log(paymentDto);
           newPaymentMethod = new this.bankAccountModel(paymentDto);
           await newPaymentMethod.save();
           updateWallet.paymentMethodsBanks.push(newPaymentMethod._id);
@@ -69,14 +70,8 @@ export class PaymentService {
       await updateWallet.save();
       return updateWallet;
     } catch (error) {
-      /*  if (error instanceof NotFoundException) {
-        throw error;
-      } else {
-        throw new InternalServerErrorException(
-          'Can not add payment method, card no valid',
-        );
-      } */
       console.log(error);
+      throw new InternalServerErrorException(error);
     }
   }
 

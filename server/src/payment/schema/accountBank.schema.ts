@@ -3,8 +3,6 @@ import { PaymentTypes } from '../interfaces/payment.types';
 
 @Schema()
 export class BankAccount {
-  _id?: string;
-
   @Prop({ required: true })
   paymentType: PaymentTypes;
 
