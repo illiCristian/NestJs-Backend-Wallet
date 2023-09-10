@@ -1,3 +1,6 @@
+"use client"
+import { useUserProfile } from '@/store/userStore'
+import { emit } from 'process'
 import React from 'react'
 
 type CardProps = {
@@ -8,6 +11,8 @@ type CardProps = {
 }
 
 const Card = ({ title, subtitle, description, buttonText }: CardProps) => {
+
+
   return (
     <section className="w-4/5 rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4">
@@ -26,12 +31,15 @@ const Card = ({ title, subtitle, description, buttonText }: CardProps) => {
 }
 
 const AccountData = () => {
+  const data = useUserProfile();
+
+  
   return (
     <section className=" m-4 flex flex-col gap-4">
       <Card
         title="&#x2714; Validado"
         subtitle="E- mail"
-        description="Rosa.P@gmail.com"
+        description={data.email === ""? " " : data.email}
         buttonText="Modificar"
       />
       <Card
@@ -41,7 +49,7 @@ const AccountData = () => {
       />
       <Card
         subtitle="Nombre de Usuario"
-        description="Rosa Perez"
+        description={data.name === ""? " " : data.name}
         buttonText="Modificar"
       />
       <Card

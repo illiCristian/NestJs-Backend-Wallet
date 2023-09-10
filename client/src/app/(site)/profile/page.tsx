@@ -1,6 +1,10 @@
+"use client"
+
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
 import { FaCamera } from 'react-icons/fa'
 import './styles.css'
+import { useUserProfile } from '@/store/userStore'
+
 
 export default function Profile() {
   const profileData = {
@@ -12,6 +16,8 @@ export default function Profile() {
   if (!profileData) {
     return <div>Loading...</div>
   }
+  const {name, email} = useUserProfile();
+ 
 
   return (
     <div>
@@ -31,8 +37,10 @@ export default function Profile() {
               </div>
             </div>
             <div className="mt-10 ml-10 leading-loose text-left">
-              <h4 className="font-semibold">{profileData.name}</h4>
-              <p>{profileData.email}</p>
+              {/* <h4 className="font-semibold">{profileData.name}</h4>
+              <p>{profileData.email}</p> */}
+              <h4 className="font-semibold">{name ===""? 'Loading...': name}</h4>
+              <p>{email=== ""? '' : email}</p>
               <p className="mt-2 text-base text-cyan-600">
                 Estás en Ivi 2- Mercado puntos
               </p>
