@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 
-export class TransferDto {
+export class DepositDto {
   @IsNotEmpty()
   @IsNumber()
   @IsPositive()
-  balance: number;
+  amount: number;
 }
