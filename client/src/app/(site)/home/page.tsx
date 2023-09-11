@@ -42,6 +42,7 @@ export default function page() {
               <Image src={arrow} alt="arrow" className="relative w-6 h-6 " />
             </div>
           </section>
+
           <BalanceWallet />
           <MoneyCharge />
           <div className="text-base font-semibold leading-normal text-black  text-start">

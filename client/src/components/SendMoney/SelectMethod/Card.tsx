@@ -18,7 +18,7 @@ export default function Card() {
 
   return (
     <>
-      <button className="w-[420.21px] h-[199px] focus:grayscale-0 focus:outline focus:outline-2 focus:outline-blue-500 bg-tertiary grayscale rounded-[10px] relative">
+      <button className="w-[354px] h-[199px] focus:grayscale-0 focus:outline focus:outline-2 focus:outline-blue-500 bg-tertiary grayscale rounded-lg relative">
         <div className="flex justify-between p-4 ">
           <Image
             src={logo2}
@@ -36,19 +36,19 @@ export default function Card() {
           </div>
         </div>
 
-        <div className="absolute top-0 flex flex-col left-52">
-          <div className="font-extrabold text-white opacity-5 text-7xl">
+        <div className="absolute top-0 flex flex-col left-44">
+          <div className="font-extrabold text-white opacity-10 text-7xl overflow-hidden">
             MER
           </div>
-          <div className="font-extrabold text-white opacity-5 text-7xl">
+          <div className="font-extrabold text-white opacity-10 text-7xl overflow-hidden">
             CADO
-          </div>
-          <div className="font-extrabold text-white opacity-5 text-7xl">
+          </div>{' '}
+          <div className="font-extrabold text-white opacity-10 text-7xl overflow-hidden">
             PAGO
           </div>
         </div>
 
-        <div className="flex justify-between mt-6 mb-2 ">
+        <div className="flex justify-between mt-6 mb-4 ">
           <div className="w-28 text-white text-base font-normal ms-7">
             Sin comisión
           </div>

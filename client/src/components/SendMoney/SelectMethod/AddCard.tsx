@@ -8,7 +8,7 @@ export default function AddCard() {
     <>
       <Link
         href={'/send-money/charge-money'}
-        className="w-[409px] h-[215px] bg-blue-400 bg-opacity-20 rounded-lg border border-dashed border-sky-500"
+        className="w-[409px] h-[199px]  bg-blue-400 bg-opacity-20 rounded-lg border border-dashed border-sky-500"
       >
         <div className="flex flex-col justify-center items-center mt-10">
           <Image src={add} alt="" />
