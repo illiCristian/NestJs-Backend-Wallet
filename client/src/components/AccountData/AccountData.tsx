@@ -1,7 +1,6 @@
 "use client"
 import { useUserProfile } from '@/store/userStore'
-import { emit } from 'process'
-import React from 'react'
+import Link from 'next/link';
 
 type CardProps = {
   title?: string
@@ -21,9 +20,11 @@ const Card = ({ title, subtitle, description, buttonText }: CardProps) => {
         </div>
         <p className="text-gray-900 font-semibold text-lg">{subtitle}</p>
         <p className="text-gray-700 text-base">{description}</p>
+        <Link href="/profile/account-data/verify-name">
         <span className="mt-2 flex items-center justify-end  text-primary cursor-pointer font-bold py-2 px-4">
           {buttonText}
         </span>
+        </Link>
         <br />
       </div>
     </section>
@@ -35,7 +36,7 @@ const AccountData = () => {
 
   
   return (
-    <section className=" m-4 flex flex-col gap-4">
+    <section className="w-[980px] m-4 flex flex-col gap-4">
       <Card
         title="&#x2714; Validado"
         subtitle="E- mail"
