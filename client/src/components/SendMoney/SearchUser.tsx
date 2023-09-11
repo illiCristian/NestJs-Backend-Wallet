@@ -7,6 +7,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import UserEmpty from '../User/UserEmpty'
+import more from '@/../public/assets/user/more.svg'
+import search from '@/../public/assets/dashboard/search.svg'
 
 interface User {
   name: string
@@ -26,9 +29,9 @@ const SearchUser = () => {
   }
 
   return (
-    <section className="m-auto w-[892px] h-[670px] border py-10 px-20 my-5 rounded-md shadow-xl">
+    <section className="m-auto w-[892px] h-[670px] border py-10 px-10 my-5 rounded-md shadow-xl">
       <form onSubmit={handleSubmit(handleSearch)}>
-        <div className="inline-flex w-full">
+        <div className="inline-flex w-full items-center">
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,20 +71,40 @@ const SearchUser = () => {
             {...register('search')}
             autoFocus
             type="text"
-            placeholder="search-email@gmail.com"
-            className="w-full px-6 py-4 mx-2 leading-tight text-gray-700 border rounded-sm shadow appearance-none focus:outline-none focus:shadow-outline"
+            placeholder="Ingresa una Clabe Interbancaria o Alias"
+            className="pl-14 py-4 mx-10 leading-tight text-gray-700 border-2  appearance-none   absolute ml-16
+            w-[743px] h-[41px]  rounded-lg  focus:border-2 focus:border-primary mt-5 ps-10  focus:outline-none mb-4"
           />
+          <Image
+            src={search}
+            alt="search"
+            className="relative w-6 h-6 top-1 left-6"
+          ></Image>
         </div>
       </form>
+      <div className="w-[186px] h-9 relative bg-sky-500 rounded-[27px] ml-16 mt-6">
+        <div className="w-6 h-6 left-[28px] top-[5.58px] absolute">
+          <Image
+            src={more}
+            alt="more"
+            className="w-6 h-6 left-0 top-0 absolute"
+          />
+        </div>
+        <div className="left-[60.23px] top-[5px] absolute origin-top-left rotate-[0.55deg] text-white text-base font-bold leading-normal">
+          Nueva cuenta
+        </div>
+      </div>
+
+      <hr className="my-4" />
       <div className="flex flex-col h-full mt-4 w-max min-h-max">
-        {user && (
+        {user ? (
           <Link
             href={'/send-money/deposit-money'}
-            className="w-[730px] h-[126] mb-4 rounded border shadow-lg"
+            className="w-[810px] h-[126] mb-4 rounded border shadow-lg"
           >
             <div className="flex items-center justify-start gap-4 px-6 py-10">
               <Image
-                className="w-12 h-12 rounded-full"
+                className="w-16 h-16 rounded-full"
                 src={userDefault}
                 alt="avatar"
               />
@@ -92,6 +115,8 @@ const SearchUser = () => {
               </div>
             </div>
           </Link>
+        ) : (
+          <UserEmpty />
         )}
       </div>
     </section>

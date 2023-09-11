@@ -3,9 +3,9 @@ import AccountData from '@/components/AccountData/AccountData'
 
 const pageAccountData = () => {
   return (
-    <section className="max-w-6xl m-auto ">
+    <section className="max-w-6xl mt-6 m-auto ">
       <Link
-        href={'/profile'}
+        href="/profile"
         className="px-4 py-2 m-4 text-lg font-bold text-primary"
       >
         &#11013; Volver

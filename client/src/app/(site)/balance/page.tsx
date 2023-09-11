@@ -26,7 +26,6 @@ const pageBalance = (): JSX.Element => {
           <p className="text-base font-semibold leading-normal text-black">
             $ 0
           </p>
-          B
         </div>
         <hr />
         <div className="flex justify-between py-2">
