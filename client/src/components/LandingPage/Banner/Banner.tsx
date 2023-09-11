@@ -21,7 +21,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
             <Image
               className="banner-image object-center object-cover  relative"
               alt="hero"
-              src={BannerImg}
+              src={BannerImg3}
               layout="responsive"
               width={720}
               height={100}
@@ -50,7 +50,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               </div>
             </div>
           </div>
-          <div className="banner-img2 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          {/* <div className="banner-img2 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Image
               className={`banner-image2 object-cover object-center rounded ${bannerClasses}`}
               alt="hero"
@@ -58,7 +58,7 @@ const Banner: React.FC<BannerProps> = ({ bannerClasses }) => {
               width={720}
               height={600}
             />
-          </div>
+          </div> */}
         </div>
       </section>
       <div className="vector-container flex bg-gray-100">
