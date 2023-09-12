@@ -24,6 +24,7 @@ import { ActionGetInfo } from './interfaces/operations-get-wallet';
 import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
 import { TransferDto } from './dto/transfer-dto';
 import { type } from 'os';
+import { NotificationGateway } from 'src/notifications/notifications.gateway';
 
 @Injectable()
 export class WalletService {
@@ -41,6 +42,9 @@ export class WalletService {
 
     @Inject(forwardRef(() => CvuGeneratorService))
     private readonly cvuGeneratorService: CvuGeneratorService,
+
+    @Inject(forwardRef(() => NotificationGateway))
+    private readonly notificationGateway: NotificationGateway,
   ) {
     this.walletDto = new this.walletModel();
   }
@@ -226,6 +230,17 @@ export class WalletService {
     fromWallet.balance -= walletDto.balance;
     toWallet.balance += walletDto.balance;
 
+    fromUser.notificaciones.push(
+      `Realizaste una transferencia de $ ${walletDto.balance} a ${toUser.name}`,
+    );
+    toUser.notificaciones.push(
+      `Recibiste una transferencia de $ ${walletDto.balance} de ${fromUser.name}`,
+    );
+    this.notificationGateway.sendNotificationToUser(
+      userId,
+      `Recibiste una transferencia de $ ${walletDto.balance} de ${fromUser.name}`,
+    );
+    await Promise.all([fromUser.save(), toUser.save()]);
     await Promise.all([fromWallet.save(), toWallet.save()]);
 
     return {

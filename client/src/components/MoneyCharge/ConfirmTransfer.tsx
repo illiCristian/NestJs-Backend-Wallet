@@ -45,18 +45,7 @@ function ConfirmTransfer() {
         ...data,
       },
       {
-        onSuccess: async (data) => {
-          // funcion para realizar la transferencia
-          if (pathname === '/send-money/charge-money') {
-            const response = await transferMoneyToUser(id, {
-              balance: tempMoney,
-            })
-            if (response.status === 201) {
-              router.push('/success')
-              return
-            }
-          }
-
+        onSuccess: (data) => {
           // funcion para realizar el deposito
           const { paymentMethodsCards } = data.data
           depositMoney(
@@ -67,10 +56,19 @@ function ConfirmTransfer() {
                 paymentMethodsCards[paymentMethodsCards.length - 1],
             },
             {
-              onSuccess: () => {
-                updateWallet(tempMoney)
-                setTempMoney(0)
-                router.push('/success')
+              onSuccess: async () => {
+                // funcion para realizar la transferencia
+                if (pathname === '/send-money/charge-money') {
+                  const response = await transferMoneyToUser(id, {
+                    balance: tempMoney,
+                  })
+                  if (response.status === 201) {
+                    updateWallet(tempMoney)
+                    setTempMoney(0)
+                    router.push('/success')
+                    return
+                  }
+                }
               },
             },
           )
@@ -94,11 +92,15 @@ function ConfirmTransfer() {
             <div className="flex flex-row items-center justify-between mx-4 mt-3 ">
               <Image src={chip} alt="chip-image" width={15} height={15} />
               <p className="my-3 ml-32 text-xs text-black">
-                Expired {watch('expirationDate')}
+                Expired {watch('expirationDate') || '99/99'}
               </p>
             </div>
-            <p className="h-6 mt-6 ml-4">{watch('cardNumber')}</p>
-            <p className="h-4 mt-1 mb-4 ml-4 text-sm">{watch('name')}</p>
+            <p className="h-6 mt-6 ml-4">
+              {watch('cardNumber') || '9999 9999 9999 9999'}
+            </p>
+            <p className="h-4 mt-1 mb-4 ml-4 text-sm">
+              {watch('name') || 'Aurora Martinez'}
+            </p>
           </div>
           {/* // -------------- Form ---------------- */}
           <div className="flex flex-row items-center justify-center gap-3 mt-4">
