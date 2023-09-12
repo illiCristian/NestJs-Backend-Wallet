@@ -78,9 +78,20 @@ export default function NavbarHome() {
 
   return (
     <>
-      <header className="relative flex items-center justify-between w-full h-16 px-6 bg-tertiary">
-        {/* Titulo de la pagina */}
-        <p className="text-lg font-bold text-white">{pageTitle}</p>
+
+      <header className="w-full h-16 bg-tertiary drop-shadow-xl">
+        {/* Sección del logo */}
+        <section className="w-auto h-16 flex-col justify-center ps-14 gap-2.5 inline-flex">
+          {/* Imagen del logo */}
+          <p className="inline-flex w-auto text-lg font-bold text-white">
+            {pageTitle}
+          </p>
+        </section>
+        {/* Sección de registro de imagen */}
+        <section className="image-register w-11 p-2.5 left-[1768px] top-[20px] absolute">
+          {/* Contenido del registro de imagen */}
+        </section>
+
         {/* Icono de ayuda */}
         <figure
           className="relative w-6 h-6 cursor-pointer"
