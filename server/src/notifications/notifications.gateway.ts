@@ -8,8 +8,14 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway(81, {
-  cors: { origin: '*' },
+@WebSocketGateway({
+  cors: {
+    origin: [
+      'https://mercado-wallet.vercel.app',
+      'http://localhost:3000',
+      'http://localhost:3001',
+    ],
+  },
 })
 export class NotificationGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
