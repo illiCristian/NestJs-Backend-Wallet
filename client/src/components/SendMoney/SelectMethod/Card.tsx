@@ -18,7 +18,10 @@ export default function Card() {
 
   return (
     <>
-      <button className="w-[354px] h-[199px] focus:grayscale-0 focus:outline focus:outline-2 focus:outline-blue-500 bg-tertiary grayscale rounded-lg relative">
+      <button
+        className="w-[354px] h-[199px] focus:grayscale-0 focus:outline focus:outline-2 focus:outline-blue-500 bg-tertiary grayscale rounded-lg relative"
+        autoFocus
+      >
         <div className="flex justify-between p-4 ">
           <Image
             src={logo2}

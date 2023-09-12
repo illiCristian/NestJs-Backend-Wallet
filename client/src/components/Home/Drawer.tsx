@@ -27,7 +27,7 @@ export default function Drawer() {
               className="flex gap-5 text-neutral-500 p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
             >
               <Image src={home} alt="home" className="" />
-              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
+              <h6 className="text-base font-semibold leading-normal text-center  text-tertiary group-hover:text-primary ">
                 Inicio
               </h6>
             </Link>
