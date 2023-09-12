@@ -11,7 +11,7 @@ export default function page() {
     <>
       <section className="flex gap-10 px-12 py-10">
         <div className="flex flex-col  gap-7">
-          <section className="flex justify-between py-2 w-[370px] h-[60px] bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)]">
+          <section className="flex justify-between py-2 w-[370px] h-[60px] bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)] hover:bg-slate-100 hover:trasition-all hover:transition-colors">
             <h3 className="px-5 py-3 text-base font-semibold leading-normal text-center text-black">
               Haz crecer tu dinero
             </h3>
@@ -45,13 +45,13 @@ export default function page() {
 
           <BalanceWallet />
           <MoneyCharge />
-          <div className="text-base font-semibold leading-normal text-black  text-start">
+          <div className="text-base font-semibold leading-normal text-black  text-start hover:bg-slate-100 hover:trasition-all hover:transition-colors">
             Descubre más
           </div>
           <Image className=" w-[375px] h-[199px]" src={image} alt="image" />
           <Link
             href={'#'}
-            className=" w-[370px] h-[60px] flex justify-center py-4 bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)]"
+            className=" w-[370px] h-[60px] flex justify-center py-4 bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)] hover:bg-slate-100 hover:trasition-all hover:transition-colors "
           >
             <p className="text-base font-normal leading-normal text-center text-black ">
               Gana hasta $365 con point y más
@@ -59,7 +59,7 @@ export default function page() {
           </Link>
           <Link
             href={'#'}
-            className=" w-[370px] h-[60px] flex justify-center py-4 bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)]"
+            className=" w-[370px] h-[60px] flex justify-center py-4 bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)] hover:bg-slate-100 hover:trasition-all hover:transition-colors"
           >
             <p className="text-base font-normal leading-normal text-black  ttext-center">
               Gana ¡150! por recomendar la App!

@@ -1,17 +1,30 @@
 'use client'
 
-import Image from 'next/image'
-import arrow from '@/../public/assets/dashboard/arrow2.svg'
 import { useUserProfile } from '@/store/userStore'
 
 export default function Clabe() {
   const { walletId, name } = useUserProfile()
 
+  const handdleCopy = () => {
+    const clabe = document.getElementById('quote')
+
+    if (clabe) {
+      const textToCopy = clabe.textContent
+      if (textToCopy) {
+        navigator.clipboard.writeText(textToCopy)
+      }
+    }
+    console.log('copiado')
+  }
+
   return (
     <>
       <div className="w-[1142px] h-[216px] bg-white rounded-lg shadow-[0px_4px_4px_0px_#00000025] p-4 flex justify-between ">
         <div className="flex flex-col space-y-2">
-          <div className="text-base font-normal leading-normal text-black">
+          <div
+            id="quote"
+            className="text-base font-normal leading-normal text-black"
+          >
             {walletId.cvu}
           </div>
           <div className="text-base font-normal leading-normal text-neutral-500">
@@ -30,9 +43,12 @@ export default function Clabe() {
             Banco receptor
           </div>
         </div>
-        <div className="text-xs font-normal leading-normal text-sky-500">
+        <button
+          onClick={handdleCopy}
+          className="text-xs font-normal leading-normal text-sky-500 mb-36 "
+        >
           Copiar
-        </div>
+        </button>
       </div>
       <div className="w-[1142px] h-[237px] bg-white rounded-lg shadow-[0px_4px_4px_0px_#00000025] p-4 flex justify-between mt-5">
         <div className="flex flex-col space-y-2">
@@ -65,4 +81,7 @@ export default function Clabe() {
       </div>
     </>
   )
+}
+function getElementById(arg0: string) {
+  throw new Error('Function not implemented.')
 }
