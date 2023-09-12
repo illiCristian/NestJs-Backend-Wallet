@@ -1,18 +1,61 @@
 'use client'
 
-import { transferMoneyToUser } from '@/services'
-import { useTransferData } from '@/store/userStore'
+import { depositMoneyWallet, transferMoneyToUser } from '@/services'
+import { useTransferData, useUserProfile } from '@/store/userStore'
+import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
 function TransferButton() {
   const router = useRouter()
-  const { id, tempMoney } = useTransferData()
+  const {
+    id,
+    setTempMoney,
+    tempMoney,
+    selectedPaymentId,
+    setSelectedPaymentId,
+  } = useTransferData()
+  const { updateWallet } = useUserProfile()
+  const { mutate: depositMoney } = useMutation(depositMoneyWallet)
 
-  const handleTransferMoney = async () => {
+  const handleTransferFromWallet = async () => {
     const response = await transferMoneyToUser(id, { balance: tempMoney })
     if (response.status === 201) {
       router.push('/success')
     }
+  }
+
+  const handleTransferFromCard = async () => {
+    depositMoney(
+      {
+        paymentType: 'CreditCard',
+        amount: tempMoney,
+        selectedPaymentId: selectedPaymentId,
+      },
+      {
+        onSuccess: async () => {
+          // funcion para realizar la transferencia
+          const response = await transferMoneyToUser(id, {
+            balance: tempMoney,
+          })
+          if (response.status === 201) {
+            updateWallet(tempMoney)
+            setTempMoney(0)
+            setSelectedPaymentId('')
+            router.push('/success')
+            return
+          }
+        },
+      },
+    )
+  }
+
+  const handleTransferMoney = () => {
+    if (selectedPaymentId !== '') {
+      handleTransferFromCard()
+      return
+    }
+
+    handleTransferFromWallet()
   }
 
   return (

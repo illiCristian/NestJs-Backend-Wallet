@@ -1,15 +1,15 @@
 'use client'
 
-import { depositMoneyWallet } from '@/services'
+/* import { depositMoneyWallet } from '@/services'
 import { useTransferData, useUserProfile } from '@/store/userStore'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query' */
 import { useRouter } from 'next/navigation'
 
 function DepositButtonBank() {
   const router = useRouter()
-  const { mutate: depositMoney } = useMutation(depositMoneyWallet)
+  /* const { mutate: depositMoney } = useMutation(depositMoneyWallet)
   const { updateWallet } = useUserProfile()
-  const { tempMoney, setTempMoney } = useTransferData()
+  const { tempMoney, setTempMoney } = useTransferData() */
 
   const handleDepositMoney = () => {
     router.push('/success')

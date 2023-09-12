@@ -1,9 +1,10 @@
+import DetailMoney from '@/components/TransferDebit/DetailMoney/DetailMoney'
 import Image from 'next/image'
 import Link from 'next/link'
-import credit_icon from '../../../../public/credit-card-icon.svg'
-import next_arrow from '../../../../public/next-arrow-icon.svg'
-import DetailMoney from '@/components/TransferDebit/DetailMoney/DetailMoney'
-import MyCards from '@/components/TransferDebit/MyCards/MyCards'
+import credit_icon from '@/../public/credit-card-icon.svg'
+import next_arrow from '@/../public/next-arrow-icon.svg'
+import MyCardsTides from '@/components/TransferDebit/MyCardsTides/MyCardsTides'
+import ButtonContinue from '@/components/TransferDebit/ButtonContinue/ButtonContinue'
 
 const TransferOptions = () => {
   return (
@@ -70,10 +71,13 @@ const TransferOptions = () => {
               className="cursor-pointer "
             />
           </Link>
+          <MyCardsTides />
         </div>
-        <DetailMoney />
+        <div className="flex flex-col items-end">
+          <DetailMoney />
+          <ButtonContinue />
+        </div>
       </section>
-      <MyCards />
     </div>
   )
 }
