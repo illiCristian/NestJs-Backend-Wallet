@@ -15,7 +15,7 @@ function ProfileHeader() {
   }, [])
 
   return (
-    <figure className="w-[320px] h-[64px] bg-sky-600 flex gap-3 items-center pl-4">
+    <figure className="w-[320px] h-[64px] bg-sky-600 flex gap-3 items-center pl-4 hover:bg-tertiary drop-shadow-xl">
       <Image src={userImg} className="w-[41px] h-[41px]" alt="image-user" />
       <section className="flex flex-col">
         <h5 className="text-2xl font-semibold text-white">

@@ -33,7 +33,7 @@ export default function NavbarHome() {
 
   return (
     <>
-      <header className="w-full h-16 bg-tertiary">
+      <header className="w-full h-16 bg-tertiary drop-shadow-xl">
         {/* Sección del logo */}
         <section className="w-auto h-16 flex-col justify-center ps-14 gap-2.5 inline-flex">
           {/* Imagen del logo */}
