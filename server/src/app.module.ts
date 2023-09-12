@@ -11,6 +11,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { WalletModule } from './wallet/wallet.module';
 import { PaymentModule } from './payment/payment.module';
+import { GatewayModule } from './notifications/gateway-module';
 
 @Module({
   //Importamos los modulos que vamos a usar
@@ -21,6 +22,7 @@ import { PaymentModule } from './payment/payment.module';
     MailingModule,
     WalletModule,
     PaymentModule,
+    GatewayModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),

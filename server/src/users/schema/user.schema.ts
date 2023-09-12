@@ -25,6 +25,9 @@ export class User {
 
   @Prop({ type: [String], default: ['user'] })
   roles: string[];
+
+  @Prop({ type: [String], default: ['Sin notificaciones'] })
+  notificaciones: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
