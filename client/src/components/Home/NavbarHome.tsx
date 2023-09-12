@@ -1,9 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import bell from '../../../public/assets/dashboard/bell.svg'
 import { usePathname } from 'next/navigation'
+import { io } from 'socket.io-client'
+import { useUserProfile } from '@/store/userStore'
 
 export default function NavbarHome() {
   const pathname = usePathname()
@@ -31,24 +33,71 @@ export default function NavbarHome() {
   const matchedRoute = routesAndTitles.find((route) => route.path === pathname)
   const pageTitle = matchedRoute ? matchedRoute.title : ''
 
+  //---------------
+  const [mySocket, setMySocket] = useState<any>(undefined)
+  const [notifications, setNotifications] = useState<any>([])
+  const [open, setOpen] = useState(false)
+  const { _id } = useUserProfile()
+
+  // ------- Handle notifications ----------
+  const displayNotification = (msg: string) => {
+    return (
+      <span
+        className="p-2 text-white bg-green-400 rounded-md cursor-pointer"
+        onClick={handleRead}
+      >
+        {msg}
+      </span>
+    )
+  }
+
+  const handleRead = () => {
+    setNotifications([])
+    setOpen(false)
+  }
+
+  // --------- Handle sockets ----------
+  useEffect(() => {
+    const socket = io(
+      'https://s10-02-n-node-next-mercadopago-production.up.railway.app/',
+    )
+
+    setMySocket(socket)
+  }, [])
+
+  useEffect(() => {
+    mySocket?.on('notification', (data: any) => {
+      setNotifications((prev: any) => [...prev, data])
+    })
+
+    mySocket?.on('connect', () => {
+      console.log('Conectado!!')
+      mySocket?.emit('newUser', _id)
+    })
+  }, [_id, mySocket])
+
   return (
     <>
-      <header className="w-full h-16 bg-tertiary">
-        {/* Sección del logo */}
-        <section className="w-auto h-16 flex-col justify-center ps-14 gap-2.5 inline-flex">
-          {/* Imagen del logo */}
-          <p className="inline-flex w-auto text-lg font-bold text-white">
-            {pageTitle}
-          </p>
-        </section>
-        {/* Sección de registro de imagen */}
-        <section className="image-register w-11 p-2.5 left-[1768px] top-[20px] absolute">
-          {/* Contenido del registro de imagen */}
-        </section>
+      <header className="relative flex items-center justify-between w-full h-16 px-6 bg-tertiary">
+        {/* Titulo de la pagina */}
+        <p className="text-lg font-bold text-white">{pageTitle}</p>
         {/* Icono de ayuda */}
-        <figure className="w-6 h-6 left-[1832px] top-[20px] absolute">
+        <figure
+          className="relative w-6 h-6 cursor-pointer"
+          onClick={() => setOpen(!open)}
+        >
           <Image src={bell} alt="bell" />
+          {notifications.length > 0 && (
+            <div className="absolute flex items-center justify-center w-5 h-5 text-sm font-semibold text-white bg-red-500 rounded-full left-[40%] top-[-40%]">
+              {notifications.length}
+            </div>
+          )}
         </figure>
+        {open && (
+          <div className="absolute top-[105%] right-4 flex flex-col gap-1 items-end">
+            {notifications.map((n: string) => displayNotification(n))}
+          </div>
+        )}
       </header>
     </>
   )
