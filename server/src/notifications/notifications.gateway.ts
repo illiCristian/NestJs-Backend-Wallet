@@ -16,16 +16,21 @@ export class NotificationGateway
 {
   @WebSocketServer() server: Server;
 
+  usersConnected = [];
   private connectedUsers = new Map<string, Socket>();
 
   afterInit(server: any) {
     console.log('Esto se ejecuta cuando inicia');
   }
 
-  handleConnection(client: any, ...args: any[]) {
+  handleConnection(client: any, data: string) {
     console.log('Hola alguien se conecto al socket 👌👌👌');
-  }
 
+    this.usersConnected.push({
+      client: client.id,
+      username: client.handshake.query.username,
+    });
+  }
   handleDisconnect(client: any) {
     console.log('ALguien se fue! chao chao');
   }
@@ -35,25 +40,20 @@ export class NotificationGateway
     client.join(`room_${room}`);
   }
 
-  @SubscribeMessage('event_message')
-  handleIncommingMessage(
-    client: Socket,
-    payload: { room: string; message: string },
-  ) {
-    const { room, message } = payload;
-    console.log(payload);
-    this.server.to(`room_${room}`).emit('new_message', message);
+  @SubscribeMessage('newUser')
+  handleNewUser(client: Socket, username: string) {
+    this.usersConnected.push({
+      client: client.id,
+      username,
+    });
+    // console.log(this.usersConnected);
   }
 
   sendNotificationToUser(userId: string, message: string) {
-    const userSocket = this.connectedUsers.get(userId);
-    if (userSocket) {
-      userSocket.emit('notification', message);
-    } else {
-      console.log(
-        `Usuario con ID ${userId} no está conectado en este momento.`,
-      );
-      // Puedes optar por almacenar la notificación pendiente si lo deseas
-    }
+    const userFound = this.usersConnected.forEach((user) => {
+      if (user.username === userId) {
+        this.server.to(user.client).emit('notification', message);
+      }
+    });
   }
 }
