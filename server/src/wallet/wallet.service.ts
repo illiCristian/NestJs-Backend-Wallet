@@ -23,6 +23,8 @@ import { PaymentTypes } from 'src/payment/interfaces/payment.types';
 import { ActionGetInfo } from './interfaces/operations-get-wallet';
 import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
 import { TransferDto } from './dto/transfer-dto';
+import { type } from 'os';
+import { NotificationGateway } from 'src/notifications/notifications.gateway';
 
 @Injectable()
 export class WalletService {
@@ -40,6 +42,9 @@ export class WalletService {
 
     @Inject(forwardRef(() => CvuGeneratorService))
     private readonly cvuGeneratorService: CvuGeneratorService,
+
+    @Inject(forwardRef(() => NotificationGateway))
+    private readonly notificationGateway: NotificationGateway,
   ) {
     this.walletDto = new this.walletModel();
   }
@@ -107,32 +112,6 @@ export class WalletService {
     }
   }
 
-  // async operationsWallet(
-  //   userId: string,
-  //   amount: number,
-  //   action: ActionPostWallet,
-  // ): Promise<Wallet | { amount: number } | string> {
-  //   const user = await this.userService.getUserAndCheck(userId);
-  //   const wallet = await this.findById(user.walletId.toString());
-  //   if (!wallet) {
-  //     throw new NotFoundException('Wallet not found');
-  //   }
-
-  //   switch (action) {
-  //     case 'deposit':
-  //       wallet.balance += amount;
-  //       await wallet.save();
-  //       return wallet;
-
-  //     case 'withdraw':
-  //       wallet.balance -= amount;
-  //       await wallet.save();
-  //       return wallet;
-  //     default:
-  //       throw new Error('Invalid action');
-  //   }
-  // }
-
   async operationsWallet(
     userId: string,
     amount: number,
@@ -150,31 +129,50 @@ export class WalletService {
       case 'deposit':
         if (paymentTypes === 'creditCard') {
           const card = await this.paymentService.getCardById(selectedPaymentId);
+
           if (!card) {
             throw new NotFoundException('Card not found');
           }
           console.log(amount);
-          console.log(wallet.balance);
-          console.log(card.balance);
-          wallet.balance += amount; // Agrega el monto a la wallet
-          await wallet.save();
-          card.balance -= amount; // Resta el monto de la tarjeta de crédito
+          if (amount <= 0) {
+            throw new BadRequestException('Invalid amount');
+          }
+          if (card.balance < amount) {
+            throw new UnprocessableEntityException('Insufficient balance');
+          }
+
+          card.balance -= amount;
+
           await card.save();
+
+          wallet.balance = wallet.balance + amount;
+
+          await wallet.save();
         }
         if (paymentTypes === 'accountBank') {
           const bankAccount = await this.paymentService.getBankAccountById(
             selectedPaymentId,
           );
+          console.log(bankAccount);
           if (!bankAccount) {
             throw new NotFoundException('Bank account not found');
           }
+          if (bankAccount.balance < amount) {
+            throw new UnprocessableEntityException('Insufficient balance');
+          }
+
+          if (amount <= 0) {
+            throw new BadRequestException('Invalid amount');
+          }
+          wallet.balance = Number(wallet.balance) + Number(amount);
+
+          await wallet.save();
 
           bankAccount.balance -= amount;
+
           await bankAccount.save();
-          wallet.balance += amount;
-          await wallet.save();
-          return wallet;
         }
+        return wallet;
 
       case 'withdraw':
         if (paymentTypes === 'creditCard') {
@@ -193,6 +191,7 @@ export class WalletService {
           if (!bankAccount) {
             throw new NotFoundException('Bank account not found');
           }
+
           bankAccount.balance += amount;
           await bankAccount.save();
         }
@@ -231,6 +230,17 @@ export class WalletService {
     fromWallet.balance -= walletDto.balance;
     toWallet.balance += walletDto.balance;
 
+    fromUser.notificaciones.push(
+      `Realizaste una transferencia de $ ${walletDto.balance} a ${toUser.name}`,
+    );
+    toUser.notificaciones.push(
+      `Recibiste una transferencia de $ ${walletDto.balance} de ${fromUser.name}`,
+    );
+    this.notificationGateway.sendNotificationToUser(
+      userId,
+      `Recibiste una transferencia de $ ${walletDto.balance} de ${fromUser.name}`,
+    );
+    await Promise.all([fromUser.save(), toUser.save()]);
     await Promise.all([fromWallet.save(), toWallet.save()]);
 
     return {

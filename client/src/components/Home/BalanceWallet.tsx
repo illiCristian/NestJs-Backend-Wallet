@@ -5,7 +5,6 @@ import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useState } from 'react'
 import arrow from '../../../public/assets/dashboard/arrow2.svg'
-import warning from '../../../public/assets/dashboard/warning.svg'
 import Link from 'next/link'
 
 export default function BalanceWallet() {
@@ -16,12 +15,12 @@ export default function BalanceWallet() {
 
   // Función para formatear el saldo como una cantidad de dinero
   const formatMoney = (amount: any) => {
-    return amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    return amount?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
   }
 
   return (
     <>
-      <section className=" w-[370px] h-[136px] bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)]">
+      <section className=" w-[370px] h-[136px] bg-white rounded-lg shadow-[0.0px_4.0px_4.0px_rgba(0,0,0,0.25)] hover:bg-slate-100 hover:trasition-all hover:transition-colors">
         <div className="flex">
           <div className="px-5 mt-2 text-base font-semibold leading-normal text-black text-start">
             Disponible en Mercado pago Wallet
@@ -38,7 +37,7 @@ export default function BalanceWallet() {
         <div className="flex items-center justify-between px-5">
           <div className="flex gap-4 ">
             <p className="text-start  mt-3 text-black text-[31px] font-semibold leading-normal">
-              {hidden ? '***' : `$ ${formatMoney(balance?.balance)}`}
+              ${hidden ? '***' : ` ${formatMoney(balance?.balance)}`}
             </p>
             <svg
               onClick={() => setHidden(!hidden)}

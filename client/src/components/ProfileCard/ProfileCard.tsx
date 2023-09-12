@@ -80,7 +80,7 @@ export default function ProfileCard() {
             </p>
           </div>
           <div className="mt-10 ml-10 leading-loose text-left">
-            <Link href="/">
+            <Link href="/profile/account-data">
               <Image
                 src={Go}
                 alt="go"

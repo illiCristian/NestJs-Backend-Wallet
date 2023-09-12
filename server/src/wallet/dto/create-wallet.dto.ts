@@ -5,6 +5,7 @@ import {
   IsMongoId,
   IsNumber,
   IsOptional,
+  IsPositive,
   IsString,
 } from 'class-validator';
 

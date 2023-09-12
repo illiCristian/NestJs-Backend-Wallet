@@ -9,6 +9,7 @@ export interface User extends mongoose.Document {
   walletId: mongoose.Schema.Types.ObjectId;
   roles: string[];
   id: string;
+  notificaciones: string[];
 }
 
 export const UserModel = mongoose.model<User>('User', UserSchema);
