@@ -69,6 +69,10 @@ function ConfirmTransfer() {
                     return
                   }
                 }
+
+                updateWallet(tempMoney)
+                setTempMoney(0)
+                router.push('/success')
               },
             },
           )
