@@ -1,6 +1,8 @@
 import AddCard from '@/components/SendMoney/SelectMethod/AddCard'
 import Card from '@/components/SendMoney/SelectMethod/Card'
+import TransferButton from '@/components/SendMoney/SelectMethod/TransferButton'
 import TransferDetail from '@/components/SendMoney/SelectMethod/TransferDetail'
+import MyCards from '@/components/TransferDebit/MyCards/MyCards'
 
 export default function page() {
   return (
@@ -11,13 +13,12 @@ export default function page() {
       <div className="flex justify-center">
         <section className="w-[1013px] h-[740px] flex flex-col bg-white rounded-lg shadow-[0px_4px_4px_4px_#00000025] mt-10">
           <TransferDetail />
-          <div className="flex gap-16 justify-center mt-10">
+          <div className="flex w-[900px] ml-14 items-center gap-10 mt-10 overflow-hidden overflow-x-auto justify-start">
             <AddCard />
             <Card />
+            <MyCards />
           </div>
-          <button className="w-[900px] h-[42px] px-16 py-3 bg-sky-500 rounded-md justify-center items-center gap-2 inline-flex text-center text-white text-base font-bold leading-normal mt-10 place-self-center">
-            Trasnferir
-          </button>
+          <TransferButton />
         </section>
       </div>
     </>

@@ -8,6 +8,7 @@ export interface Movement extends mongoose.Document {
   amount: number;
   source: string;
   destination: string;
+  nameDest: string;
   status: string;
   date: Date;
 }

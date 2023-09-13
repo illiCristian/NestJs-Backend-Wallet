@@ -1,19 +1,22 @@
 'use client'
 
-import { depositMoneyBank } from '@/services'
-import { useTempMoney, useUserProfile } from '@/store/userStore'
-import { useMutation } from '@tanstack/react-query'
+/* import { depositMoneyWallet } from '@/services'
+import { useTransferData, useUserProfile } from '@/store/userStore'
+import { useMutation } from '@tanstack/react-query' */
 import { useRouter } from 'next/navigation'
 
 function DepositButtonBank() {
   const router = useRouter()
-  const { mutate: depositMoney } = useMutation(depositMoneyBank)
+  /* const { mutate: depositMoney } = useMutation(depositMoneyWallet)
   const { updateWallet } = useUserProfile()
-  const { tempMoney, setTempMoney } = useTempMoney()
+  const { tempMoney, setTempMoney } = useTransferData() */
 
   const handleDepositMoney = () => {
-    depositMoney(
+    router.push('/success')
+
+    /* depositMoney(
       {
+        paymentType: 'AccountBank',
         amount: tempMoney,
         selectedPaymentId: '64f8c4fb98943515df502fb0',
       },
@@ -21,10 +24,10 @@ function DepositButtonBank() {
         onSuccess: () => {
           updateWallet(tempMoney)
           setTempMoney(0)
-          router.push('/money-charge/transfer-debit/operation-success')
+          router.push('/success')
         },
       },
-    )
+    ) */
   }
 
   return (

@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"
+import { useUserProfile } from '@/store/userStore'
+import Link from 'next/link';
 
 type CardProps = {
   title?: string
@@ -8,6 +10,8 @@ type CardProps = {
 }
 
 const Card = ({ title, subtitle, description, buttonText }: CardProps) => {
+
+
   return (
     <section className="w-4/5 rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4">
@@ -16,9 +20,11 @@ const Card = ({ title, subtitle, description, buttonText }: CardProps) => {
         </div>
         <p className="text-gray-900 font-semibold text-lg">{subtitle}</p>
         <p className="text-gray-700 text-base">{description}</p>
+        <Link href="/profile/account-data/verify-name">
         <span className="mt-2 flex items-center justify-end  text-primary cursor-pointer font-bold py-2 px-4">
           {buttonText}
         </span>
+        </Link>
         <br />
       </div>
     </section>
@@ -26,12 +32,15 @@ const Card = ({ title, subtitle, description, buttonText }: CardProps) => {
 }
 
 const AccountData = () => {
+  const data = useUserProfile();
+
+  
   return (
-    <section className=" m-4 flex flex-col gap-4">
+    <section className="w-[980px] m-4 flex flex-col gap-4">
       <Card
         title="&#x2714; Validado"
         subtitle="E- mail"
-        description="Rosa.P@gmail.com"
+        description={data.email === ""? " " : data.email}
         buttonText="Modificar"
       />
       <Card
@@ -41,7 +50,7 @@ const AccountData = () => {
       />
       <Card
         subtitle="Nombre de Usuario"
-        description="Rosa Perez"
+        description={data.name === ""? " " : data.name}
         buttonText="Modificar"
       />
       <Card

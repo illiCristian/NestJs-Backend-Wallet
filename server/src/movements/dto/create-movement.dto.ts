@@ -23,5 +23,9 @@ export class CreateMovementDto {
 
   @IsNotEmpty()
   @IsString()
+  nameDest: string;
+
+  @IsNotEmpty()
+  @IsString()
   status: string;
 }

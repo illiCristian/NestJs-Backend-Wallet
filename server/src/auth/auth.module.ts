@@ -15,6 +15,7 @@ import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
 import { MovementSchema } from 'src/movements/schema/movement.model';
 import { MovementsService } from 'src/movements/movements.service';
+import { NotificationGateway } from 'src/notifications/notifications.gateway';
 
 @Module({
   imports: [
@@ -47,7 +48,6 @@ import { MovementsService } from 'src/movements/movements.service';
     WalletService,
     PaymentService,
     CvuGeneratorService,
-    MovementsService,
   ],
   exports: [PassportModule, JwtStrategy],
 })

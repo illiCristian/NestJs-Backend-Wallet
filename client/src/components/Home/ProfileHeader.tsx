@@ -15,11 +15,11 @@ function ProfileHeader() {
   }, [])
 
   return (
-    <figure className="w-[320px] h-[64px] bg-sky-600 flex gap-3 items-center pl-4">
+    <figure className="w-[320px] h-[64px] bg-sky-600 flex gap-3 items-center pl-4 hover:bg-tertiary drop-shadow-xl">
       <Image src={userImg} className="w-[41px] h-[41px]" alt="image-user" />
       <section className="flex flex-col">
         <h5 className="text-2xl font-semibold text-white">
-          Hola {name.split(' ')[0]}
+          Hola {name ? name.split(' ')[0] : '. . .'}
         </h5>
         <Link href={'/profile'} className="flex gap-3">
           <h6 className="text-base font-normal leading-normal text-center text-white ">

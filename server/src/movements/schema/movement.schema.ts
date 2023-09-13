@@ -27,6 +27,9 @@ export class Movement {
   destination: string;
 
   @Prop()
+  nameDest: string;
+
+  @Prop()
   status: string;
 
   @Prop()

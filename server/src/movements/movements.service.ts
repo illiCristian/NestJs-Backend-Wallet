@@ -29,7 +29,7 @@ export class MovementsService {
     id: string,
   ): Promise<Movement> {
     try {
-      const { type, movement, amount, source, destination, status } =
+      const { type, movement, amount, source, destination, status, nameDest } =
         createMovementDto;
 
       const user = await this.userService.getUserAndCheck(id);
@@ -44,6 +44,7 @@ export class MovementsService {
         amount,
         source,
         destination,
+        nameDest,
         status,
         date: new Date(),
       });

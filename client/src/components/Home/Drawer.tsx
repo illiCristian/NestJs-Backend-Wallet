@@ -21,15 +21,21 @@ export default function Drawer() {
       <section className="flex flex-col">
         <ProfileHeader />
         <div className="w-[319px] h-[1080px] bg-white border-r py-6">
-          <section className="space-y-6 ">
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+          <section className="space-y-1 ">
+            <Link
+              href={'/home'}
+              className="flex gap-5 text-neutral-500 p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={home} alt="home" className="" />
-              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
+              <h6 className="text-base font-semibold leading-normal text-center  text-tertiary group-hover:text-primary ">
                 Inicio
               </h6>
             </Link>
 
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+            <Link
+              href={'/home'}
+              className="flex gap-5  text-neutral-500 p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={help} alt="help" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Ayuda
@@ -38,10 +44,10 @@ export default function Drawer() {
           </section>
           <div className="h-px mt-2 w-80 bg-zinc-300"> </div>
 
-          <section className="py-4 space-y-6">
+          <section className="py-4 space-y-1">
             <Link
               href={'/balance'}
-              className="flex gap-5 px-3 text-neutral-500 "
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors "
             >
               <Image src={wallet} alt="wallet" className="" />
               <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
@@ -49,7 +55,10 @@ export default function Drawer() {
               </h6>
             </Link>
 
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+            <Link
+              href={'/home'}
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={activity} alt="activity" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Actividad
@@ -58,7 +67,7 @@ export default function Drawer() {
 
             <Link
               href={'/send-money'}
-              className="flex gap-5 px-3 text-neutral-500"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
             >
               <Image src={sendMoney} alt="sendMoney" className="" />
               <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
@@ -67,8 +76,11 @@ export default function Drawer() {
             </Link>
           </section>
           <div className="h-px w-80 bg-zinc-300"> </div>
-          <section className="py-4">
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+          <section className="py-2">
+            <Link
+              href={'/home'}
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={loan} alt="loan" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Préstamos
@@ -76,35 +88,50 @@ export default function Drawer() {
             </Link>
           </section>
           <div className="h-px w-80 bg-zinc-300"> </div>
-          <section className="py-4 space-y-6">
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+          <section className="py-4 space-y-1">
+            <Link
+              href={'/home'}
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={charge} alt="charge" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Cobrar en tu local
               </h6>
             </Link>
 
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+            <Link
+              href={'/home'}
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={link} alt="link" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Link de pago
               </h6>
             </Link>
 
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+            <Link
+              href={'/home'}
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={bill} alt="bill" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Informes y Facturación
               </h6>
             </Link>
 
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+            <Link
+              href={'/home'}
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={money} alt="help" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Planes de suscripción
               </h6>
             </Link>
-            <Link href={'/home'} className="flex gap-5 px-3 text-neutral-500">
+            <Link
+              href={'/home'}
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+            >
               <Image src={market} alt="help" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
                 Tu negocio

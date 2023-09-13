@@ -13,6 +13,7 @@ import { PaymentService } from 'src/payment/payment.service';
 import { CvuGeneratorService } from './cvu-alias-generator/cvu-generator.service';
 import { MovementSchema } from 'src/movements/schema/movement.model';
 import { MovementsService } from 'src/movements/movements.service';
+import { NotificationGateway } from 'src/notifications/notifications.gateway';
 @Module({
   controllers: [WalletController],
   imports: [
@@ -46,6 +47,7 @@ import { MovementsService } from 'src/movements/movements.service';
     PaymentService,
     CvuGeneratorService,
     MovementsService,
+    NotificationGateway,
   ],
   exports: [WalletService, MongooseModule],
 })
