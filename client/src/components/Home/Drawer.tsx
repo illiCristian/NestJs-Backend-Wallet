@@ -24,10 +24,10 @@ export default function Drawer() {
           <section className="space-y-1 ">
             <Link
               href={'/home'}
-              className="flex gap-5 text-neutral-500 p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 text-neutral-500 p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors group  focus:bg-slate-100"
             >
               <Image src={home} alt="home" className="" />
-              <h6 className="text-base font-semibold leading-normal text-center  text-tertiary group-hover:text-primary ">
+              <h6 className="text-base font-semibold leading-normal text-center  text-tertiary  group-focus:text-sky-600  ">
                 Inicio
               </h6>
             </Link>
@@ -47,30 +47,30 @@ export default function Drawer() {
           <section className="py-4 space-y-1">
             <Link
               href={'/balance'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors "
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors group  focus:bg-slate-100 "
             >
               <Image src={wallet} alt="wallet" className="" />
-              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
+              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary  group-focus:text-sky-600 ">
                 Tu Dinero
               </h6>
             </Link>
 
             <Link
               href={'/home'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors  group  focus:bg-slate-100 "
             >
               <Image src={activity} alt="activity" className="" />
-              <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
+              <h6 className="text-base font-semibold leading-normal text-center text-tertiary group-focus:text-sky-600">
                 Actividad
               </h6>
             </Link>
 
             <Link
               href={'/send-money'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors group  focus:bg-slate-100"
             >
               <Image src={sendMoney} alt="sendMoney" className="" />
-              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary hover:text-primary">
+              <h6 className="text-base font-semibold leading-normal text-center transition-all text-tertiary group-focus:text-sky-600">
                 Enviar Dinero
               </h6>
             </Link>
@@ -79,7 +79,7 @@ export default function Drawer() {
           <section className="py-2">
             <Link
               href={'/home'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors focus:bg-slate-100"
             >
               <Image src={loan} alt="loan" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
@@ -91,7 +91,7 @@ export default function Drawer() {
           <section className="py-4 space-y-1">
             <Link
               href={'/home'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors focus:bg-slate-100"
             >
               <Image src={charge} alt="charge" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
@@ -101,7 +101,7 @@ export default function Drawer() {
 
             <Link
               href={'/home'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition- focus:bg-slate-100"
             >
               <Image src={link} alt="link" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
@@ -111,7 +111,7 @@ export default function Drawer() {
 
             <Link
               href={'/home'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors focus:bg-slate-100"
             >
               <Image src={bill} alt="bill" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
@@ -121,7 +121,7 @@ export default function Drawer() {
 
             <Link
               href={'/home'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors focus:bg-slate-100"
             >
               <Image src={money} alt="help" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
@@ -130,7 +130,7 @@ export default function Drawer() {
             </Link>
             <Link
               href={'/home'}
-              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+              className="flex gap-5 px-3 text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors focus:bg-slate-100"
             >
               <Image src={market} alt="help" className="" />
               <h6 className="text-base font-semibold leading-normal text-center text-tertiary">
