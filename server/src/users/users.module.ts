@@ -11,12 +11,9 @@ import { PaymentService } from 'src/payment/payment.service';
 import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
 import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
-<<<<<<< HEAD
 import { MovementSchema } from 'src/movements/schema/movement.model';
 import { MovementsService } from 'src/movements/movements.service';
-=======
 import { NotificationGateway } from 'src/notifications/notifications.gateway';
->>>>>>> 33adf027bcf5cdcb119ae6f1d4e02ecbccd32fa8
 
 @Module({
   imports: [
@@ -51,11 +48,8 @@ import { NotificationGateway } from 'src/notifications/notifications.gateway';
     WalletService,
     PaymentService,
     CvuGeneratorService,
-<<<<<<< HEAD
     MovementsService,
-=======
     NotificationGateway,
->>>>>>> 33adf027bcf5cdcb119ae6f1d4e02ecbccd32fa8
   ],
   exports: [MongooseModule, UsersService],
 })

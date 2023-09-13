@@ -13,6 +13,7 @@ import { PaymentService } from 'src/payment/payment.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
+import { NotificationGateway } from 'src/notifications/notifications.gateway';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generato
     WalletService,
     PaymentService,
     CvuGeneratorService,
+    NotificationGateway,
   ],
   exports: [MongooseModule, MovementsService],
 })

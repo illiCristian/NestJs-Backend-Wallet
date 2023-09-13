@@ -48,6 +48,8 @@ import { NotificationGateway } from 'src/notifications/notifications.gateway';
     WalletService,
     PaymentService,
     CvuGeneratorService,
+    MovementsService,
+    NotificationGateway,
   ],
   exports: [PassportModule, JwtStrategy],
 })
