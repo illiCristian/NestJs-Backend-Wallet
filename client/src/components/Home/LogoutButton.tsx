@@ -8,7 +8,7 @@ function LogoutButton() {
   return (
     <button
       onClick={() => signOut({ callbackUrl: '/' })}
-      className="flex gap-5 px-3 transition-all text-neutral-500  hover:text-primary  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors"
+      className="flex w-full gap-5 px-3 transition-all text-neutral-500  p-3 hover:bg-slate-100 hover:trasition-all hover:transition-colors focus:bg-slate-100"
     >
       <Image src={logout} alt="logout button" />
       <h6 className="text-base font-semibold leading-normal  text-center">

@@ -66,32 +66,26 @@ export default function NavbarHome() {
   }, [])
 
   useEffect(() => {
-    mySocket?.on('notification', (data: any) => {
-      setNotifications((prev: any) => [...prev, data])
-    })
-
     mySocket?.on('connect', () => {
       console.log('Conectado!!')
       mySocket?.emit('newUser', _id)
+    })
+
+    mySocket?.on('notification', (data: any) => {
+      console.log(data)
+      console.log('Llego la notificacion!!')
+
+      setNotifications((prev: any) => [...prev, data])
     })
   }, [_id, mySocket])
 
   return (
     <>
-
-      <header className="w-full h-16 bg-tertiary drop-shadow-xl">
+      <header className="w-full h-16 bg-tertiary drop-shadow-xl flex justify-between items-center px-5">
         {/* Sección del logo */}
-        <section className="w-auto h-16 flex-col justify-center ps-14 gap-2.5 inline-flex">
-          {/* Imagen del logo */}
-          <p className="inline-flex w-auto text-lg font-bold text-white">
-            {pageTitle}
-          </p>
-        </section>
-        {/* Sección de registro de imagen */}
-        <section className="image-register w-11 p-2.5 left-[1768px] top-[20px] absolute">
-          {/* Contenido del registro de imagen */}
-        </section>
-
+        <p className="inline-flex w-auto text-lg font-bold text-white">
+          {pageTitle}
+        </p>
         {/* Icono de ayuda */}
         <figure
           className="relative w-6 h-6 cursor-pointer"
