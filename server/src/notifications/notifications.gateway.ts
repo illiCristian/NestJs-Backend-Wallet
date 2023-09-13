@@ -56,7 +56,7 @@ export class NotificationGateway
   }
 
   sendNotificationToUser(userId: string, message: string) {
-    const userFound = this.usersConnected.forEach((user) => {
+    this.usersConnected.forEach((user) => {
       if (user.username === userId) {
         this.server.to(user.client).emit('notification', message);
       }

@@ -18,7 +18,9 @@ async function bootstrap() {
     }),
   );
   //Cors
-  app.enableCors();
+  app.enableCors({
+    origin: '*',
+  });
 
   //Config necesaria para documentar con swagger
   //http://localhost:8000/docs para ver la documentacion
