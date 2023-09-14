@@ -1,3 +1,4 @@
+import { Card } from '@/components/SendMoney/SelectMethod/Card';
 import {
   BadRequestException,
   Inject,
@@ -10,7 +11,7 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Wallet } from 'src/wallet/schema/wallet.model';
-import { TransferData } from './interfaces/transfer-data';
+//import { TransferData } from './interfaces/transfer-data';
 import { CvuGeneratorService } from './cvu-alias-generator/cvu-generator.service';
 import { UsersService } from 'src/users/users.service';
 
@@ -23,6 +24,9 @@ import { PaymentTypes } from 'src/payment/interfaces/payment.types';
 import { ActionGetInfo } from './interfaces/operations-get-wallet';
 import { ActionPostWallet } from './interfaces/operations-post-wallet.types';
 import { TransferDto } from './dto/transfer-dto';
+import { Movement } from 'src/movements/schema/movement.model';
+import { MovementsService } from 'src/movements/movements.service';
+//import { CreateMovementDto } from 'src/movements/dto/create-movement.dto';
 import { type } from 'os';
 import { NotificationGateway } from 'src/notifications/notifications.gateway';
 
@@ -31,6 +35,7 @@ export class WalletService {
   private walletDto: CreateWalletDto;
   constructor(
     @InjectModel('Wallet') private readonly walletModel: Model<Wallet>,
+    @InjectModel('Movement') private readonly movementModel: Model<Movement>,
     @InjectModel('CreditCard')
     private readonly creditCardModel: Model<CreditCardMethod>,
 
@@ -43,6 +48,8 @@ export class WalletService {
     @Inject(forwardRef(() => CvuGeneratorService))
     private readonly cvuGeneratorService: CvuGeneratorService,
 
+    @Inject(forwardRef(() => MovementsService))
+    private readonly movementService: MovementsService,
     @Inject(forwardRef(() => NotificationGateway))
     private readonly notificationGateway: NotificationGateway,
   ) {
@@ -144,6 +151,19 @@ export class WalletService {
           card.balance -= amount;
 
           await card.save();
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: card._id,
+              destination: wallet._id,
+              nameDest: user.name,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
 
           wallet.balance = wallet.balance + amount;
 
@@ -171,7 +191,22 @@ export class WalletService {
           bankAccount.balance -= amount;
 
           await bankAccount.save();
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: bankAccount._id,
+              destination: wallet._id,
+              nameDest: user.name,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
         }
+        wallet.balance += amount;
+        await wallet.save();
         return wallet;
 
       case 'withdraw':
@@ -183,6 +218,19 @@ export class WalletService {
           card.balance += amount;
           await card.save();
           wallet.balance -= amount;
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: wallet._id,
+              destination: card._id,
+              nameDest: card.name,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
         }
         if (paymentTypes === 'accountBank') {
           const bankAccount = await this.paymentService.getBankAccountById(
@@ -194,6 +242,19 @@ export class WalletService {
 
           bankAccount.balance += amount;
           await bankAccount.save();
+          const movement = await this.movementService.createMovement(
+            {
+              movement: action,
+              type: paymentTypes,
+              amount,
+              source: wallet._id,
+              destination: bankAccount._id,
+              nameDest: bankAccount.bankName,
+              status: 'Successful',
+            },
+            userId,
+          );
+          await movement.save();
         }
         wallet.balance -= amount;
         await wallet.save();
@@ -224,6 +285,19 @@ export class WalletService {
       );
     }
     if (fromWallet.balance < walletDto.balance) {
+      const movement = await this.movementService.createMovement(
+        {
+          movement: 'Transfer',
+          type: 'Transfer Funds',
+          amount: walletDto.balance,
+          source: fromWallet._id,
+          destination: toWallet._id,
+          nameDest: toUser.name,
+          status: 'Rejected',
+        },
+        fromUserId,
+      );
+      await movement.save();
       throw new UnprocessableEntityException('Insufficient balance');
     }
 
@@ -242,6 +316,19 @@ export class WalletService {
     );
     await Promise.all([fromUser.save(), toUser.save()]);
     await Promise.all([fromWallet.save(), toWallet.save()]);
+    const movement = await this.movementService.createMovement(
+      {
+        movement: 'Transfer',
+        type: 'Transfer Funds',
+        amount: walletDto.balance,
+        source: fromWallet._id,
+        destination: toWallet._id,
+        nameDest: toUser.name,
+        status: 'Successful',
+      },
+      fromUserId,
+    );
+    await movement.save();
 
     return {
       fromWallet: fromWallet.toObject(),

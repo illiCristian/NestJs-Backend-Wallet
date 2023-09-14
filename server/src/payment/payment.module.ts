@@ -10,6 +10,8 @@ import { WalletService } from 'src/wallet/wallet.service';
 import { BankAccountSchema } from './schema/accountBank.model';
 import { JwtService } from '@nestjs/jwt';
 import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
+import { MovementSchema } from 'src/movements/schema/movement.model';
+import { MovementsService } from 'src/movements/movements.service';
 import { NotificationGateway } from 'src/notifications/notifications.gateway';
 
 @Module({
@@ -19,6 +21,7 @@ import { NotificationGateway } from 'src/notifications/notifications.gateway';
     WalletService,
     JwtService,
     CvuGeneratorService,
+    MovementsService,
     NotificationGateway,
   ],
   controllers: [PaymentController],
@@ -40,6 +43,10 @@ import { NotificationGateway } from 'src/notifications/notifications.gateway';
       {
         name: 'BankAccount',
         schema: BankAccountSchema,
+      },
+      {
+        name: 'Movement',
+        schema: MovementSchema,
       },
     ]),
   ],

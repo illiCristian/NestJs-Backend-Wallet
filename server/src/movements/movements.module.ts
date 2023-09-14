@@ -1,34 +1,28 @@
 import { Module } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { UsersController } from './users.controller';
-import { MongooseModule } from '@nestjs/mongoose';
-import { WalletSchema } from 'src/wallet/schema/wallet.model';
+import { MovementsService } from './movements.service';
+import { MovementsController } from './movements.controller';
+import { UsersService } from 'src/users/users.service';
 import { WalletService } from 'src/wallet/wallet.service';
-import { UserSchema } from './schema/user.model';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MovementSchema } from './schema/movement.model';
+import { WalletSchema } from 'src/wallet/schema/wallet.model';
+import { UserSchema } from 'src/users/schema/user.model';
+import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
+import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
+import { PaymentService } from 'src/payment/payment.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { PaymentService } from 'src/payment/payment.service';
-import { CreditCardSchema } from 'src/payment/schema/creditCard.model';
-import { BankAccountSchema } from 'src/payment/schema/accountBank.model';
 import { CvuGeneratorService } from 'src/wallet/cvu-alias-generator/cvu-generator.service';
-import { MovementSchema } from 'src/movements/schema/movement.model';
-import { MovementsService } from 'src/movements/movements.service';
 import { NotificationGateway } from 'src/notifications/notifications.gateway';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
+      { name: 'Movement', schema: MovementSchema },
       { name: 'User', schema: UserSchema },
       { name: 'Wallet', schema: WalletSchema },
-      { name: 'Movement', schema: MovementSchema },
-      {
-        name: 'CreditCard',
-        schema: CreditCardSchema,
-      },
-      {
-        name: 'BankAccount',
-        schema: BankAccountSchema,
-      },
+      { name: 'BankAccount', schema: BankAccountSchema },
+      { name: 'CreditCard', schema: CreditCardSchema },
     ]),
     JwtModule.registerAsync({
       inject: [ConfigService],
@@ -42,15 +36,15 @@ import { NotificationGateway } from 'src/notifications/notifications.gateway';
       },
     }),
   ],
-  controllers: [UsersController],
+  controllers: [MovementsController],
   providers: [
+    MovementsService,
     UsersService,
     WalletService,
     PaymentService,
     CvuGeneratorService,
-    MovementsService,
     NotificationGateway,
   ],
-  exports: [MongooseModule, UsersService],
+  exports: [MongooseModule, MovementsService],
 })
-export class UsersModule {}
+export class MovementsModule {}

@@ -10,9 +10,11 @@ import { MailingModule } from './mailing/mailing.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { WalletModule } from './wallet/wallet.module';
+import { MovementsModule } from './movements/movements.module';
 import { PaymentModule } from './payment/payment.module';
 import { GatewayModule } from './notifications/gateway-module';
 
+//import { CvuGeneratorService } from './cvu-generator/cvu-generator.service';
 @Module({
   //Importamos los modulos que vamos a usar
   imports: [
@@ -22,6 +24,8 @@ import { GatewayModule } from './notifications/gateway-module';
     MailingModule,
     WalletModule,
     PaymentModule,
+    //CvuGeneratorService,
+
     GatewayModule,
     ConfigModule.forRoot({
       isGlobal: true,
@@ -58,6 +62,7 @@ import { GatewayModule } from './notifications/gateway-module';
     }),
     //Conexion con la base de datos
     MongooseModule.forRoot(process.env.MONGO_URI),
+    MovementsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
